@@ -1,0 +1,19 @@
+{
+  "name": "workforce-link-generator",
+  "version": "0.0.0",
+  "description": "Generates support worker data for WF Link database",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjohnston-softdev/workforce-link-generator.git"
+  },
+  "author": "Tyrone Johnston",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjohnston-softdev/workforce-link-generator/issues"
+  },
+  "homepage": "https://github.com/tjohnston-softdev/workforce-link-generator#readme"
+}
