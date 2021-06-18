@@ -1,9 +1,10 @@
 # Changelog
 
-**./storage-paths.js**
-* Renamed function from 'defineFolderPaths'to 'defineStoragePaths'
-* Renamed existing properties:
-	* 'input' to 'inputFolder'
-	* 'output' to 'outputFolder'
-* Added 'optionsFile' property.
-	* Refers to 'options.json'
+**./src/options-validation/base-type.js**
+* New file - Used to validate the base type of 'options.json'
+* Also used to initialize nested object properties.
+
+---
+
+**./src/options-validation/placeholder.json**
+* Placeholder for options validation result object.
