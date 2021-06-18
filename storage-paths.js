@@ -1,13 +1,14 @@
 const path = require("path");
 
-function defineFolderPaths()
+function defineStoragePaths()
 {
 	var defineRes = {};	
-	defineRes["input"] = path.join(".", "input-data");
-	defineRes["output"] = path.join(".", "output-sql");
+	defineRes["inputFolder"] = path.join(".", "input-data");
+	defineRes["outputFolder"] = path.join(".", "output-sql");
+	defineRes["optionsFile"] = path.join(".", "options.json");
 	
 	return defineRes;
 }
 
 
-module.exports = defineFolderPaths();
+module.exports = defineStoragePaths();
