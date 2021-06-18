@@ -18,8 +18,10 @@
   "homepage": "https://github.com/tjohnston-softdev/workforce-link-generator#readme",
   "dependencies": {
     "clear": "^0.1.0",
+    "line-by-line": "^0.1.6",
     "ora": "^5.4.1",
     "run-series": "^1.1.9",
-    "sqlstring": "^2.3.2"
+    "sqlstring": "^2.3.2",
+    "yieldable-json": "^2.0.1"
   }
 }

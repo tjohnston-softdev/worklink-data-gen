@@ -1,7 +1,5 @@
 # Changelog
 
-* Installed 3rd-party packages:
-	* clear
-	* ora
-	* run-series
-	* sqlstring
+* Installed 3rd-party packages for input file parsing:
+	* line-by-line
+	* yieldable-json
