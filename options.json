@@ -1,0 +1,131 @@
+{
+	"supportWorkerCount": 5000,
+	"genders":
+	{
+		"distribution": 0.5,
+		"otherChance": 0.17
+	},
+	"minRegDate": "2017-11-02",
+	"age":
+	{
+		"min": 18,
+		"max": 70,
+		"feelsLikeChance": 0.55,
+		"maxOffset": 0.25
+	},
+	"apperanceChance": 1,
+	"travelTime":
+	{
+		"min": 5,
+		"max": 90
+	},
+	"englishChance": 0.85,
+	"signChance": 0.10,
+	"vegetarianChance": 0.15,
+	"petFriendlyChance": 0.80,
+	"smokingChance": 0.05,
+	"swimChance": 0.90,
+	"seasickChance": 0.03,
+	"wageSubsidyChance": 0.40,
+	"interviewDayWeights": [100, 100, 100, 100, 80, 50, 35],
+	"videoChance": 0.60,
+	"viewsPerDay":
+	{
+		"min": 0,
+		"max": 8
+	},
+	"otherLanguages":
+	{
+		"chance": 0.15,
+		"min": 1,
+		"max": 3
+	},
+	"checksClearances":
+	{
+		"chance": 0.75,
+		"min": 1,
+		"max": 4,
+		"showWillingness": true
+	},
+	"personality":
+	{
+		"min": 2,
+		"max": 5
+	},
+	"hobbies":
+	{
+		"min": 3,
+		"max": 8
+	},
+	"gaming":
+	{
+		"chance": 0.55,
+		"min": 1,
+		"max": 3
+	},
+	"allergies":
+	{
+		"chance": 0.08,
+		"min": 1,
+		"max": 3
+	},
+	"pets":
+	{
+		"chance": 0.65,
+		"minAnimals": 1,
+		"maxAnimals": 3,
+		"minCount": 1,
+		"maxCount": 5
+	},
+	"fearsPhobias":
+	{
+		"chance": 0.04,
+		"min": 1,
+		"max": 3
+	},
+	"technology":
+	{
+		"min": 1,
+		"max": 5
+	},
+	"qualifications":
+	{
+		"chance": 0.67,
+		"min": 1,
+		"max": 2
+	},
+	"experienceAreas":
+	{
+		"min": 1,
+		"max": 8
+	},
+	"previousExperience":
+	{
+		"chance": 0.80,
+		"minPositions": 1,
+		"maxPositions": 5,
+		"minWorkAge": 15,
+		"minLengthMonths": 3,
+		"maxLengthMonths": 240,
+		"ongoingChance": 0.40
+	}
+	"availability":
+	{
+		"minWeeklyHours": 8,
+		"maxWeeklyHours": 60,
+		"minBlockHours": 1,
+		"maxBlockHours": 16,
+		"minIntervalHours": 2
+	},
+	"otherSpecific":
+	{
+		"chance": 0.50,
+		"minKeywords": 5,
+		"maxKeywords": 20
+	},
+	"otherGeneral":
+	{
+		"minKeywords": 10,
+		"maxKeywords": 20
+	}
+}
