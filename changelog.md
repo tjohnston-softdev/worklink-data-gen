@@ -1,3 +1,4 @@
 # Changelog
 
-Added 'options.json' file.
+**./output-sql/**
+* New folder - Generated SQL files will be saved here.
