@@ -1,10 +1,19 @@
 # Changelog
 
-**./src/options-validation/base-type.js**
-* New file - Used to validate the base type of 'options.json'
-* Also used to initialize nested object properties.
+**./src/common/value-limits.js**
+* New file - Contains valid number ranges for different option properties.
 
 ---
 
-**./src/options-validation/placeholder.json**
-* Placeholder for options validation result object.
+**./src/common/validation-tasks.js**
+* New file - Contains functions to validate option properties.
+	* Boolean
+	* General number
+	* Number range
+	* Percentage
+	* 'Feels like' age offset
+	* Date string
+	* 'Day weights' array object.
+* This file is not finished yet.
+	* Error messages are empty.
+	* Public exports have not been set.
