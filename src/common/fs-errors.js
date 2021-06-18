@@ -12,6 +12,17 @@ function writeFileCheckError(vFile, vErrorCode, vPath)
 	return writeRes;
 }
 
+function writeFileReadError(vFile, vErrorCode, vPath)
+{
+	var writeRes = "";
+	
+	writeRes += displaySystemAction("reading", vFile);
+	writeRes += parseErrorCode(vErrorCode);
+	writeRes += parseTargetPath(vPath);
+	
+	return writeRes;
+}
+
 
 function writeFileTooLargeError(vFile, vMaxSize, vPath)
 {
@@ -44,6 +55,23 @@ function writeInvalidFileError(vFile, vPath)
 	
 	writeRes += vFile;
 	writeRes += " is not a valid file.";
+	writeRes += parseTargetPath(vPath);
+	
+	return writeRes;
+}
+
+
+function writeJsonParseError(vFile, vDesc, vPath)
+{
+	var writeRes = "";
+	
+	writeRes += "Error parsing ";
+	writeRes += vFile;
+	writeRes += " file.\r\n";
+	
+	writeRes += "Reason: ";
+	writeRes += vDesc;
+	
 	writeRes += parseTargetPath(vPath);
 	
 	return writeRes;
@@ -113,7 +141,9 @@ function parseTargetPath(relativePath)
 module.exports =
 {
 	writeFileCheck: writeFileCheckError,
+	writeFileRead: writeFileReadError,
 	writeFileTooLarge: writeFileTooLargeError,
 	writeFileEmpty: writeFileEmptyError,
-	writeInvalidFile: writeInvalidFileError
+	writeInvalidFile: writeInvalidFileError,
+	writeJsonParse: writeJsonParseError
 };

@@ -108,7 +108,7 @@
 		"minLengthMonths": 3,
 		"maxLengthMonths": 240,
 		"ongoingChance": 0.40
-	}
+	},
 	"availability":
 	{
 		"minWeeklyHours": 8,
