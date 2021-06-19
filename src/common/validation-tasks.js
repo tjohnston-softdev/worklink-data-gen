@@ -1,6 +1,13 @@
 const maxSafeNumber = 10000000000000000000;
 
 
+function defineResultObject()
+{
+	var defineRes = {valid: true, errorMessage: ""};
+	return defineRes;
+}
+
+
 function checkBooleanValue(boolValue, boolProp, resObj)
 {
 	var checkRes = false;
@@ -208,6 +215,7 @@ function appendRangeNumbers(rNums)
 
 module.exports =
 {
+	defineResult: defineResultObject,
 	checkBoolean: checkBooleanValue,
 	checkNumber: checkNumberValue,
 	checkRange: checkRangeValue,
