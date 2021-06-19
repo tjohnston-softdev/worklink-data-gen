@@ -1,19 +1,22 @@
 # Changelog
 
-**./src/common/value-limits.js**
-* New file - Contains valid number ranges for different option properties.
-
----
-
 **./src/common/validation-tasks.js**
-* New file - Contains functions to validate option properties.
-	* Boolean
-	* General number
-	* Number range
-	* Percentage
-	* 'Feels like' age offset
-	* Date string
-	* 'Day weights' array object.
-* This file is not finished yet.
-	* Error messages are empty.
-	* Public exports have not been set.
+* Wrote function 'initializeErrorText'
+	* Writes option property name in quotation marks.
+	* Includes optional text to include after quotation.
+	* Used to begin string when writing error text.
+* Wrote function 'appendRangeNumbers'
+	* Appends range numbers to corresponding error text.
+	* eg. "Between x and y"
+* Error text functions:
+	* writeBooleanErrorText
+	* writeArrayErrorText
+	* writeNumberErrorText
+	* writeNumberTooLargeErrorText
+	* writeNumberRangeErrorText
+	* writeDecimalRangeErrorText
+	* writePercentageErrorText
+	* writeDateErrorText
+	* writeDayWeightCountError
+* All validation functions use their corresponding error text except for 'checkOffsetValue'
+	* Uses a placeholder message for now.
