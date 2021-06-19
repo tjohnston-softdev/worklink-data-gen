@@ -1,10 +1,13 @@
-const series = require("run-series");
 const ora = require("ora");
 const storedPaths = require("../storage-paths");
 const checkFileExists = require("./input/check-file-exists");
 const readOptions = require("./input/read-options");
 const baseType = require("./options-validation/base-type");
 const basicProps = require("./options-validation/basic-props");
+const ageProps = require("./options-validation/age-props");
+const rangeProps = require("./options-validation/range-props");
+const chanceProps = require("./options-validation/base-chance-props");
+const dayProps = require("./options-validation/day-props");
 const validationTasks = require("./common/validation-tasks");
 
 function performOptionsFileRead(optionsCallback)
@@ -79,8 +82,13 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 	{
 		baseType.setNestedObjects(fileContents);
 		basicProps.validateSupportWorkerCount(fileContents, validationResultObject);
-		basicProps.validateGenders(fileContents, validationResultObject);
 		basicProps.validateMinRegisterDate(fileContents, validationResultObject);
+		basicProps.validateGenders(fileContents, validationResultObject);
+		ageProps.validateAge(fileContents, validationResultObject);
+		rangeProps.validateTravelTime(fileContents, validationResultObject);
+		chanceProps.validateChances(fileContents, validationResultObject);
+		dayProps.validateInterview(fileContents, validationResultObject);
+		rangeProps.validateViewsPerDay(fileContents, validationResultObject);
 	}
 	
 	
