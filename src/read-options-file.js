@@ -8,6 +8,9 @@ const ageProps = require("./options-validation/age-props");
 const rangeProps = require("./options-validation/range-props");
 const chanceProps = require("./options-validation/base-chance-props");
 const dayProps = require("./options-validation/day-props");
+const listEntryProps = require("./options-validation/list-entry-props");
+const petProps = require("./options-validation/pet-props");
+const prevExperienceProps = require("./options-validation/prev-experience-props");
 const validationTasks = require("./common/validation-tasks");
 
 function performOptionsFileRead(optionsCallback)
@@ -89,6 +92,11 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 		chanceProps.validateChances(fileContents, validationResultObject);
 		dayProps.validateInterview(fileContents, validationResultObject);
 		rangeProps.validateViewsPerDay(fileContents, validationResultObject);
+		listEntryProps.validateEntries(fileContents, validationResultObject);
+		listEntryProps.validatePetsBase(fileContents, validationResultObject);
+		petProps.validateSpecific(fileContents, validationResultObject);
+		listEntryProps.validatePreviousExperienceBase(fileContents, validationResultObject);
+		prevExperienceProps.validateSpecific(fileContents, validationResultObject);
 	}
 	
 	
