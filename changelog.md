@@ -1,23 +1,23 @@
 # Changelog
 
-**./src/common/fs-errors.js**
-* New function: 'writeFileCreateError'
-	* Error text for creating files.
-	* Mainly intended for 'fs.writeFile'
-	* Might not be used for output streaming.
+**./src/common/number-limits.js**
+* Changed 'listEntries' maximum from 1000 to 50.
+* Added 'feelsLikeOffset' range.
+	* Decimal percentage for 'feelsLikeAge' range.
+	* From 0 to 10
+	* Up to 1000%
 
 ---
 
-**./src/create-options-file.js**
-* New file - Script for creating an empty 'options.json' file.
-* Called when said file does not exist.
+**./src/options-validation/basic-props.js**
+* New file - Handles validation for 'options.json' properties:
+	* supportWorkerCount
+	* genders.*
+	* minRegDate
 
 ---
 
-**./generate.js**
-* Added requirement for './src/create-options-file'
-* Wrote new function 'executeOptionsCreateTask'
-	* Calls 'create-options-file' script.
-* Changes to 'runGenerationMain'
-	* If 'options.json' does not exist, 'executeOptionsCreateTask' is called.
-	* Added exit calls to other cases.
+**./src/read-options-file.js**
+* Added requirement: './options-validation/basic-props'
+* Added calls to 'basicProps' in 'callOptionsValidation'
+* Removed capitalization from successful message in 'performOptionsFileRead'

@@ -4,8 +4,9 @@ function defineNumberLimits()
 	
 	defineRes["supportWorkers"] = setRange(1, 1000000);
 	defineRes["viewsPerDay"] = setRange(0, 10000000);
-	defineRes["listEntries"] = setRange(1, 1000);
+	defineRes["listEntries"] = setRange(1, 50);
 	defineRes["age"] = setRange(0, 1000);
+	defineRes["feelsLikeOffset"] = setRange(0, 10);
 	defineRes["jobMonths"] = setRange(1, 1200);
 	defineRes["hours"] = setRange(1, 168);
 	
