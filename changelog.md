@@ -1,27 +1,23 @@
 # Changelog
 
-**./src/common/validation-tasks.js**
-* Wrote new function 'defineResultObject'
-	* Creates validation result object.
-	* Called publicly as 'defineResult'
+**./src/common/fs-errors.js**
+* New function: 'writeFileCreateError'
+	* Error text for creating files.
+	* Mainly intended for 'fs.writeFile'
+	* Might not be used for output streaming.
 
 ---
 
-**./src/read-options-file.js**
-* New file - Script used to read and validate options file.
-* Implemented:
-	* Checks if the file exists.
-	* Validates size
-	* Opens and parses the file itself.
-	* Base type validation
-	* Initialize nested objects.
-	* Overall structure.
-* Individual property validation has not been called yet.
+**./src/create-options-file.js**
+* New file - Script for creating an empty 'options.json' file.
+* Called when said file does not exist.
 
 ---
 
 **./generate.js**
-* Started writing the main script.
-	* Clears console first.
-	* Calls 'read-options-file.js'
-	* Displays message depending on outcome.
+* Added requirement for './src/create-options-file'
+* Wrote new function 'executeOptionsCreateTask'
+	* Calls 'create-options-file' script.
+* Changes to 'runGenerationMain'
+	* If 'options.json' does not exist, 'executeOptionsCreateTask' is called.
+	* Added exit calls to other cases.

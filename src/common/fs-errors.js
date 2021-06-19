@@ -23,6 +23,17 @@ function writeFileReadError(vFile, vErrorCode, vPath)
 	return writeRes;
 }
 
+function writeFileCreateError(vFile, vErrorCode, vPath)
+{
+	var writeRes = "";
+	
+	writeRes += displaySystemAction("creating", vFile);
+	writeRes += parseErrorCode(vErrorCode);
+	writeRes += parseTargetPath(vPath);
+	
+	return writeRes;
+}
+
 
 function writeFileTooLargeError(vFile, vMaxSize, vPath)
 {
@@ -142,6 +153,7 @@ module.exports =
 {
 	writeFileCheck: writeFileCheckError,
 	writeFileRead: writeFileReadError,
+	writeFileCreate: writeFileCreateError,
 	writeFileTooLarge: writeFileTooLargeError,
 	writeFileEmpty: writeFileEmptyError,
 	writeInvalidFile: writeInvalidFileError,
