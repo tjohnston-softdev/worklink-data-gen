@@ -125,6 +125,7 @@
 	},
 	"otherGeneral":
 	{
+		"chance": 1,
 		"minKeywords": 10,
 		"maxKeywords": 20
 	}
