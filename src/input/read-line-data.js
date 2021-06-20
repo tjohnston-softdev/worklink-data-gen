@@ -13,7 +13,7 @@ function readDataFile(targetPath, inputFileDesc, dataEntryName, dataEntryLength,
 	var canContinue = true;
 	var lineStream = new lineByLine(targetPath);
 	
-	lineStream.on("error", function (readErr)
+	lineStream.on("error", function(readErr)
 	{
 		canContinue = false;
 		dataFileResult.successful = false;
@@ -21,7 +21,7 @@ function readDataFile(targetPath, inputFileDesc, dataEntryName, dataEntryLength,
 		lineStream.close();
 	});
 	
-	lineStream.on("line", function (currentLine)
+	lineStream.on("line", function(currentLine)
 	{
 		lineStream.pause();
 		dataFileResult.lineNumber += 1;
@@ -63,15 +63,16 @@ function readDataFile(targetPath, inputFileDesc, dataEntryName, dataEntryLength,
 
 function readCurrentLine(tgtPath, inpFileDesc, entryName, entryLength, lineString, dataFileRes)
 {
+	var readLineNum = dataFileRes.lineNumber;
 	var lineResult = validationTasks.defineResult();
 	var prepString = valuePrep.castDataLine(lineString);
-	var safeLength = validationTasks.checkDataLineLength(tgtPath, inpFileDesc, prepString.length, numberLimits.dataLength, dataFileRes.lineNumber, lineResult);
+	var safeLength = validationTasks.checkDataLineLength(tgtPath, inpFileDesc, prepString.length, numberLimits.dataLength, readLineNum, lineResult);
 	var validLengthFlag = -1;
 	
 	if (safeLength === true)
 	{
 		prepString = valuePrep.removeExcessSpace(prepString);
-		validLengthFlag = validationTasks.checkDataEntryLength(tgtPath, inpFileDesc, entryName, prepString.length, entryLength, dataFileRes.lineNumber, lineResult);
+		validLengthFlag = validationTasks.checkDataEntryLength(tgtPath, inpFileDesc, entryName, prepString.length, entryLength, readLineNum, lineResult);
 	}
 	
 	if (validLengthFlag > 0)

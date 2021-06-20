@@ -14,6 +14,7 @@ function readCsvFile(nameTargetFilePath, nameInputFileDesc, fileCallback)
 	var canContinue = true;
 	var lineStream = new lineByLine(nameTargetFilePath);
 	
+	
 	lineStream.on("error", function(readErr)
 	{
 		canContinue = false;
@@ -65,7 +66,7 @@ function readCurrentLine(nameTargetFile, nameInputDesc, lineString, nameFileRes)
 {
 	var lineResult = validationTasks.defineResult();
 	var prepString = valuePrep.castDataLine(lineString);
-	var safeLength = validationTasks.checkDataLineLength(nameTargetFile, nameInputDesc, prepString.length, numberLimits.dataLength, nameFileRes.lineNumber, lineResult);
+	var safeLength = callDataLengthCheck(nameTargetFile, nameInputDesc, prepString.length, nameFileRes.lineNumber, lineResult);
 	var lineReady = false;
 	
 	if (safeLength === true)
@@ -83,14 +84,14 @@ function readCurrentLine(nameTargetFile, nameInputDesc, lineString, nameFileRes)
 }
 
 
-function parseRowString(nameTgtFile, nameInpDesc, rowString, currentLineNumber, entryArray, lineResObj)
+function parseRowString(nameTgtFile, nameInpDesc, rowString, fileLineNum, entryArray, lineResObj)
 {
 	var comSplit = rowString.split(",");
-	var validColumnCount = validationTasks.checkCsvColumnCount(nameTgtFile, nameInpDesc, comSplit.length, 2, currentLineNumber, lineResObj);
+	var validColumnCount = validationTasks.checkCsvColumnCount(nameTgtFile, nameInpDesc, comSplit.length, 2, fileLineNum, lineResObj);
 	
 	var nameValue = "";
 	var genderValue = "";
-	var validNameLength = false;
+	var validName = false;
 	var genderFlagExists = false;
 	var validGender = false;
 	
@@ -98,13 +99,13 @@ function parseRowString(nameTgtFile, nameInpDesc, rowString, currentLineNumber, 
 	{
 		nameValue = comSplit[0];
 		genderValue = comSplit[1].toUpperCase();
-		validNameLength = validationTasks.checkNameLength(nameTgtFile, nameInpDesc, nameValue.length, numberLimits.nameLength, currentLineNumber, lineResObj);
+		validName = validationTasks.checkNameLength(nameTgtFile, nameInpDesc, nameValue.length, numberLimits.nameLength, fileLineNum, lineResObj);
 	}
 	
-	if (validNameLength === true)
+	if (validName === true)
 	{
 		genderFlagExists = nameGender.getExists(genderValue);
-		validGender = validationTasks.checkGenderResult(nameTgtFile, nameInpDesc, genderFlagExists, currentLineNumber, lineResObj);
+		validGender = validationTasks.checkGenderResult(nameTgtFile, nameInpDesc, genderFlagExists, fileLineNum, lineResObj);
 	}
 	
 	if (validGender === true)
@@ -135,6 +136,13 @@ function addNameEntry(nameVal, genderVal, existingEntries)
 		newObject = {"name": nameVal, "gender": genderVal};
 		existingEntries.push(newObject);
 	}
+}
+
+
+function callDataLengthCheck(fileArg, descArg, lengthArg, lineNumArg, resArg)
+{
+	var lengthRes = validationTasks.checkDataLineLength(fileArg, descArg, lengthArg, numberLimits.dataLength, lineNumArg, resArg);
+	return lengthRes;
 }
 
 
