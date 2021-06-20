@@ -26,6 +26,15 @@ function validateGenderProperties(optionsObject, resultObject)
 }
 
 
+function validateAboutProperty(optionsObject, resultObject)
+{
+	if (resultObject.valid === true)
+	{
+		validationTasks.checkRange(optionsObject.aboutQuotes, "aboutQuotes", numberLimits.aboutQuotes, resultObject);
+	}
+}
+
+
 function handleGenderPercentage(optsObj, propName, resObject)
 {
 	var givenPercent = optsObj.genders[propName];
@@ -43,5 +52,6 @@ module.exports =
 {
 	validateSupportWorkerCount: validateSupportWorkerCountNumber,
 	validateMinRegisterDate: validateMinRegisterDateString,
-	validateGenders: validateGenderProperties
+	validateGenders: validateGenderProperties,
+	validateAbout: validateAboutProperty
 };

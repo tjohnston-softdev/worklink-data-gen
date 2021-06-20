@@ -2,11 +2,15 @@ const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
 
-function validateKeywordProperties(optionsObject, propName, resultObject)
+function validateKeywordProperties(optionsObject, propName, useChance, resultObject)
 {
 	var keywordObject = optionsObject[propName];
 	
-	handleChanceProperty(keywordObject, propName, resultObject);
+	if (useChance === true)
+	{
+		handleChanceProperty(keywordObject, propName, resultObject);
+	}
+	
 	handleKeywordProperty(keywordObject, propName, "minKeywords", resultObject);
 	handleKeywordProperty(keywordObject, propName, "maxKeywords", resultObject);
 }
