@@ -12,6 +12,7 @@ const listEntryProps = require("./options-validation/list-entry-props");
 const petProps = require("./options-validation/pet-props");
 const prevExperienceProps = require("./options-validation/prev-experience-props");
 const availabilityProps = require("./options-validation/availability-props");
+const keywordProps = require("./options-validation/keyword-props");
 const validationTasks = require("./common/validation-tasks");
 
 function performOptionsFileRead(optionsCallback)
@@ -99,6 +100,8 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 		listEntryProps.validatePreviousExperienceBase(fileContents, validationResultObject);
 		prevExperienceProps.validateSpecific(fileContents, validationResultObject);
 		availabilityProps.validateAvailability(fileContents, validationResultObject);
+		keywordProps.validateKeywords(fileContents, "otherSpecific", validationResultObject);
+		keywordProps.validateKeywords(fileContents, "otherGeneral", validationResultObject);
 	}
 	
 	

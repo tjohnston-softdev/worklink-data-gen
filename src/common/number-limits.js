@@ -9,6 +9,7 @@ function defineNumberLimits()
 	defineRes["feelsLikeOffset"] = setRange(0, 10);
 	defineRes["jobMonths"] = setRange(1, 1200);
 	defineRes["hours"] = setRange(1, 168);
+	defineRes["keywords"] = setRange(1, 500);
 	
 	return defineRes;
 }
