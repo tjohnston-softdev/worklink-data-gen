@@ -202,6 +202,70 @@ function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue,
 	return checkRes;
 }
 
+function checkCsvColumnCountNumber(dataPath, fileDesc, colCount, colTarget, lineNum, resObj)
+{
+	var preparedDesc = "";
+	var checkRes = false;
+	
+	if (colCount >= colTarget)
+	{
+		checkRes = true;
+	}
+	else
+	{
+		preparedDesc = "Must have " + colTarget + " columns.";
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	
+	return checkRes;
+}
+
+
+function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineNum, resObj)
+{
+	var preparedDesc = "";
+	var checkRes = false;
+	
+	if (nameLength > 0 && nameLength <= upperLimit)
+	{
+		checkRes = true;
+	}
+	else if (nameLength > upperLimit)
+	{
+		preparedDesc = "Name cannot be longer than " + upperLimit + " characters.";
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	else
+	{
+		preparedDesc = "Name cannot be empty.";
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	
+	return checkRes;
+}
+
+
+
+function checkGenderFlagResult(dataPath, fileDesc, genderExists, lineNum, resObj)
+{
+	var preparedDesc = "";
+	var checkRes = true;
+	
+	if (genderExists !== true)
+	{
+		preparedDesc = "Gender must be 'M', 'F', or 'U'";
+		checkRes = false;
+		
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	
+	return checkRes;
+}
+
 
 function writeNumberErrorText(vProp)
 {
@@ -298,5 +362,8 @@ module.exports =
 	checkDateString: checkDateStringValue,
 	checkDayWeightsArray: checkDayWeightsArrayValue,
 	checkDataLineLength: checkDataLineLengthNumber,
-	checkDataEntryLength: checkDataEntryLengthNumber
+	checkDataEntryLength: checkDataEntryLengthNumber,
+	checkCsvColumnCount: checkCsvColumnCountNumber,
+	checkNameLength: checkNameLengthNumber,
+	checkGenderResult: checkGenderFlagResult
 };

@@ -1,16 +1,25 @@
 # Changelog
 
-**./src/common/value-prep.js**
-* Removed 'neutralizeStringCasing'
+**./src/common/validation-tasks.js**
+* Wrote new function 'checkCsvColumnCountNumber'
+	* Checks the number of columns in a CSV row line.
+* Wrote new function 'checkGenderFlagResult'
+	* Handles error detection for gender character.
+	* The checking itself is performed in 'name-gender.js'
+* Wrote new function 'checkNameLengthNumber'
+	* Validates length of name string.
+	* Separate error messages for 'too long' and 'empty'
 
 ---
 
-**./src/input/read-line-data.js - addNewEntry**
-* Removed the 'preparedObject' variable.
-* Declared new variable 'entryLower'
-* Renamed 'findIndex' parameter from 'currentObject' to 'currentEntry'
-* Replaced 'findIndex' arguments.
-	* 'currentObject.lowerString' with `currentEntry.toLowerCase()`
-	* 'preparedObject.lowerString' with 'entryLower'
-* existingEntries.push
-	* Replaced 'preparedObject' with 'entryTxt'
+**./src/common/name-gender.js**
+* New file - Contains definitions for name gender options.
+	* Male
+	* Female
+	* Unisex
+* Can also check whether a given character is a valid gender.
+
+---
+
+**./src/input/read-first-names.js**
+* New file - Used to read and parse 'first names' CSV data.
