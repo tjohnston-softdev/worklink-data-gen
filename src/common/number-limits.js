@@ -11,9 +11,10 @@ function defineNumberLimits()
 	defineRes["jobMonths"] = setRange(1, 1200);
 	defineRes["hours"] = setRange(1, 168);
 	defineRes["keywords"] = setRange(1, 500);
-	defineRes["nameLength"] = setRange(1, 20);
-	defineRes["accentLength"] = setRange(1, 20);
-	defineRes["dataLength"] = setRange(1, 150);
+	
+	defineRes["nameLength"] = 20;
+	defineRes["accentLength"] = 20;
+	defineRes["dataLength"] = 150;
 	
 	return defineRes;
 }

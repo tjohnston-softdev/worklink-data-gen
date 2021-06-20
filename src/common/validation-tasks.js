@@ -1,3 +1,4 @@
+const path = require("path");
 const maxSafeNumber = 10000000000000000000;
 
 
@@ -152,6 +153,56 @@ function checkDayWeightsArrayValue(arrValue, arrProp, resObj)
 }
 
 
+function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, lineNum, resObj)
+{
+	var preparedDesc = "";
+	var checkRes = false;
+	
+	if (lengthValue >= 0 && lengthValue <= upperLimit)
+	{
+		checkRes = true;
+	}
+	else
+	{
+		preparedDesc = "Line cannot be longer than " + upperLimit + " characters.";
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	
+	return checkRes;
+}
+
+
+function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue, upperLimit, lineNum, resObj)
+{
+	var preparedDesc = "";
+	var checkRes = -1;
+	
+	if (lengthValue > 0 && lengthValue <= upperLimit)
+	{
+		checkRes = 1;
+	}
+	else if (lengthValue > upperLimit)
+	{
+		checkRes = -1;
+		
+		preparedDesc += entryLabel;
+		preparedDesc += " cannot be longer than ";
+		preparedDesc += upperLimit;
+		preparedDesc += " characters.";
+		
+		resObj.valid = false;
+		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
+	}
+	else
+	{
+		checkRes = 0;
+	}
+	
+	return checkRes;
+}
+
+
 function writeNumberErrorText(vProp)
 {
 	var writeRes = initializeErrorText(vProp, "must be a positive whole number.");
@@ -198,6 +249,29 @@ function writeDateErrorText(vProp)
 }
 
 
+function writeLineStreamErrorText(vFile, vPath, vLineNum, vDesc)
+{
+	var writeRes = "";
+	
+	writeRes += "Error reading ";
+	writeRes += vFile;
+	writeRes += " file.\r\n\r\n";
+	
+	writeRes += "Line Number: ";
+	writeRes += vLineNum;
+	writeRes += "\r\n";
+	
+	writeRes += "Description: ";
+	writeRes += vDesc;
+	writeRes += "\r\n";
+	
+	writeRes += "Path: ";
+	writeRes += path.resolve(vPath);
+	
+	return writeRes;
+}
+
+
 function initializeErrorText(prop, sText)
 {
 	var quoteRes = ["'", prop, "' ", sText].join("");
@@ -222,5 +296,7 @@ module.exports =
 	checkPercentage: checkPercentageValue,
 	checkOffset: checkOffsetValue,
 	checkDateString: checkDateStringValue,
-	checkDayWeightsArray: checkDayWeightsArrayValue
+	checkDayWeightsArray: checkDayWeightsArrayValue,
+	checkDataLineLength: checkDataLineLengthNumber,
+	checkDataEntryLength: checkDataEntryLengthNumber
 };
