@@ -7,18 +7,6 @@ const numberLimits = require("../common/number-limits");
 const valuePrep = require("../common/value-prep");
 const nameGender = require("../common/name-gender");
 
-readCsvFile("../../input-data/first-names.csv", "First Names", function(testErr, testRes)
-{
-	if (testErr !== null)
-	{
-		console.log(testErr.message);
-	}
-	else
-	{
-		console.log(testRes);
-	}
-});
-
 
 function readCsvFile(nameTargetFilePath, nameInputFileDesc, fileCallback)
 {
