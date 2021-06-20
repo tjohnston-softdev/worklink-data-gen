@@ -1,31 +1,17 @@
 # Changelog
 
-**./src/common/number-limits.js**
-* Added 'aboutQuotes' range.
-	* The amount of quotes that can be displayed in the About description.
-	* Ranges from 1 to 100
-	* Compare to 472 in the total set.
-
----
-
-**./src/options-validation/basic-props.js**
-* Wrote new function 'validateAboutProperty'
-	* Used to validate the 'aboutQuotes' property.
-
----
-
-**./src/options-validation/keyword-props.js - validateKeywordProperties**
-* Added 'useChance' parameter.
-* 'handleChanceProperty' is only called if 'useChance' is true.
+**./src/options-validation/swap-ranges.js**
+* New file - Used to swap range limits for option properties.
+	* If the minimum and maximum are out of order, they will be swapped.
+* This takes place after all properties have been validated.
 
 ---
 
 **./src/read-options-file.js**
-* Moved requirements:
-	* 'keywordProps' to before 'rangeProps'
-	* 'validationTasks' to before 'baseType'
-* Added 'true' argument to pre-existing 'keywordProps' calls.
-* Added the following to 'callOptionsValidation'
-	* basicProps.validateAbout
-	* 'keywordProps.validateKeywords' for 'skillDescription' (Required)
-	* 'keywordProps.validateKeywords' for 'apperanceDescription' (Optional)
+* Added requirement for './options-validation/swap-ranges'
+* 'swapRanges' is called after property validation is complete.
+
+---
+
+**./generate.js**
+* If the options file is successfully read, the retrieved object will be displayed.

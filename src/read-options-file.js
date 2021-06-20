@@ -14,6 +14,7 @@ const listEntryProps = require("./options-validation/list-entry-props");
 const petProps = require("./options-validation/pet-props");
 const prevExperienceProps = require("./options-validation/prev-experience-props");
 const availabilityProps = require("./options-validation/availability-props");
+const swapRanges = require("./options-validation/swap-ranges");
 
 function performOptionsFileRead(optionsCallback)
 {
@@ -110,6 +111,7 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 	
 	if (validationResultObject.valid === true)
 	{
+		swapRanges(fileContents);
 		retOptsObj.contents = fileContents;
 		return validationCallback(null, retOptsObj);
 	}

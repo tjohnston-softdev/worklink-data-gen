@@ -17,7 +17,7 @@ function runGenerationMain()
 		}
 		else if (optionsTaskRes.contents !== null)
 		{
-			console.log("Successful");
+			console.log(optionsTaskRes.contents);
 			process.exitCode = 1;
 		}
 		else
