@@ -26,7 +26,7 @@ function getPropertyNames()
 {
 	var listRes = [];
 	
-	listRes.push("apperance", "english", "sign", "vegetarian", "petFriendly");
+	listRes.push("english", "sign", "vegetarian", "petFriendly");
 	listRes.push("smoking", "swim", "seasick", "wageSubsidy", "video");
 	
 	return listRes;

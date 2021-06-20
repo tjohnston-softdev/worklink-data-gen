@@ -13,6 +13,18 @@
 		"feelsLikeChance": 0.55,
 		"maxOffset": 0.25
 	},
+	"aboutQuotes": 3,
+	"skillDescription":
+	{
+		"minKeywords": 3,
+		"maxKeywords": 10
+	},
+	"apperanceDescription":
+	{
+		"chance": 1,
+		"minKeywords": 2,
+		"maxKeywords": 8
+	},
 	"travelTime":
 	{
 		"min": 5,
@@ -20,7 +32,6 @@
 	},
 	"baseChances":
 	{
-		"apperance": 1,
 		"english": 0.85,
 		"sign": 0.10,
 		"vegetarian": 0.15,
