@@ -1,15 +1,27 @@
 # Changelog
 
+**./src/common/keyword-data.js**
+* New file - Defines object for keyword data retrieved from input files.
+
+---
+
 **./src/read-input-data.js**
-* New file - Script used to read the text files in 'input-data'
-	* While the basic structure is there, only 'academic-subjects.txt' is read for now.
-	* This is due to a problem with the 'run-series' library in comparison to full 'async'
+* Added requirement: ./common/keyword-data"
+* Split the series from 'performInputDataRead' into its own function 'coordinateData'
+	* Removed property names.
+	* Uncommented steps.
+	* Updated function calls to use new parameters.
+* callLineData
+	* Added 'resultObj' and 'resultProp' parameters.
+	* 'resultObj[resultProp]' is assigned with data upon successful return.
+	* Successful callback returns true.
+* callNameData
+	* Added 'resultObj' parameter.
+	* Changed series to use an array instead of an object.
+	* 'resultObj.firstNames' is assigned with data upon successful return.
+	* Successful callback returns true.
 
 ---
 
 **./generate.js**
-* Added requirement: ./src/read-input-data
-* Wrote new function 'executeInputDataTask'
-	* Used to run 'callInputData'
-	* Called after 'readOptionsFile' is successful.
-	* Number of retrieved academic subjects is displayed on success.
+* Removed display from 'executeInputDataTask' successful result.
