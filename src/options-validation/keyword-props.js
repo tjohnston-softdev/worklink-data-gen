@@ -1,5 +1,6 @@
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
+const nestString = require("../common/nest-string");
 
 
 function validateKeywordProperties(optionsObject, propName, useChance, resultObject)
@@ -19,11 +20,11 @@ function validateKeywordProperties(optionsObject, propName, useChance, resultObj
 function handleChanceProperty(keywordObj, parentName, resObject)
 {
 	var givenValue = keywordObj.chance;
-	var nestString = parentName + ".chance";
+	var propString = parentName + ".chance";
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkPercentage(givenValue, nestString, resObject);
+		validationTasks.checkPercentage(givenValue, propString, resObject);
 	}
 }
 
@@ -31,11 +32,11 @@ function handleChanceProperty(keywordObj, parentName, resObject)
 function handleKeywordProperty(keywordObj, parentName, childName, resObject)
 {
 	var givenValue = keywordObj[childName];
-	var nestString = [parentName, childName].join(".");
+	var propString = nestString.get(parentName, childName);
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkRange(givenValue, nestString, numberLimits.keywords, resObject);
+		validationTasks.checkRange(givenValue, propString, numberLimits.keywords, resObject);
 	}
 }
 

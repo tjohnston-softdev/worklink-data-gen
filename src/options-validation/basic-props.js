@@ -38,11 +38,11 @@ function validateAboutProperty(optionsObject, resultObject)
 function handleGenderPercentage(optsObj, propName, resObject)
 {
 	var givenPercent = optsObj.genders[propName];
-	var nestString = "genders." + propName;
+	var propString = "genders." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkPercentage(givenPercent, nestString, resObject);
+		validationTasks.checkPercentage(givenPercent, propString, resObject);
 	}
 }
 

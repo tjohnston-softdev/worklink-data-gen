@@ -14,11 +14,11 @@ function validateAgeProperties(optionsObject, resultObject)
 function handleAgeNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.age[propName];
-	var nestString = "age." + propName;
+	var propString = "age." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkRange(givenNumber, nestString, numberLimits.age, resObject);
+		validationTasks.checkRange(givenNumber, propString, numberLimits.age, resObject);
 	}
 }
 

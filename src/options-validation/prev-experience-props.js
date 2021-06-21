@@ -14,11 +14,11 @@ function validateSpecificProperties(optionsObject, resultObject)
 function handleRangeNumber(optsObj, propName, chosenRange, resObject)
 {
 	var givenValue = optsObj.previousExperience[propName];
-	var nestString = "previousExperience." + propName;
+	var propString = "previousExperience." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkRange(givenValue, nestString, chosenRange, resObject);
+		validationTasks.checkRange(givenValue, propString, chosenRange, resObject);
 	}
 }
 

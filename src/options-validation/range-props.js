@@ -18,11 +18,11 @@ function validateViewsPerDayProperties(optionsObject, resultObject)
 function handleTimeNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.travelTime[propName];
-	var nestString = "travelTime." + propName;
+	var propString = "travelTime." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkNumber(givenNumber, nestString, resObject);
+		validationTasks.checkNumber(givenNumber, propString, resObject);
 	}
 }
 
@@ -30,11 +30,11 @@ function handleTimeNumber(optsObj, propName, resObject)
 function handleViewNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.viewsPerDay[propName];
-	var nestString = "viewsPerDay." + propName;
+	var propString = "viewsPerDay." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkRange(givenNumber, nestString, numberLimits.age, resObject);
+		validationTasks.checkRange(givenNumber, propString, numberLimits.age, resObject);
 	}
 }
 

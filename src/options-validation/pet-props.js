@@ -10,11 +10,11 @@ function validateSpecificProperties(optionsObject, resultObject)
 function handleCountNumber(optsObj, propName, resObject)
 {
 	var givenValue = optsObj.pets[propName];
-	var nestString = "pets." + propName;
+	var propString = "pets." + propName;
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkNumber(givenValue, nestString, resObject);
+		validationTasks.checkNumber(givenValue, propString, resObject);
 	}
 }
 

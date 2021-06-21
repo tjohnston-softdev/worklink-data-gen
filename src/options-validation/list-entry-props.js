@@ -1,5 +1,6 @@
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
+const nestString = require("../common/nest-string");
 
 
 function validateListEntryProperties(optionsObject, resultObject)
@@ -61,11 +62,11 @@ function viewEntryObject(optionsObj, entryName, useChance, useWillingness, resul
 function handleChancePercentage(entryObj, parentName, resObject)
 {
 	var givenNumber = entryObj.chance;
-	var nestString = getNestString(parentName, "chance");
+	var propString = nestString.get(parentName, "chance");
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkPercentage(givenNumber, nestString, resObject);
+		validationTasks.checkPercentage(givenNumber, propString, resObject);
 	}
 }
 
@@ -73,11 +74,11 @@ function handleChancePercentage(entryObj, parentName, resObject)
 function handleRangeNumber(entryObj, parentName, childName, resObject)
 {
 	var givenNumber = entryObj[childName];
-	var nestString = getNestString(parentName, childName);
+	var propString = nestString.get(parentName, childName);
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkRange(givenNumber, nestString, numberLimits.listEntries, resObject);
+		validationTasks.checkRange(givenNumber, propString, numberLimits.listEntries, resObject);
 	}
 }
 
@@ -85,20 +86,13 @@ function handleRangeNumber(entryObj, parentName, childName, resObject)
 function handleTrueFalse(entryObj, parentName, childName, resObject)
 {
 	var givenStatus = entryObj[childName];
-	var nestString = getNestString(parentName, childName);
+	var propString = nestString.get(parentName, childName);
 	
 	if (resObject.valid === true)
 	{
-		validationTasks.checkBoolean(givenStatus, nestString, resObject);
+		validationTasks.checkBoolean(givenStatus, propString, resObject);
 	}
 	
-}
-
-
-function getNestString(vParent, vChild)
-{
-	var nestRes = [vParent, vChild].join(".");
-	return nestRes;
 }
 
 
