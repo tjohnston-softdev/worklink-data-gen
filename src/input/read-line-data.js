@@ -87,15 +87,28 @@ function readCurrentLine(tgtPath, inpFileDesc, entryName, entryLength, lineStrin
 function addNewEntry(entryTxt, existingEntries)
 {
 	var entryLower = entryTxt.toLowerCase();
-	var existsFlag = -1;
+	
+	var existIndex = 0;
+	var currentEntry = "";
+	var matchFlag = -1;
+	
 	var entryAdded = false;
 	
-	existsFlag = existingEntries.findIndex(function(currentEntry)
-	{
-		return (currentEntry.toLowerCase() === entryLower);
-	});
 	
-	if (existsFlag >= 0 && existsFlag < existingEntries.length)
+	while (existIndex >= 0 && existIndex < existingEntries.length && matchFlag === -1)
+	{
+		currentEntry = existingEntries[existIndex];
+		currentEntry = currentEntry.toLowerCase();
+		
+		if (currentEntry === entryLower)
+		{
+			matchFlag = existIndex;
+		}
+		
+		existIndex = existIndex + 1;
+	}
+	
+	if (matchFlag >= 0 && matchFlag < existingEntries.length)
 	{
 		entryAdded = true;
 	}

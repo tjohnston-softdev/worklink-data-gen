@@ -30,6 +30,13 @@ function runGenerationMain()
 
 function executeInputDataTask(generationOptionsObject)
 {
+	var startTime = null;
+	var endTime = null;
+	var sec = -1;
+	var milsec = -1;
+	
+	startTime = process.hrtime();
+	
 	readInputData(function (inpTaskErr, inpTaskRes)
 	{
 		if (inpTaskErr !== null)
@@ -39,7 +46,11 @@ function executeInputDataTask(generationOptionsObject)
 		}
 		else
 		{
-			console.log("");
+			endTime = process.hrtime(startTime);
+			sec = endTime[0];
+			milsec = endTime[1] / 1000000;
+			
+			console.log(sec, milsec);
 			process.exitCode = 1;
 		}
 	});

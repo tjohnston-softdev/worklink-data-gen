@@ -118,16 +118,29 @@ function parseRowString(nameTgtFile, nameInpDesc, rowString, fileLineNum, entryA
 function addNameEntry(nameVal, genderVal, existingEntries)
 {
 	var nameLower = nameVal.toLowerCase();
-	var existsFlag = -1;
+	
+	var existIndex = 0;
+	var currentEntry = {};
+	var currentName = "";
+	var matchFlag = -1;
+	
 	var entryAdded = false;
 	var newObject = {};
 	
-	existsFlag = existingEntries.findIndex(function(currentEntry)
+	while (existIndex >= 0 && existIndex < existingEntries.length && matchFlag === -1)
 	{
-		return (currentEntry.name.toLowerCase() === nameLower);
-	});
+		currentEntry = existingEntries[existIndex];
+		currentName = currentEntry.name.toLowerCase();
+		
+		if (currentName === nameLower)
+		{
+			matchFlag = existIndex;
+		}
+		
+		existIndex = existIndex + 1;
+	}
 	
-	if (existsFlag >= 0 && existsFlag < existingEntries.length)
+	if (matchFlag >= 0 && matchFlag < existingEntries.length)
 	{
 		entryAdded = true;
 	}
