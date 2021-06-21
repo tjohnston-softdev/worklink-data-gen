@@ -39,7 +39,7 @@ function executeInputDataTask(generationOptionsObject)
 		}
 		else
 		{
-			console.log(inpTaskRes);
+			console.log("");
 			process.exitCode = 1;
 		}
 	});
