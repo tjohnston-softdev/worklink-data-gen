@@ -29,14 +29,7 @@ function runGenerationMain()
 
 
 function executeInputDataTask(generationOptionsObject)
-{
-	var startTime = null;
-	var endTime = null;
-	var sec = -1;
-	var milsec = -1;
-	
-	startTime = process.hrtime();
-	
+{	
 	readInputData(function (inpTaskErr, inpTaskRes)
 	{
 		if (inpTaskErr !== null)
