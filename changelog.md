@@ -1,4 +1,7 @@
 # Changelog
 
-**./generate.js**
-* Removed local variables from 'executeInputDataTask'
+**./src/common/row-counts.js**
+* New file - Contains ID upper limits for data dropdown fields.
+	* Experience areas
+	* Qualifications
+	* etc
