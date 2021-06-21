@@ -46,11 +46,7 @@ function executeInputDataTask(generationOptionsObject)
 		}
 		else
 		{
-			endTime = process.hrtime(startTime);
-			sec = endTime[0];
-			milsec = endTime[1] / 1000000;
-			
-			console.log(sec, milsec);
+			console.log("");
 			process.exitCode = 1;
 		}
 	});
