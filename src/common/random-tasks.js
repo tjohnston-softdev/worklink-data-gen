@@ -6,7 +6,16 @@ function rollPercentageChance(percentVal)
 }
 
 
+function rollArrayElement(arrLength)
+{
+	var randomSeed = Math.random() * arrLength;
+	var choiceRes = Math.floor(randomSeed);
+	return choiceRes;
+}
+
+
 module.exports =
 {
-	rollPercent: rollPercentageChance
+	rollPercent: rollPercentageChance,
+	rollElement: rollArrayElement
 };

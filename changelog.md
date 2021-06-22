@@ -1,20 +1,29 @@
 # Changelog
 
 **./src/common/random-tasks.js**
-* New file - Used to help generate random data.
-* So far, only has a function to roll percentages.
+* New function 'rollArrayElement'
+	* Chooses random array element based on length.
+	* Random seed multiplied by length, rounding down.
 
 ---
 
-**./src/generation/person-gender.js**
-* New file - Chooses gender at random.
+**./src/generation/person-first_name.js**
+* New file - Chooses random first name based on gender.
+* Includes debug function to retrieve gender string from flag.
 
 ---
 
 **./src/generate-database-entries.js**
-* Added requirement: './generation/person-gender'
+* Added requirement for './generation/person-first_name'
 * coordinateGeneration
-	* 'currentGender' is assigned using 'personGender'
-	* 'currentGender' is output to console during loop.
-	* Loop cutoff changed from 'genOptsObj.supportWorkerCount' to 10
-	* Swapped 'currentDOB' and 'currentRegister' order.
+	* Renamed 'currentGender' variable to 'currentGenderFlag'
+	* Declared new variable 'currentGenderString'
+	* 'currentGenderString' and 'currentName' are:
+		* Assigned using 'personFirstName'
+		* Displayed on loop.
+	* Added blank `console.log` before the loop starts.
+
+---
+
+**./src/read-input-data.js - coordinateData**
+* Commented out 'callLineData' tasks.
