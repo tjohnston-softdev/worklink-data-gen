@@ -2,6 +2,7 @@ const clear = require("clear");
 const readOptionsFile = require("./src/read-options-file");
 const createOptionsFile = require("./src/create-options-file");
 const readInputData = require("./src/read-input-data");
+const generateDatabaseEntries = require("./src/generate-database-entries");
 const exitProgram = require("./src/exit-program");
 
 clear();
@@ -38,8 +39,17 @@ function executeInputDataTask(generationOptionsObject)
 		}
 		else
 		{
-			exitProgram.callSuccessful();
+			executeGenerationTask(generationOptionsObject, inpTaskRes);
 		}
+	});
+}
+
+
+function executeGenerationTask(generationOptionsObj, keywordDataObj)
+{
+	generateDatabaseEntries(generationOptionsObj, keywordDataObj, function(generationRes)
+	{
+		exitProgram.callSuccessful();
 	});
 }
 
