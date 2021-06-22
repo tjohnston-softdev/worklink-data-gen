@@ -2,6 +2,7 @@ const clear = require("clear");
 const readOptionsFile = require("./src/read-options-file");
 const createOptionsFile = require("./src/create-options-file");
 const readInputData = require("./src/read-input-data");
+const exitProgram = require("./src/exit-program");
 
 clear();
 runGenerationMain();
@@ -13,8 +14,7 @@ function runGenerationMain()
 	{
 		if (optionsTaskErr !== null)
 		{
-			console.log(optionsTaskErr.message);
-			process.exitCode = 1;
+			exitProgram.callError(optionsTaskErr.message);
 		}
 		else if (optionsTaskRes.contents !== null)
 		{
@@ -34,13 +34,11 @@ function executeInputDataTask(generationOptionsObject)
 	{
 		if (inpTaskErr !== null)
 		{
-			console.log(inpTaskErr.message);
-			process.exitCode = 1;
+			exitProgram.callError(inpTaskErr.message);
 		}
 		else
 		{
-			console.log("");
-			process.exitCode = 1;
+			exitProgram.callSuccessful();
 		}
 	});
 }
@@ -55,6 +53,6 @@ function executeOptionsCreateTask()
 			console.log(createTaskErr.message);
 		}
 		
-		process.exitCode = 1;
+		exitProgram.callError();
 	});
 }
