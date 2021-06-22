@@ -1,5 +1,6 @@
 const ora = require("ora");
 const genData = require("./generation/gen-data");
+const personGender = require("./generation/person-gender");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -22,14 +23,15 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var loopNumber = 1;
 	var currentGender = null;
 	var currentName = "";
-	var currentRegister = "";
 	var currentDOB = "";
+	var currentRegister = "";
 	var currentChronoAge = -1;
 	var currentFeelsAge = -1;
 	
-	for (loopNumber = 1; loopNumber <= genOptsObj.supportWorkerCount; loopNumber = loopNumber + 1)
+	for (loopNumber = 1; loopNumber <= 10; loopNumber = loopNumber + 1)
 	{
-		currentGender = null;
+		currentGender = personGender.chooseRandom(genOptsObj.genders);
+		console.log(currentGender);
 	}
 	
 	

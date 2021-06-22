@@ -1,22 +1,20 @@
 # Changelog
 
+**./src/common/random-tasks.js**
+* New file - Used to help generate random data.
+* So far, only has a function to roll percentages.
+
+---
+
+**./src/generation/person-gender.js**
+* New file - Chooses gender at random.
+
+---
+
 **./src/generate-database-entries.js**
-* New file - Script used to generate Support Worker database entries.
-* So far, this is only a template.
-	* The loading spinner and loop is implemented.
-	* No data is generated.
-	* While the result object is defined and returned, it is empty.
-
----
-
-**./src/generation/gen-data.js**
-* New file - Defines result object for database entry generation.
-
----
-
-**./generate.js**
-* Added requirement for './src/generate-database-entries'
-* Wrote new function 'executeGenerationTask'
-	* Calls 'generateDatabaseEntries'
-	* After 'executeInputDataTask'
-	* Displays completion message.
+* Added requirement: './generation/person-gender'
+* coordinateGeneration
+	* 'currentGender' is assigned using 'personGender'
+	* 'currentGender' is output to console during loop.
+	* Loop cutoff changed from 'genOptsObj.supportWorkerCount' to 10
+	* Swapped 'currentDOB' and 'currentRegister' order.
