@@ -1,5 +1,6 @@
 const path = require("path");
 const maxSafeNumber = 10000000000000000000;
+const execTime = Date.now();
 
 
 function defineResultObject()
@@ -110,16 +111,26 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 	var givenType = typeof stringValue;
 	var parsedDateObject = null;
 	var timeValue = NaN;
+	var timeParsed = false;
 	var checkRes = false;
 	
 	if (givenType === "string")
 	{
 		parsedDateObject = new Date(stringValue);
 		timeValue = parsedDateObject.valueOf();
-		checkRes = Number.isInteger(timeValue);
+		timeParsed = Number.isInteger(timeValue);
 	}
 	
-	if (checkRes !== true)
+	if (timeParsed === true && timeValue > execTime)
+	{
+		resObj.valid = false;
+		resObj.errorMessage = initializeErrorText(stringProp, "cannot take place in the future.");
+	}
+	else if (timeParsed === true)
+	{
+		checkRes = true;
+	}
+	else
 	{
 		resObj.valid = false;
 		resObj.errorMessage = writeDateErrorText(stringProp);
