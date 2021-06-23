@@ -1,24 +1,24 @@
 function rollPercentageChance(percentVal)
 {
 	var randomSeed = Math.random();
-	var outcomeRes = (randomSeed <= percentVal);
-	return outcomeRes;
+	var percOutcomeRes = (randomSeed <= percentVal);
+	return percOutcomeRes;
 }
 
 
 function rollArrayElement(arrLength)
 {
 	var randomSeed = Math.random() * arrLength;
-	var outcomeRes = Math.floor(randomSeed);
-	return outcomeRes;
+	var indOutcomeRes = Math.floor(randomSeed);
+	return indOutcomeRes;
 }
 
 function rollIntegerRange(lowerLimit, upperLimit)
 {
 	var numDiff = upperLimit - lowerLimit;
 	var randomSeed = Math.random() * numDiff;
-	var outcomeRes = Math.round(lowerLimit + randomSeed);
-	return outcomeRes;
+	var numOutcomeRes = Math.round(lowerLimit + randomSeed);
+	return numOutcomeRes;
 }
 
 
@@ -26,8 +26,23 @@ function rollDecimalRange(lowerLimit, upperLimit)
 {
 	var numDiff = upperLimit - lowerLimit;
 	var randomSeed = Math.random() * numDiff;
-	var outcomeRes = lowerLimit + randomSeed;
-	return outcomeRes;
+	var numOutcomeRes = lowerLimit + randomSeed;
+	return numOutcomeRes;
+}
+
+
+function rollDigitCharacter()
+{
+	var digitOutcomeRes = rollArrayElement(10);
+	return digitOutcomeRes;
+}
+
+
+function rollKeyboardCharacter()
+{
+	var baseNumber = rollIntegerRange(33, 126);
+	var charOutcomeRes = String.fromCharCode(baseNumber);
+	return charOutcomeRes;
 }
 
 
@@ -36,5 +51,7 @@ module.exports =
 	rollPercent: rollPercentageChance,
 	rollElement: rollArrayElement,
 	rollInteger: rollIntegerRange,
-	rollDecimal: rollDecimalRange
+	rollDecimal: rollDecimalRange,
+	rollDigit: rollDigitCharacter,
+	rollChar: rollKeyboardCharacter
 };

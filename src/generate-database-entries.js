@@ -3,6 +3,7 @@ const genData = require("./generation/gen-data");
 const personGender = require("./generation/person-gender");
 const personFirstName = require("./generation/person-first_name");
 const personDateTime = require("./generation/person-datetime");
+const personSensitive = require("./generation/person-sensitive");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -44,6 +45,11 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		currentChronoAge = personDateTime.calculateAge(currentDOB);
 		currentFeelsAge = personDateTime.chooseFeelsLikeAge(currentChronoAge, genOptsObj.age);
 		currentParent = [loopNumber];
+		
+		personSensitive.writeEmailAddress(currentName, loopNumber, currentParent);
+		personSensitive.chooseDriversLicenseNumber(currentParent, generationResultObject.baseEntries);
+		personSensitive.choosePhoneNumber(currentParent, generationResultObject.baseEntries);
+		currentParent.push(currentName, currentGender);
 		
 		console.log(currentParent);
 		
