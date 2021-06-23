@@ -23,9 +23,9 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	
 	var loopNumber = 1;
 	var currentGender = null;
-	var currentName = "";
-	var currentDOB = "";
+	var currentName = "Placeholder";
 	var currentRegister = "";
+	var currentDOB = "";
 	var currentChronoAge = -1;
 	var currentFeelsAge = -1;
 	
@@ -33,7 +33,6 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	{
 		currentGender = personGender.chooseRandom(genOptsObj.genders);
 		//currentName = personFirstName.chooseRandom(keywordsObj.firstNames, currentGender);
-		currentName = "Placeholder";
 	}
 	
 	

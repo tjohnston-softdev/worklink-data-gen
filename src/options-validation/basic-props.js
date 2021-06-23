@@ -23,10 +23,6 @@ function validateMinRegisterDateString(optionsObject, resultObject)
 	{
 		optionsObject.minRegDate = dateResult.timestamp;
 	}
-	
-	console.log("");
-	console.log(optionsObject.minRegDate);
-	
 }
 
 
