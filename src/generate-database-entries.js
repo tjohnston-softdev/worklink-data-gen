@@ -29,6 +29,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var currentDOB = null;
 	var currentChronoAge = -1;
 	var currentFeelsAge = -1;
+	var currentParent = [];
 	
 	console.log("");
 	console.log("");
@@ -42,8 +43,9 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		currentDOB = personDateTime.chooseDOB(currentRegister, genOptsObj.age);
 		currentChronoAge = personDateTime.calculateAge(currentDOB);
 		currentFeelsAge = personDateTime.chooseFeelsLikeAge(currentChronoAge, genOptsObj.age);
+		currentParent = [loopNumber];
 		
-		console.log(currentDOB.toString("YYYY-MM-DD"), currentChronoAge, currentFeelsAge);
+		console.log(currentParent);
 		
 	}
 	
