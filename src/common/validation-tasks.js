@@ -1,6 +1,6 @@
 const path = require("path");
 const maxSafeNumber = 10000000000000000000;
-const executionTimestamp = new Date();
+const executionTimestamp = Date.now();
 
 
 function defineResultObject()
@@ -109,25 +109,28 @@ function checkOffsetValue(numValue, numProp, rangeObj, resObj)
 function checkDateStringValue(stringValue, stringProp, resObj)
 {
 	var givenType = typeof stringValue;
-	var timeValue = NaN;
+	var castDate = null;
+	var origTime = NaN;
 	var timeParsed = false;
+	var roundTime = NaN;
 	var validDate = false;
 	var dateOutcome = {"valid": false, "timestamp": null};
 	
 	if (givenType === "string")
 	{
-		dateOutcome.timestamp = new Date(stringValue);
-		timeValue = dateOutcome.timestamp.valueOf();
-		timeParsed = Number.isInteger(timeValue);
+		castDate = new Date(stringValue);
+		origTime = castDate.valueOf();
+		timeParsed = Number.isInteger(origTime);
 	}
 	
 	if (timeParsed === true)
 	{
-		dateOutcome.timestamp.setUTCHours(0, 0, 0, 0);
-		validDate = true;
+		castDate.setUTCHours(0, 0, 0, 0);
+		roundTime = castDate.valueOf();
+		validDate = Number.isInteger(roundTime);
 	}
 	
-	if (validDate === true && dateOutcome.timestamp > executionTimestamp)
+	if (validDate === true && roundTime > executionTimestamp)
 	{
 		resObj.valid = false;
 		resObj.errorMessage = initializeErrorText(stringProp, "cannot be a future date.");
@@ -135,6 +138,7 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 	else if (validDate === true)
 	{
 		dateOutcome.valid = true;
+		dateOutcome.timestamp = roundTime;
 	}
 	else
 	{
