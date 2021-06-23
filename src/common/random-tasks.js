@@ -13,7 +13,7 @@ function rollArrayElement(arrLength)
 	return outcomeRes;
 }
 
-function rollNumberRange(lowerLimit, upperLimit)
+function rollIntegerRange(lowerLimit, upperLimit)
 {
 	var numDiff = upperLimit - lowerLimit;
 	var randomSeed = Math.random() * numDiff;
@@ -22,9 +22,19 @@ function rollNumberRange(lowerLimit, upperLimit)
 }
 
 
+function rollDecimalRange(lowerLimit, upperLimit)
+{
+	var numDiff = upperLimit - lowerLimit;
+	var randomSeed = Math.random() * numDiff;
+	var outcomeRes = lowerLimit + randomSeed;
+	return outcomeRes;
+}
+
+
 module.exports =
 {
 	rollPercent: rollPercentageChance,
 	rollElement: rollArrayElement,
-	rollNumber: rollNumberRange
+	rollInteger: rollIntegerRange,
+	rollDecimal: rollDecimalRange
 };

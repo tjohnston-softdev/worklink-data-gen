@@ -1,43 +1,31 @@
 # Changelog
 
 **./src/common/random-tasks.js**
-* New function 'rollNumberRange'
-	* Generates random integer in a given range.
-* Renamed all result variables to 'outcomeRes'
-
----
-
-**./src/common/validation-tasks.js**
-* 'executionTimestamp' is now a millisecond number instead of a full date object.
-* checkDateStringValue
-	* Declared 'castDate' variable. Contains input cast to date object as-is.
-	* Renamed 'timeValue' variable to 'origTime'
-	* Declared 'roundTime' variable
-		* Contains millisecond number for 'castDate'
-		* This is after it has been rounded to the current date.
-	* 'validDate' is now assigned based on 'roundTime'
-	* Replaced 'dateOutcome.timestamp' with:
-		* 'castDate' for preperation.
-		* 'roundTime' for final validation.
-	* 'dateOutcome.timestamp' is set to 'roundTime' if it is valid.
+* Renamed 'rollNumberRange' to 'rollIntegerRange'
+* New function 'rollDecimalRange'
+	* Generates random decimal between given numbers.
+	* Similar to 'rollIntegerRange' but without the rounding.
 
 ---
 
 **./src/generation/person-datetime.js**
-* New file - Contains functions to randomly generate a user's register date and age.
-	* registerTimestamp
-	* dateOfBirth
-	* feelsLikeAge
-* So far, only the register timestamp is generated.
+* New function 'chooseRandomDOB'
+	* Generates random Date of Birth for support worker.
+	* Between minimum and maximum age.
+	* Age limits are as of when they registered, not present-day.
+* New function 'calculateChronoAge'
+	* Retrieves age from Date of Birth.
+	* Difference in years between DOB and execution time.
+* New function 'chooseRandomFeelsLikeAge'
+	* Chooses a 'feels like' age.
+	* This is offset from the chronological age.
 
 ---
 
-**./src/generate-database-entries.js**
-* Added requirement for: './generation/person-datetime'
-* coordinateGeneration
-	* The following variables are declared as null and will represent a 'dayjs' object:
-		* currentDOB
-		* currentRegister
-	* 'currentRegister' is now assigned using 'personDateTime'
-	* Added blank `console.log` before and after the loop.
-	* 'currentRegister' is displayed as a string on each iteration.
+**./src/generate-database-entries.js - coordinateGeneration**
+* Removed `console.log` for 'currentRegister'
+* Assigned the following variables using 'personDateTime'
+	* currentDOB
+	* currentChronoAge
+	* currentFeelsAge
+* Added `console.log` for newly assigned variables.

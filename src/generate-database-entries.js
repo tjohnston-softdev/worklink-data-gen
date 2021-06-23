@@ -39,7 +39,12 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		//currentName = personFirstName.chooseRandom(keywordsObj.firstNames, currentGender);
 		currentRegister = personDateTime.chooseRegister(genOptsObj.minRegDate);
 		
-		console.log(currentRegister.toString());
+		currentDOB = personDateTime.chooseDOB(currentRegister, genOptsObj.age);
+		currentChronoAge = personDateTime.calculateAge(currentDOB);
+		currentFeelsAge = personDateTime.chooseFeelsLikeAge(currentChronoAge, genOptsObj.age);
+		
+		console.log(currentDOB.toString("YYYY-MM-DD"), currentChronoAge, currentFeelsAge);
+		
 	}
 	
 	console.log("");
