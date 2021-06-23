@@ -18,6 +18,7 @@
   "homepage": "https://github.com/tjohnston-softdev/workforce-link-generator#readme",
   "dependencies": {
     "clear": "^0.1.0",
+    "dayjs": "^1.10.5",
     "line-by-line": "^0.1.6",
     "ora": "^5.4.1",
     "run-series": "^1.1.9",
