@@ -50,6 +50,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personSensitive.chooseDriversLicenseNumber(currentParent, generationResultObject.baseEntries);
 		personSensitive.choosePhoneNumber(currentParent, generationResultObject.baseEntries);
 		currentParent.push(currentName, currentGender);
+		personDateTime.addRegister(currentRegister, currentParent);
 		
 		console.log(currentParent);
 		

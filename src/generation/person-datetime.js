@@ -55,10 +55,26 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 }
 
 
+function addRegisterTimestamp(regTime, parentObject)
+{
+	var formatString = regTime.format("YYYY-MM-DD HH:mm:ss");
+	parentObject.push(formatString);
+}
+
+
+function addDateOfBirth(dobObject, parentObject)
+{
+	var formatString = regTime.format("YYYY-MM-DD");
+	parentObject.push(formatString);
+}
+
+
 module.exports =
 {
 	chooseRegister: chooseRandomRegisterTime,
 	chooseDOB: chooseRandomDOB,
 	calculateAge: calculateChronoAge,
-	chooseFeelsLikeAge: chooseRandomFeelsLikeAge
+	chooseFeelsLikeAge: chooseRandomFeelsLikeAge,
+	addRegister: addRegisterTimestamp,
+	addDOB: addDateOfBirth
 };
