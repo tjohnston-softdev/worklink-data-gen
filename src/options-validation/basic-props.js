@@ -12,10 +12,21 @@ function validateSupportWorkerCountNumber(optionsObject, resultObject)
 
 function validateMinRegisterDateString(optionsObject, resultObject)
 {
+	var dateResult = {};
+	
 	if (resultObject.valid === true)
 	{
-		validationTasks.checkDateString(optionsObject.minRegDate, "minRegDate", resultObject);
+		dateResult = validationTasks.checkDateString(optionsObject.minRegDate, "minRegDate", resultObject);
 	}
+	
+	if (dateResult.valid === true)
+	{
+		optionsObject.minRegDate = dateResult.timestamp;
+	}
+	
+	console.log("");
+	console.log(optionsObject.minRegDate);
+	
 }
 
 

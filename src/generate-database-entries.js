@@ -22,23 +22,18 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var generationResultObject = genData.defineObject();
 	
 	var loopNumber = 1;
-	var currentGenderFlag = null;
-	var currentGenderString = "";
+	var currentGender = null;
 	var currentName = "";
 	var currentDOB = "";
 	var currentRegister = "";
 	var currentChronoAge = -1;
 	var currentFeelsAge = -1;
 	
-	console.log("");
-	
 	for (loopNumber = 1; loopNumber <= 10; loopNumber = loopNumber + 1)
 	{
-		currentGenderFlag = personGender.chooseRandom(genOptsObj.genders);
-		currentGenderString = personFirstName.getGenderString(currentGenderFlag);
-		currentName = personFirstName.chooseRandom(keywordsObj.firstNames, currentGenderFlag);
-		
-		console.log(currentName, currentGenderString);
+		currentGender = personGender.chooseRandom(genOptsObj.genders);
+		//currentName = personFirstName.chooseRandom(keywordsObj.firstNames, currentGender);
+		currentName = "Placeholder";
 	}
 	
 	

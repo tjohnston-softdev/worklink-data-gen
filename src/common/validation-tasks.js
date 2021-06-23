@@ -1,6 +1,6 @@
 const path = require("path");
 const maxSafeNumber = 10000000000000000000;
-const execTime = Date.now();
+const executionTimestamp = new Date();
 
 
 function defineResultObject()
@@ -109,26 +109,32 @@ function checkOffsetValue(numValue, numProp, rangeObj, resObj)
 function checkDateStringValue(stringValue, stringProp, resObj)
 {
 	var givenType = typeof stringValue;
-	var parsedDateObject = null;
 	var timeValue = NaN;
 	var timeParsed = false;
-	var checkRes = false;
+	var validDate = false;
+	var dateOutcome = {"valid": false, "timestamp": null};
 	
 	if (givenType === "string")
 	{
-		parsedDateObject = new Date(stringValue);
-		timeValue = parsedDateObject.valueOf();
+		dateOutcome.timestamp = new Date(stringValue);
+		timeValue = dateOutcome.timestamp.valueOf();
 		timeParsed = Number.isInteger(timeValue);
 	}
 	
-	if (timeParsed === true && timeValue > execTime)
+	if (timeParsed === true)
+	{
+		dateOutcome.timestamp.setUTCHours(0, 0, 0, 0);
+		validDate = true;
+	}
+	
+	if (validDate === true && dateOutcome.timestamp > executionTimestamp)
 	{
 		resObj.valid = false;
-		resObj.errorMessage = initializeErrorText(stringProp, "cannot take place in the future.");
+		resObj.errorMessage = initializeErrorText(stringProp, "cannot be a future date.");
 	}
-	else if (timeParsed === true)
+	else if (validDate === true)
 	{
-		checkRes = true;
+		dateOutcome.valid = true;
 	}
 	else
 	{
@@ -136,7 +142,7 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 		resObj.errorMessage = writeDateErrorText(stringProp);
 	}
 	
-	return checkRes;
+	return dateOutcome;
 }
 
 
@@ -364,6 +370,7 @@ function appendRangeNumbers(rNums)
 
 module.exports =
 {
+	execTimestamp: executionTimestamp,
 	defineResult: defineResultObject,
 	checkBoolean: checkBooleanValue,
 	checkNumber: checkNumberValue,
