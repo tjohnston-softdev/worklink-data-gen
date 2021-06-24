@@ -65,6 +65,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personInt.chooseLanguageFlags(genOptsObj.baseChances, currentAccount);
 		writtenDescriptions.writeAccent(keywordsObj.accents, currentAccount);
 		personInt.chooseID(rowCounts.cultures, currentAccount);
+		personInt.chooseMiscFlags(genOptsObj.baseChances, currentAccount);
 		
 		console.log(currentAccount);
 	}

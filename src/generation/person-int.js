@@ -22,6 +22,29 @@ function chooseRandomLanguageFlags(baseChanceOpts, parentObject)
 }
 
 
+function chooseRandomWageSubsidyFlag(baseChanceOpts, parentObject)
+{
+	handleFlag(baseChanceOpts.wageSubsidy, parentObject);
+}
+
+
+function chooseRandomMiscFlags(baseChanceOpts, parentObject)
+{
+	handleFlag(baseChanceOpts.vegetarian, parentObject);
+	handleFlag(baseChanceOpts.petFriendly, parentObject);
+	handleFlag(baseChanceOpts.smoking, parentObject);
+	handleFlag(baseChanceOpts.swim, parentObject);
+	handleFlag(baseChanceOpts.seasick, parentObject);
+}
+
+
+function chooseRandomInterviewDay(parentObject)
+{
+	var chosenDay = randomTasks.rollInteger(1, 7);
+	parentObject.push(chosenDay);
+}
+
+
 function handleFlag(chancePercent, parentObj)
 {
 	var rollPassed = randomTasks.rollPercent(chancePercent);
@@ -36,5 +59,7 @@ module.exports =
 {
 	chooseID: chooseRandomID,
 	chooseTravelTime: chooseRandomTravelTime,
-	chooseLanguageFlags: chooseRandomLanguageFlags
+	chooseLanguageFlags: chooseRandomLanguageFlags,
+	chooseWageSubsidyFlag: chooseRandomWageSubsidyFlag,
+	chooseMiscFlags: chooseRandomMiscFlags
 };

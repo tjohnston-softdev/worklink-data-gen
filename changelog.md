@@ -1,23 +1,18 @@
 # Changelog
 
-**./src/generation/written-descriptions.js**
-* composeText
-	* Result string is now "DESCRIPTION" instead of 'fullDesc'
-* writeOptionalString
-	* If description is skipped, an empty string is added to 'parentObject'
-* writeAccentString
-	* New function
-	* Chooses random accent.
-	* While this does not write a description, it uses the same keyword mechanics.
-
----
-
-**./src/read-input-data.js - coordinateData**
-* All tasks are commented out except for 'accents'
+**./src/generation/person-int.js - New Functions**
+* 'chooseRandomWageSubsidyFlag' - Generates wage subsidy flag.
+* 'chooseRandomMiscFlags' - Generates flags for:
+	* vegetarianFlag
+	* petFriendlyFlag
+	* smokingStatusFlag
+	* swimmingFlag
+	* seasickFlag
+* 'chooseRandomInterviewDay'
+	* Chooses random preferred day for interview.
+	* Monday to Sunday (1-7)
 
 ---
 
 **./src/generate-database-entries.js - coordinateGeneration**
-* Added calls:
-	* 'writtenDescriptions.writeAccent' for 'spokenAccent'
-	* 'personInt.chooseID' for 'culturalBackgroundID'
+* Added 'personInt.chooseMiscFlags' call.
