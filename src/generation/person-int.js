@@ -61,5 +61,6 @@ module.exports =
 	chooseTravelTime: chooseRandomTravelTime,
 	chooseLanguageFlags: chooseRandomLanguageFlags,
 	chooseWageSubsidyFlag: chooseRandomWageSubsidyFlag,
-	chooseMiscFlags: chooseRandomMiscFlags
+	chooseMiscFlags: chooseRandomMiscFlags,
+	chooseInterviewDay: chooseRandomInterviewDay
 };

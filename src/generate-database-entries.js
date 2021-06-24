@@ -67,6 +67,8 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personInt.chooseID(rowCounts.cultures, currentAccount);
 		personInt.chooseMiscFlags(genOptsObj.baseChances, currentAccount);
 		personInt.chooseID(rowCounts.referralSources, currentAccount);
+		personInt.chooseWageSubsidyFlag(genOptsObj.baseChances, currentAccount);
+		personInt.chooseInterviewDay(currentAccount);
 		
 		console.log(currentAccount);
 	}
