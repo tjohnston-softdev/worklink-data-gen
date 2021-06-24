@@ -61,6 +61,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		writtenDescriptions.writeAbout(genOptsObj.aboutQuotes, keywordsObj.quotes, currentAccount);
 		writtenDescriptions.writeRequired(genOptsObj.skillDescription, keywordsObj.ingForms, currentAccount);
 		writtenDescriptions.writeOptional(genOptsObj.apperanceDescription, keywordsObj.encouragingWords, currentAccount);
+		personInt.chooseTravelTime(genOptsObj.travelTime, currentAccount);
 		
 		console.log(currentAccount);
 	}

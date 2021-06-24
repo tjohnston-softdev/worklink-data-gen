@@ -8,9 +8,17 @@ function chooseRandomID(upperID, parentObject)
 }
 
 
+function chooseRandomTravelTime(travelOpts, parentObject)
+{
+	var chosenTime = randomTasks.rollInteger(travelOpts.min, travelOpts.max);
+	parentObject.push(chosenTime);
+}
+
+
 
 
 module.exports =
 {
-	chooseID: chooseRandomID
+	chooseID: chooseRandomID,
+	chooseTravelTime: chooseRandomTravelTime
 };
