@@ -15,10 +15,26 @@ function chooseRandomTravelTime(travelOpts, parentObject)
 }
 
 
+function chooseRandomLanguageFlags(baseChanceOpts, parentObject)
+{
+	handleFlag(baseChanceOpts.english, parentObject);
+	handleFlag(baseChanceOpts.sign, parentObject);
+}
+
+
+function handleFlag(chancePercent, parentObj)
+{
+	var rollPassed = randomTasks.rollPercent(chancePercent);
+	var flagCast = Number(rollPassed);
+	parentObj.push(flagCast);
+}
+
+
 
 
 module.exports =
 {
 	chooseID: chooseRandomID,
-	chooseTravelTime: chooseRandomTravelTime
+	chooseTravelTime: chooseRandomTravelTime,
+	chooseLanguageFlags: chooseRandomLanguageFlags
 };
