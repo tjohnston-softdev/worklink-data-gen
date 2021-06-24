@@ -1,25 +1,19 @@
 # Changelog
 
 **./options.json**
-* Added new child object 'userPassword'
-	* Includes 'minCharacters' and 'maxCharacters'
-	* Affects length of password.
+* Removed 'interviewDayWeights'
 
 ---
 
-**./src/common/number-limits.js**
-* Added 'passwordLength' range.
-	* Up to 100 characters.
+**./src/common/validation-tasks.js**
+* Removed the 'checkDayWeightsArrayValue' function.
 
 ---
 
-**./src/options-validation/range-props.js**
-* Wrote new function 'validatePasswordLengthProperties'
-	* Primary function validates 'userPassword' object.
-* Wrote new function 'handlePasswordLengthNumber'
-	* Secondary function validates character count number.
+**./src/options-validation/**
+* 'day-props.js' is now empty.
 
 ---
 
-**./src/read-options-file.js - callOptionsValidation**
-* Added call to 'rangeProps.validatePasswordLength' after 'ageProps'
+**./src/read-options-file.js**
+* Removed './options-validation/day-props' requirement

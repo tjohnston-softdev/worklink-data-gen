@@ -9,7 +9,6 @@ const ageProps = require("./options-validation/age-props");
 const keywordProps = require("./options-validation/keyword-props");
 const rangeProps = require("./options-validation/range-props");
 const chanceProps = require("./options-validation/base-chance-props");
-const dayProps = require("./options-validation/day-props");
 const listEntryProps = require("./options-validation/list-entry-props");
 const petProps = require("./options-validation/pet-props");
 const prevExperienceProps = require("./options-validation/prev-experience-props");
@@ -97,7 +96,6 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 		keywordProps.validateKeywords(fileContents, "apperanceDescription", true, validationResultObject);
 		rangeProps.validateTravelTime(fileContents, validationResultObject);
 		chanceProps.validateChances(fileContents, validationResultObject);
-		dayProps.validateInterview(fileContents, validationResultObject);
 		rangeProps.validateViewsPerDay(fileContents, validationResultObject);
 		listEntryProps.validateEntries(fileContents, validationResultObject);
 		listEntryProps.validatePetsBase(fileContents, validationResultObject);

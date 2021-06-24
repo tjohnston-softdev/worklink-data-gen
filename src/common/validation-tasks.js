@@ -150,30 +150,6 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 }
 
 
-function checkDayWeightsArrayValue(arrValue, arrProp, resObj)
-{
-	var correctType = Array.isArray(arrValue);
-	var checkRes = false;
-	
-	if (correctType === true && arrValue.length === 7)
-	{
-		checkRes = true;
-	}
-	else if (correctType === true)
-	{
-		resObj.valid = false;
-		resObj.errorMessage = initializeErrorText(arrProp, "must have exactly 7 elements. One for each day of the week.");
-	}
-	else
-	{
-		resObj.valid = false;
-		resObj.errorMessage = initializeErrorText(arrProp, "must be a valid array object.");
-	}
-	
-	return checkRes;
-}
-
-
 function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -382,7 +358,6 @@ module.exports =
 	checkPercentage: checkPercentageValue,
 	checkOffset: checkOffsetValue,
 	checkDateString: checkDateStringValue,
-	checkDayWeightsArray: checkDayWeightsArrayValue,
 	checkDataLineLength: checkDataLineLengthNumber,
 	checkDataEntryLength: checkDataEntryLengthNumber,
 	checkCsvColumnCount: checkCsvColumnCountNumber,
