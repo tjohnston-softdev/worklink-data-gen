@@ -35,26 +35,24 @@ function coordinateData(coordCallback)
 	
 	series(
 	[
+		//callLineData.bind(null, "academic-subjects.txt", "Academic Subjects", "Subject", numberLimits.dataLength, resultObject, "academicSubjects"),
+		callLineData.bind(null, "accents.txt", "Accents", "Accent", numberLimits.accentLength, resultObject, "accents")
 		/*
-		callLineData.bind(null, "academic-subjects.txt", "Academic Subjects", "Subject", numberLimits.dataLength, resultObject, "academicSubjects"),
-		callLineData.bind(null, "accents.txt", "Accents", "Accent", numberLimits.accentLength, resultObject, "accents"),
 		callLineData.bind(null, "allergies.txt", "Allergies", "Allergy", numberLimits.dataLength, resultObject, "allergies"),
 		callLineData.bind(null, "animals.txt", "Animals", "Animal", numberLimits.dataLength, resultObject, "animals"),
 		callLineData.bind(null, "descriptions.txt", "Descriptions", "Description Trait", numberLimits.dataLength, resultObject, "descriptions"),
 		callLineData.bind(null, "employers.txt", "Employers", "Company Name", numberLimits.dataLength, resultObject, "employers"),
-		*/
 		callLineData.bind(null, "encouraging-words.txt", "Encouraging Words", "Word", numberLimits.dataLength, resultObject, "encouragingWords"),
-		/*
 		callNameData.bind(null, "first-names.csv", "First Names", resultObject)
 		callLineData.bind(null, "hobbies.txt", "Hobbies", "Hobby", numberLimits.dataLength, resultObject, "hobbies"),
 		callLineData.bind(null, "industries.txt", "Industries", "Industry", numberLimits.dataLength, resultObject, "industries"),
-		*/
 		callLineData.bind(null, "ing-forms.txt", "-ing Forms", "Verb", numberLimits.dataLength, resultObject, "ingForms"),
-		//callLineData.bind(null, "monsters.txt", "Monsters", "Monster", numberLimits.dataLength, resultObject, "monsters"),
-		//callLineData.bind(null, "occupations.txt", "Occupations", "Occupation", numberLimits.dataLength, resultObject, "occupations"),
+		callLineData.bind(null, "monsters.txt", "Monsters", "Monster", numberLimits.dataLength, resultObject, "monsters"),
+		callLineData.bind(null, "occupations.txt", "Occupations", "Occupation", numberLimits.dataLength, resultObject, "occupations"),
 		callLineData.bind(null, "quotes.txt", "Quotes", "Quote", numberLimits.dataLength, resultObject, "quotes")
-		//callLineData.bind(null, "technology.txt", "Technology", "Technology", numberLimits.dataLength, resultObject, "technologies"),
-		//callLineData.bind(null, "video-games.txt", "Video Games", "Game", numberLimits.dataLength, resultObject, "games")
+		callLineData.bind(null, "technology.txt", "Technology", "Technology", numberLimits.dataLength, resultObject, "technologies"),
+		callLineData.bind(null, "video-games.txt", "Video Games", "Game", numberLimits.dataLength, resultObject, "games")
+		*/
 	],
 	function (batchErr, batchRes)
 	{

@@ -1,6 +1,14 @@
 const randomTasks = require("../common/random-tasks");
 
 
+function writeAccentString(accentsList, parentObject)
+{
+	var chosenElement = randomTasks.rollElement(accentsList.length);
+	var accentString = accentsList[chosenElement];
+	parentObject.push(accentString);
+}
+
+
 function writeAboutString(chosenQuotesCount, quotesList, parentObject)
 {
 	var quoteSeq = chooseKeywords(chosenQuotesCount, quotesList.length);
@@ -30,6 +38,10 @@ function writeOptionalString(descOpts, keywordList, parentObject, keywordSeparat
 		chosenKeywordCount = randomTasks.rollInteger(descOpts.minKeywords, descOpts.maxKeywords);
 		keywordSeq = chooseKeywords(chosenKeywordCount, keywordList.length);
 		composeText(keywordSeq, keywordList, localSep, parentObject);
+	}
+	else
+	{
+		parentObject.push("");
 	}
 }
 
@@ -81,7 +93,7 @@ function composeText(elementSeq, keyList, keySep, parentObj)
 		}
 	}
 	
-	parentObj.push(fullDesc);
+	parentObj.push("DESCRIPTION");
 }
 
 
@@ -116,6 +128,7 @@ function decideSeparator(subjectValue)
 
 module.exports =
 {
+	writeAccent: writeAccentString,
 	writeAbout: writeAboutString,
 	writeRequired: writeRequiredString,
 	writeOptional: writeOptionalString
