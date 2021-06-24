@@ -16,6 +16,8 @@ function defineRowCounts()
 	defineRes["technology"] = 5;
 	defineRes["qualifications"] = 19;
 	defineRes["experienceAreas"] = 34;
+	
+	return defineRes;
 }
 
 

@@ -1,9 +1,11 @@
 const ora = require("ora");
+const rowCounts = require("./common/row-counts");
 const genData = require("./generation/gen-data");
 const personGender = require("./generation/person-gender");
 const personFirstName = require("./generation/person-first_name");
 const personDateTime = require("./generation/person-datetime");
 const personSensitive = require("./generation/person-sensitive");
+const personInt = require("./generation/person-int");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -54,6 +56,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personSensitive.choosePassword(genOptsObj.userPassword, currentParent);
 		personDateTime.addDOB(currentDOB, currentParent);
 		currentParent.push(currentFeelsAge);
+		personInt.chooseID(rowCounts.locations, currentParent);
 		
 		console.log(currentParent);
 		
