@@ -1,11 +1,9 @@
 # Changelog
 
-**./src/generation/person-int.js**
-* 'chooseRandomInterviewDay' can now be called publicly as 'chooseInterviewDay'
-
----
-
-**./src/generate-database-entries.js - coordinateGeneration**
-* Added calls from 'personInt'
-	* chooseWageSubsidyFlag
-	* chooseInterviewDay
+**./src/generation/person-datetime.js - chooseRandomFeelsLikeAge**
+* Declared 'numberGenerated' variable.
+* Declared 'finalValue' variable.
+	* 'baseValue' rounded to nearest whole.
+* Replaced 'choiceRes' assignment with 'finalValue'
+* The chosen 'feels like' age can no longer be the same as the chronological age.
+	* If this is the case, null is returned.

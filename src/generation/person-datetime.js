@@ -41,6 +41,8 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 	var youngestFeels = -1;
 	var oldestFeels = -1;
 	var baseValue = -1;
+	var finalValue = -1;
+	var numberGenerated = false;
 	var choiceRes = null;
 	
 	if (enterValue === true)
@@ -48,7 +50,13 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 		youngestFeels = chronoAge * (1 - ageOpts.maxOffset);
 		oldestFeels = chronoAge * (1 + ageOpts.maxOffset);
 		baseValue = randomTasks.rollDecimal(youngestFeels, oldestFeels);
-		choiceRes = Math.round(baseValue);
+		finalValue = Math.round(baseValue);
+		numberGenerated = true;
+	}
+	
+	if (numberGenerated === true && finalValue !== chronoAge)
+	{
+		choiceRes = finalValue;
 	}
 	
 	return choiceRes;
