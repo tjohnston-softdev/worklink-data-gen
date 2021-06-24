@@ -13,6 +13,11 @@
 		"feelsLikeChance": 0.55,
 		"maxOffset": 0.25
 	},
+	"userPassword":
+	{
+		"minCharacters": 8,
+		"maxCharacters": 32
+	},
 	"aboutQuotes": 3,
 	"skillDescription":
 	{

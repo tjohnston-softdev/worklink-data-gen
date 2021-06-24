@@ -91,6 +91,7 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 		basicProps.validateMinRegisterDate(fileContents, validationResultObject);
 		basicProps.validateGenders(fileContents, validationResultObject);
 		ageProps.validateAge(fileContents, validationResultObject);
+		rangeProps.validatePasswordLength(fileContents, validationResultObject);
 		basicProps.validateAbout(fileContents, validationResultObject);
 		keywordProps.validateKeywords(fileContents, "skillDescription", false, validationResultObject);
 		keywordProps.validateKeywords(fileContents, "apperanceDescription", true, validationResultObject);
