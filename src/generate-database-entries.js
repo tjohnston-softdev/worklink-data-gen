@@ -6,6 +6,7 @@ const personFirstName = require("./generation/person-first_name");
 const personDateTime = require("./generation/person-datetime");
 const personSensitive = require("./generation/person-sensitive");
 const personInt = require("./generation/person-int");
+const personVideo = require("./generation/person-video");
 const writtenDescriptions = require("./generation/written-descriptions");
 
 
@@ -69,6 +70,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personInt.chooseID(rowCounts.referralSources, currentAccount);
 		personInt.chooseWageSubsidyFlag(genOptsObj.baseChances, currentAccount);
 		personInt.chooseInterviewDay(currentAccount);
+		personVideo.chooseID(genOptsObj.baseChances, currentAccount);
 		
 		console.log(currentAccount);
 	}
