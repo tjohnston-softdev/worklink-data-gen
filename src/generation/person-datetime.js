@@ -64,7 +64,7 @@ function addRegisterTimestamp(regTime, parentObject)
 
 function addDateOfBirth(dobObject, parentObject)
 {
-	var formatString = regTime.format("YYYY-MM-DD");
+	var formatString = dobObject.format("YYYY-MM-DD");
 	parentObject.push(formatString);
 }
 

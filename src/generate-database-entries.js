@@ -51,6 +51,9 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personSensitive.choosePhoneNumber(currentParent, generationResultObject.baseEntries);
 		currentParent.push(currentName, currentGender);
 		personDateTime.addRegister(currentRegister, currentParent);
+		personSensitive.choosePassword(genOptsObj.userPassword, currentParent);
+		personDateTime.addDOB(currentDOB, currentParent);
+		currentParent.push(currentFeelsAge);
 		
 		console.log(currentParent);
 		
