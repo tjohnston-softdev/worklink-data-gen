@@ -36,9 +36,6 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var currentFeelsAge = -1;
 	var currentAccount = [];
 	
-	console.log("");
-	console.log("");
-	
 	for (loopNumber = 1; loopNumber <= 10; loopNumber = loopNumber + 1)
 	{
 		currentGender = personGender.chooseRandom(genOptsObj.genders);
@@ -73,10 +70,9 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personVideo.chooseID(genOptsObj.baseChances, currentAccount);
 		personInt.chooseViews(currentRegister, genOptsObj.viewsPerDay, currentAccount);
 		
-		console.log(currentAccount);
+		generationResultObject.baseEntries.push(currentAccount);
 	}
 	
-	console.log("");
 	return genCallback(generationResultObject);
 }
 
