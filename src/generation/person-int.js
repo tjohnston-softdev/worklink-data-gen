@@ -1,3 +1,5 @@
+const dayjs = require("dayjs");
+const validationTasks = require("../common/validation-tasks");
 const randomTasks = require("../common/random-tasks");
 
 
@@ -45,11 +47,30 @@ function chooseRandomInterviewDay(parentObject)
 }
 
 
+function chooseRandomViewsCount(regTime, viewOpts, parentObject)
+{
+	var daysActive = getDaysActive(regTime);
+	var minViewCount = viewOpts.min * daysActive;
+	var maxViewCount = viewOpts.max * daysActive;
+	var finalViewCount = randomTasks.rollInteger(minViewCount, maxViewCount);
+	
+	parentObject.push(finalViewCount);
+}
+
+
 function handleFlag(chancePercent, parentObj)
 {
 	var rollPassed = randomTasks.rollPercent(chancePercent);
 	var flagCast = Number(rollPassed);
 	parentObj.push(flagCast);
+}
+
+
+function getDaysActive(rTime)
+{
+	var baseValue = rTime.diff(validationTasks.execTimestamp, "day");
+	var dayRes = Math.abs(baseValue);
+	return dayRes;
 }
 
 
@@ -62,5 +83,6 @@ module.exports =
 	chooseLanguageFlags: chooseRandomLanguageFlags,
 	chooseWageSubsidyFlag: chooseRandomWageSubsidyFlag,
 	chooseMiscFlags: chooseRandomMiscFlags,
-	chooseInterviewDay: chooseRandomInterviewDay
+	chooseInterviewDay: chooseRandomInterviewDay,
+	chooseViews: chooseRandomViewsCount
 };

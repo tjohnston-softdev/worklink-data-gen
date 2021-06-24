@@ -71,6 +71,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		personInt.chooseWageSubsidyFlag(genOptsObj.baseChances, currentAccount);
 		personInt.chooseInterviewDay(currentAccount);
 		personVideo.chooseID(genOptsObj.baseChances, currentAccount);
+		personInt.chooseViews(currentRegister, genOptsObj.viewsPerDay, currentAccount);
 		
 		console.log(currentAccount);
 	}
