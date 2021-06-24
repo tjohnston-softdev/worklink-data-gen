@@ -6,6 +6,7 @@ const personFirstName = require("./generation/person-first_name");
 const personDateTime = require("./generation/person-datetime");
 const personSensitive = require("./generation/person-sensitive");
 const personInt = require("./generation/person-int");
+const writtenDescriptions = require("./generation/written-descriptions");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -32,7 +33,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var currentDOB = null;
 	var currentChronoAge = -1;
 	var currentFeelsAge = -1;
-	var currentParent = [];
+	var currentAccount = [];
 	
 	console.log("");
 	console.log("");
@@ -46,25 +47,25 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		currentDOB = personDateTime.chooseDOB(currentRegister, genOptsObj.age);
 		currentChronoAge = personDateTime.calculateAge(currentDOB);
 		currentFeelsAge = personDateTime.chooseFeelsLikeAge(currentChronoAge, genOptsObj.age);
-		currentParent = [loopNumber];
+		currentAccount = [loopNumber];
 		
-		personSensitive.writeEmailAddress(currentName, loopNumber, currentParent);
-		personSensitive.chooseDriversLicenseNumber(currentParent, generationResultObject.baseEntries);
-		personSensitive.choosePhoneNumber(currentParent, generationResultObject.baseEntries);
-		currentParent.push(currentName, currentGender);
-		personDateTime.addRegister(currentRegister, currentParent);
-		personSensitive.choosePassword(genOptsObj.userPassword, currentParent);
-		personDateTime.addDOB(currentDOB, currentParent);
-		currentParent.push(currentFeelsAge);
-		personInt.chooseID(rowCounts.locations, currentParent);
+		personSensitive.writeEmailAddress(currentName, loopNumber, currentAccount);
+		personSensitive.chooseDriversLicenseNumber(currentAccount, generationResultObject.baseEntries);
+		personSensitive.choosePhoneNumber(currentAccount, generationResultObject.baseEntries);
+		currentAccount.push(currentName, currentGender);
+		personDateTime.addRegister(currentRegister, currentAccount);
+		personSensitive.choosePassword(genOptsObj.userPassword, currentAccount);
+		personDateTime.addDOB(currentDOB, currentAccount);
+		currentAccount.push(currentFeelsAge);
+		personInt.chooseID(rowCounts.locations, currentAccount);
+		writtenDescriptions.writeAbout(genOptsObj.aboutQuotes, keywordsObj.quotes, currentAccount);
+		writtenDescriptions.writeRequired(genOptsObj.skillDescription, keywordsObj.ingForms, currentAccount);
+		writtenDescriptions.writeOptional(genOptsObj.apperanceDescription, keywordsObj.encouragingWords, currentAccount);
 		
-		console.log(currentParent);
-		
+		console.log(currentAccount);
 	}
 	
 	console.log("");
-	
-	
 	return genCallback(generationResultObject);
 }
 
