@@ -4,7 +4,8 @@ const randomTasks = require("../common/random-tasks");
 function writeEmailAddressString(vFirstName, vAccountID, parentObject)
 {
 	var fullString = [vFirstName, vAccountID, "@example.com"].join("");
-	parentObject.push(fullString);
+	var lowerString = fullString.toLowerCase();
+	parentObject.push(lowerString);
 }
 
 
