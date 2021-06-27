@@ -132,8 +132,7 @@
 		"minWeeklyHours": 8,
 		"maxWeeklyHours": 60,
 		"minBlockHours": 1,
-		"maxBlockHours": 16,
-		"minIntervalHours": 2
+		"maxBlockHours": 16
 	},
 	"otherSpecific":
 	{

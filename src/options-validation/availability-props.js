@@ -28,7 +28,6 @@ function getPropertyNames()
 	
 	listRes.push("minWeeklyHours", "maxWeeklyHours");
 	listRes.push("minBlockHours", "maxBlockHours");
-	listRes.push("minIntervalHours");
 	
 	return listRes;
 }
