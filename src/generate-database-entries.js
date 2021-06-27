@@ -112,7 +112,7 @@ function generateOther(genOpts, accountID, kwordsObj, genResObj)
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.technologies, otherObject);
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.academicSubjects, otherObject);
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.industries, otherObject);
-	otherObject.push("AVAILABILITY GOES HERE");
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.timeUnits, otherObject);
 	otherGeneralDescription.writeString(genOpts.otherGeneral, kwordsObj, otherObject);
 	
 	genResObj.other.push(otherObject);
