@@ -1,4 +1,5 @@
 const randomTasks = require("../common/random-tasks");
+const addSeparator = require("../common/add-separator");
 
 
 function writeAccentString(accentsList, parentObject)
@@ -93,20 +94,7 @@ function composeText(elementSeq, keyList, keySep, parentObj)
 		}
 	}
 	
-	parentObj.push("DESCRIPTION");
-}
-
-
-function addSeparator(addFlag, sepTxt)
-{
-	var addRes = "";
-	
-	if (addFlag > 0)
-	{
-		addRes = sepTxt;
-	}
-	
-	return addRes;
+	parentObj.push(fullDesc);
 }
 
 
@@ -122,7 +110,6 @@ function decideSeparator(subjectValue)
 	
 	return sepRes;
 }
-
 
 
 

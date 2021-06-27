@@ -11,6 +11,7 @@ const writtenDescriptions = require("./generation/written-descriptions");
 const foreignKeyLists = require("./generation/foreign-key-lists");
 const availRoster = require("./generation/avail-roster");
 const prevExperience = require("./generation/prev-experience");
+const otherGeneralDescription = require("./generation/other-general-description");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -40,6 +41,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		foreignKeyLists.generateEntries(genOptsObj, loopNumber, generationResultObject);
 		availRoster.generateAvailability(genOptsObj.availability, loopNumber, generationResultObject);
 		prevExperience.generateExperience(genOptsObj.previousExperience, currentBase, loopNumber, keywordsObj, generationResultObject);
+		generateOther(genOptsObj, loopNumber, keywordsObj, generationResultObject);
 	}
 	
 	return genCallback(generationResultObject);
@@ -94,6 +96,26 @@ function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 	personInt.chooseViews(baseObject.register, genOpts.viewsPerDay, accountObject);
 	
 	genResObj.baseEntries.push(accountObject);
+}
+
+
+function generateOther(genOpts, accountID, kwordsObj, genResObj)
+{
+	var otherObject = [accountID];
+	
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.descriptions, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.hobbies, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.games, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.animals, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.allergies, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.monsters, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.technologies, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.academicSubjects, otherObject);
+	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.industries, otherObject);
+	otherObject.push("AVAILABILITY GOES HERE");
+	otherGeneralDescription.writeString(genOpts.otherGeneral, kwordsObj, otherObject);
+	
+	genResObj.other.push(otherObject);
 }
 
 
