@@ -42,7 +42,7 @@ function coordinateData(coordCallback)
 		callLineData.bind(null, "descriptions.txt", "Descriptions", "Description Trait", numberLimits.dataLength, resultObject, "descriptions"),
 		callLineData.bind(null, "employers.txt", "Employers", "Company Name", numberLimits.dataLength, resultObject, "employers"),
 		callLineData.bind(null, "encouraging-words.txt", "Encouraging Words", "Word", numberLimits.dataLength, resultObject, "encouragingWords"),
-		//callNameData.bind(null, "first-names.csv", "First Names", resultObject),
+		callNameData.bind(null, "first-names.csv", "First Names", resultObject),
 		callLineData.bind(null, "hobbies.txt", "Hobbies", "Hobby", numberLimits.dataLength, resultObject, "hobbies"),
 		callLineData.bind(null, "industries.txt", "Industries", "Industry", numberLimits.dataLength, resultObject, "industries"),
 		callLineData.bind(null, "ing-forms.txt", "-ing Forms", "Verb", numberLimits.dataLength, resultObject, "ingForms"),

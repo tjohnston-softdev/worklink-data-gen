@@ -51,14 +51,14 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 function prepareBaseData(genOpts, firstNameList)
 {
 	var localGender = personGender.chooseRandom(genOpts.genders);
-	//var localName = personFirstName.chooseRandom(firstNameList, currentGender);
+	var localName = personFirstName.chooseRandom(firstNameList, localGender);
 	var localReg = personDateTime.chooseRegister(genOpts.minRegDate);
 	var localDOB = personDateTime.chooseDOB(localReg, genOpts.age);
 	var localChrono = personDateTime.calculateAge(localDOB);
 	var basePrepRes = genData.defineBase();
 	
 	basePrepRes.gender = localGender;
-	//basePrepRes.name = localName;
+	basePrepRes.name = localName;
 	basePrepRes.register = localReg;
 	basePrepRes.dateOfBirth = localDOB;
 	basePrepRes.chronoAge = localChrono;

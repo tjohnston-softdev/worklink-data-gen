@@ -26,7 +26,7 @@ function defineBaseObject()
 	var defineRes = {};
 	
 	defineRes["gender"] = null;
-	defineRes["name"] = "Placeholder";
+	defineRes["name"] = "";
 	defineRes["register"] = null;
 	defineRes["dateOfBirth"] = null;
 	defineRes["chronoAge"] = -1;
