@@ -1,0 +1,30 @@
+nanosecond
+microsecond
+millisecond
+second
+minute
+hour
+day
+week
+month
+year
+decade
+century
+millenium
+fortnight
+blue moon
+30 days
+90 days
+quarter
+moment
+once in a while
+later
+a bit
+jiffy
+Planck time
+yoctosecond
+shake
+season
+quadrimester
+semester
+leap year
