@@ -1,12 +1,10 @@
 # Changelog
 
 **./src/generation/foreign-key-lists.js**
-* Enabled generation for these tables:
-	* SupportWorkerPersonality
-	* SupportWorkerHobbies
-	* SupportWorkerGaming
-	* SupportWorkerAllergies
-	* SupportWorkerFears
-	* SupportWorkerTechnology
-	* SupportWorkerQualifications
-	* SupportWorkerExperienceAreas
+* Wrote new functions:
+	* mapPets
+		* Coordinates population of the 'SupportWorkerPets' table.
+	* insertPets
+		* Inserts entries into 'SupportWorkerPets'
+		* Generates individual count during loop.
+* Added call to 'mapPets' in 'generateListEntries'

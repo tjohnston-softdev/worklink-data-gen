@@ -6,7 +6,6 @@ function generateListEntries(genOpts, accountNumber, genResObj)
 {
 	mapOptional(genOpts.otherLanguages, accountNumber, genResObj, "otherLanguages", rowCounts.languages);
 	mapChecksClearances(genOpts.checksClearances, accountNumber, genResObj);
-	
 	mapRequired(genOpts.personality, accountNumber, genResObj, "personality", rowCounts.personalityTraits);
 	mapRequired(genOpts.hobbies, accountNumber, genResObj, "hobbies", rowCounts.hobbies);
 	mapOptional(genOpts.gaming, accountNumber, genResObj, "gaming", rowCounts.gaming);
@@ -15,6 +14,7 @@ function generateListEntries(genOpts, accountNumber, genResObj)
 	mapRequired(genOpts.technology, accountNumber, genResObj, "technology", rowCounts.technology);
 	mapOptional(genOpts.qualifications, accountNumber, genResObj, "qualifications", rowCounts.qualifications);
 	mapRequired(genOpts.experienceAreas, accountNumber, genResObj, "experienceAreas", rowCounts.experienceAreas);
+	mapPets(genOpts.pets, accountNumber, genResObj);
 }
 
 
@@ -65,6 +65,21 @@ function mapChecksClearances(mapOpts, accountNum, genRes)
 }
 
 
+function mapPets(mapOpts, accountNum, genRes)
+{
+	var canGenerate = randomTasks.rollPercent(mapOpts.chance);
+	var chosenRowCount = -1;
+	var keySequence = [];
+	
+	if (canGenerate === true)
+	{
+		chosenRowCount = randomTasks.rollInteger(mapOpts.minAnimals, mapOpts.maxAnimals);
+		keySequence = chooseKeys(chosenRowCount, rowCounts.pets);
+		insertPets(mapOpts, genRes, accountNum, keySequence);
+	}
+}
+
+
 function chooseKeys(chosenAmount, maxID)
 {
 	var targetLength = Math.min(chosenAmount, maxID);
@@ -112,6 +127,23 @@ function insertGeneral(resultData, tProp, accNum, keySeq)
 		currentKey = keySeq[insertIndex];
 		currentRow = [accNum, currentKey];
 		resultData[tProp].push(currentRow);
+	}
+}
+
+
+function insertPets(countOpts, resultData, accNum, keySeq)
+{
+	var insertIndex = 0;
+	var currentKey = -1;
+	var currentCount = -1;
+	var currentRow = [];
+	
+	for (insertIndex = 0; insertIndex < keySeq.length; insertIndex = insertIndex + 1)
+	{
+		currentKey = keySeq[insertIndex];
+		currentCount = randomTasks.rollInteger(countOpts.minCount, countOpts.maxCount);
+		currentRow = [accNum, currentKey, currentCount];
+		resultData.pets.push(currentRow);
 	}
 }
 
