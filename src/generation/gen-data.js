@@ -21,9 +21,25 @@ function defineGeneratedDataObject()
 	return defineRes;
 }
 
+function defineBaseObject()
+{
+	var defineRes = {};
+	
+	defineRes["gender"] = null;
+	defineRes["name"] = "Placeholder";
+	defineRes["register"] = null;
+	defineRes["dateOfBirth"] = null;
+	defineRes["chronoAge"] = -1;
+	defineRes["feelsLikeAge"] = -1;
+	
+	return defineRes;
+}
+
+
 
 
 module.exports =
 {
-	defineObject: defineGeneratedDataObject
+	defineResult: defineGeneratedDataObject,
+	defineBase: defineBaseObject
 };

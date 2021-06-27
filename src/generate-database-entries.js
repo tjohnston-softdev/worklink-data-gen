@@ -25,55 +25,69 @@ function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generatio
 
 function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 {
-	var generationResultObject = genData.defineObject();
+	var generationResultObject = genData.defineResult();
 	
 	var loopNumber = 1;
-	var currentGender = null;
-	var currentName = "Placeholder";
-	var currentRegister = null;
-	var currentDOB = null;
-	var currentChronoAge = -1;
-	var currentFeelsAge = -1;
-	var currentAccount = [];
+	var currentBase = {};
 	
 	for (loopNumber = 1; loopNumber <= 10; loopNumber = loopNumber + 1)
 	{
-		currentGender = personGender.chooseRandom(genOptsObj.genders);
-		//currentName = personFirstName.chooseRandom(keywordsObj.firstNames, currentGender);
-		currentRegister = personDateTime.chooseRegister(genOptsObj.minRegDate);
-		
-		currentDOB = personDateTime.chooseDOB(currentRegister, genOptsObj.age);
-		currentChronoAge = personDateTime.calculateAge(currentDOB);
-		currentFeelsAge = personDateTime.chooseFeelsLikeAge(currentChronoAge, genOptsObj.age);
-		currentAccount = [loopNumber];
-		
-		personSensitive.writeEmailAddress(currentName, loopNumber, currentAccount);
-		personSensitive.chooseDriversLicenseNumber(currentAccount, generationResultObject.baseEntries);
-		personSensitive.choosePhoneNumber(currentAccount, generationResultObject.baseEntries);
-		currentAccount.push(currentName, currentGender);
-		personDateTime.addRegister(currentRegister, currentAccount);
-		personSensitive.choosePassword(genOptsObj.userPassword, currentAccount);
-		personDateTime.addDOB(currentDOB, currentAccount);
-		currentAccount.push(currentFeelsAge);
-		personInt.chooseID(rowCounts.locations, currentAccount);
-		writtenDescriptions.writeAbout(genOptsObj.aboutQuotes, keywordsObj.quotes, currentAccount);
-		writtenDescriptions.writeRequired(genOptsObj.skillDescription, keywordsObj.ingForms, currentAccount);
-		writtenDescriptions.writeOptional(genOptsObj.apperanceDescription, keywordsObj.encouragingWords, currentAccount);
-		personInt.chooseTravelTime(genOptsObj.travelTime, currentAccount);
-		personInt.chooseLanguageFlags(genOptsObj.baseChances, currentAccount);
-		writtenDescriptions.writeAccent(keywordsObj.accents, currentAccount);
-		personInt.chooseID(rowCounts.cultures, currentAccount);
-		personInt.chooseMiscFlags(genOptsObj.baseChances, currentAccount);
-		personInt.chooseID(rowCounts.referralSources, currentAccount);
-		personInt.chooseWageSubsidyFlag(genOptsObj.baseChances, currentAccount);
-		personInt.chooseInterviewDay(currentAccount);
-		personVideo.chooseID(genOptsObj.baseChances, currentAccount);
-		personInt.chooseViews(currentRegister, genOptsObj.viewsPerDay, currentAccount);
-		
-		generationResultObject.baseEntries.push(currentAccount);
+		currentBase = prepareBaseData(genOptsObj, keywordsObj.firstNames);
+		generateAccount(genOptsObj, loopNumber, currentBase, keywordsObj, generationResultObject);
 	}
 	
 	return genCallback(generationResultObject);
+}
+
+
+function prepareBaseData(genOpts, firstNameList)
+{
+	var localGender = personGender.chooseRandom(genOpts.genders);
+	//var localName = personFirstName.chooseRandom(firstNameList, currentGender);
+	var localReg = personDateTime.chooseRegister(genOpts.minRegDate);
+	var localDOB = personDateTime.chooseDOB(localReg, genOpts.age);
+	var localChrono = personDateTime.calculateAge(localDOB);
+	var basePrepRes = genData.defineBase();
+	
+	basePrepRes.gender = localGender;
+	//basePrepRes.name = localName;
+	basePrepRes.register = localReg;
+	basePrepRes.dateOfBirth = localDOB;
+	basePrepRes.chronoAge = localChrono;
+	basePrepRes.feelsLikeAge = personDateTime.chooseFeelsLikeAge(localChrono, genOpts.age);
+	
+	return basePrepRes;
+}
+
+
+function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
+{
+	var accountObject = [accountID];
+	
+	personSensitive.writeEmailAddress(baseObject.name, accountID, accountObject);
+	personSensitive.chooseDriversLicenseNumber(accountObject, genResObj.baseEntries);
+	personSensitive.choosePhoneNumber(accountObject, genResObj.baseEntries);
+	accountObject.push(baseObject.name, baseObject.gender);
+	personDateTime.addRegister(baseObject.register, accountObject);
+	personSensitive.choosePassword(genOpts.userPassword, accountObject);
+	personDateTime.addDOB(baseObject.dateOfBirth, accountObject);
+	accountObject.push(baseObject.feelsLikeAge);
+	personInt.chooseID(rowCounts.locations, accountObject);
+	writtenDescriptions.writeAbout(genOpts.aboutQuotes, kwordsObj.quotes, accountObject);
+	writtenDescriptions.writeRequired(genOpts.skillDescription, kwordsObj.ingForms, accountObject);
+	writtenDescriptions.writeOptional(genOpts.apperanceDescription, kwordsObj.encouragingWords, accountObject);
+	personInt.chooseTravelTime(genOpts.travelTime, accountObject);
+	personInt.chooseLanguageFlags(genOpts.baseChances, accountObject);
+	writtenDescriptions.writeAccent(kwordsObj.accents, accountObject);
+	personInt.chooseID(rowCounts.cultures, accountObject);
+	personInt.chooseMiscFlags(genOpts.baseChances, accountObject);
+	personInt.chooseID(rowCounts.referralSources, accountObject);
+	personInt.chooseWageSubsidyFlag(genOpts.baseChances, accountObject);
+	personInt.chooseInterviewDay(accountObject);
+	personVideo.chooseID(genOpts.baseChances, accountObject);
+	personInt.chooseViews(baseObject.register, genOpts.viewsPerDay, accountObject);
+	
+	genResObj.baseEntries.push(accountObject);
 }
 
 
