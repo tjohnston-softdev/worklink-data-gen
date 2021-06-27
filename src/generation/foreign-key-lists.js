@@ -5,6 +5,7 @@ const rowCounts = require("../common/row-counts");
 function generateListEntries(genOpts, accountNumber, genResObj)
 {
 	mapOptional(genOpts.otherLanguages, accountNumber, genResObj, "otherLanguages", rowCounts.languages);
+	mapChecksClearances(genOpts.checksClearances, accountNumber, genResObj);
 }
 
 
@@ -31,6 +32,30 @@ function mapOptional(mapOpts, accountNum, genRes, tblProp, tblMaxID)
 }
 
 
+function mapChecksClearances(mapOpts, accountNum, genRes)
+{
+	var canGenerate = randomTasks.rollPercent(mapOpts.chance);
+	var chosenRowCount = -1;
+	var keySequence = [];
+	
+	if (canGenerate === true)
+	{
+		chosenRowCount = randomTasks.rollInteger(mapOpts.min, mapOpts.max);
+		keySequence = chooseKeys(chosenRowCount, rowCounts.checks);
+	}
+	else if (mapOpts.showWillingness === true)
+	{
+		keySequence = handleCheckWillingness();
+	}
+	else
+	{
+		keySequence = [];
+	}
+	
+	insertGeneral(genRes, "checks", accountNum, keySequence);
+}
+
+
 function chooseKeys(chosenAmount, maxID)
 {
 	var targetLength = Math.min(chosenAmount, maxID);
@@ -50,6 +75,20 @@ function chooseKeys(chosenAmount, maxID)
 	}
 	
 	return choiceRes;
+}
+
+
+function handleCheckWillingness()
+{
+	var willPass = randomTasks.rollPercent(0.5);
+	var handleRes = [1];
+	
+	if (willPass === true)
+	{
+		handleRes.push(2);
+	}
+	
+	return handleRes;
 }
 
 
