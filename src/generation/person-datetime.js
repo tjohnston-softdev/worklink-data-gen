@@ -1,6 +1,7 @@
 const dayjs = require("dayjs");
 const validationTasks = require("../common/validation-tasks");
 const randomTasks = require("../common/random-tasks");
+const dateFormat = require("../common/date-format");
 
 
 function chooseRandomRegisterTime(minTimestamp)
@@ -65,14 +66,14 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 
 function addRegisterTimestamp(regTime, parentObject)
 {
-	var formatString = regTime.format("YYYY-MM-DD HH:mm:ss");
+	var formatString = dateFormat.full(regTime);
 	parentObject.push(formatString);
 }
 
 
 function addDateOfBirth(dobObject, parentObject)
 {
-	var formatString = dobObject.format("YYYY-MM-DD");
+	var formatString = dateFormat.dateOnly(dobObject);
 	parentObject.push(formatString);
 }
 

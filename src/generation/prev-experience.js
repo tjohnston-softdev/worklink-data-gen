@@ -1,6 +1,7 @@
 const dayjs = require("dayjs");
 const randomTasks = require("../common/random-tasks");
 const validationTasks = require("../common/validation-tasks");
+const dateFormat = require("../common/date-format");
 
 
 function generatePreviousExperience(experienceOptions, baseObject, accountNumber, kwordsObject, genResObj)
@@ -67,11 +68,11 @@ function handleEndString(endObj, endVal, contChance)
 	else if (futureTime === true)
 	{
 		presentObj = dayjs(validationTasks.execTimestamp);
-		handleRes = presentObj.format("YYYY-MM-DD");
+		handleRes = dateFormat.dateOnly(presentObj);
 	}
 	else
 	{
-		handleRes = endObj.format("YYYY-MM-DD");
+		handleRes = dateFormat.dateOnly(endObj);
 	}
 	
 	return handleRes;
