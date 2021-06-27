@@ -6,6 +6,15 @@ function generateListEntries(genOpts, accountNumber, genResObj)
 {
 	mapOptional(genOpts.otherLanguages, accountNumber, genResObj, "otherLanguages", rowCounts.languages);
 	mapChecksClearances(genOpts.checksClearances, accountNumber, genResObj);
+	
+	mapRequired(genOpts.personality, accountNumber, genResObj, "personality", rowCounts.personalityTraits);
+	mapRequired(genOpts.hobbies, accountNumber, genResObj, "hobbies", rowCounts.hobbies);
+	mapOptional(genOpts.gaming, accountNumber, genResObj, "gaming", rowCounts.gaming);
+	mapOptional(genOpts.allergies, accountNumber, genResObj, "allergies", rowCounts.allergies);
+	mapOptional(genOpts.fearsPhobias, accountNumber, genResObj, "fears", rowCounts.fears);
+	mapRequired(genOpts.technology, accountNumber, genResObj, "technology", rowCounts.technology);
+	mapOptional(genOpts.qualifications, accountNumber, genResObj, "qualifications", rowCounts.qualifications);
+	mapRequired(genOpts.experienceAreas, accountNumber, genResObj, "experienceAreas", rowCounts.experienceAreas);
 }
 
 
