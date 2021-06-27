@@ -1,10 +1,10 @@
 # Changelog
 
-**./src/generation/foreign-key-lists.js**
-* Wrote new functions:
-	* mapPets
-		* Coordinates population of the 'SupportWorkerPets' table.
-	* insertPets
-		* Inserts entries into 'SupportWorkerPets'
-		* Generates individual count during loop.
-* Added call to 'mapPets' in 'generateListEntries'
+**./src/generation/avail-roster.js**
+* New file - Generates availability data for support worker.
+
+---
+
+**./src/generate-database-entries.js**
+* Added requirement for: './generation/avail-roster'
+* Added call to 'availRoster' in 'coordinateGeneration'

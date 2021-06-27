@@ -9,6 +9,7 @@ const personInt = require("./generation/person-int");
 const personVideo = require("./generation/person-video");
 const writtenDescriptions = require("./generation/written-descriptions");
 const foreignKeyLists = require("./generation/foreign-key-lists");
+const availRoster = require("./generation/avail-roster");
 
 
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
@@ -36,6 +37,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		currentBase = prepareBaseData(genOptsObj, keywordsObj.firstNames);
 		generateAccount(genOptsObj, loopNumber, currentBase, keywordsObj, generationResultObject);
 		foreignKeyLists.generateEntries(genOptsObj, loopNumber, generationResultObject);
+		availRoster.generateAvailability(genOptsObj.availability, loopNumber, generationResultObject);
 	}
 	
 	return genCallback(generationResultObject);
