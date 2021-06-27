@@ -17,6 +17,7 @@ function defineInputDataObject()
 	defineRes["occupations"] = [];
 	defineRes["quotes"] = [];
 	defineRes["technologies"] = [];
+	defineRes["timeUnits"] = [];
 	defineRes["games"] = [];
 	
 	return defineRes;

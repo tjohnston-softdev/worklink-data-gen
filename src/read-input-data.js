@@ -50,6 +50,7 @@ function coordinateData(coordCallback)
 		callLineData.bind(null, "occupations.txt", "Occupations", "Occupation", numberLimits.dataLength, resultObject, "occupations"),
 		callLineData.bind(null, "quotes.txt", "Quotes", "Quote", numberLimits.dataLength, resultObject, "quotes"),
 		callLineData.bind(null, "technology.txt", "Technology", "Technology", numberLimits.dataLength, resultObject, "technologies"),
+		callLineData.bind(null, "time.txt", "Units of time", "Time", numberLimits.dataLength, resultObject, "timeUnits"),
 		callLineData.bind(null, "video-games.txt", "Video Games", "Game", numberLimits.dataLength, resultObject, "games")
 	],
 	function (batchErr, batchRes)

@@ -106,7 +106,7 @@ function defineKeywordPool()
 	
 	defineRes.push("academicSubjects", "allergies", "animals", "descriptions", "encouragingWords");
 	defineRes.push("hobbies", "industries", "ingForms", "monsters", "occupations");
-	defineRes.push("technologies", "games");
+	defineRes.push("technologies", "timeUnits", "games");
 	
 	return defineRes;
 }
