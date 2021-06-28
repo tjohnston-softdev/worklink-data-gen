@@ -46,7 +46,7 @@ function chooseJobs(expOpts, dobObject, accountNum, kwordsObj, genRes)
 		currentEndString = handleEndString(currentEndDate, currentEndValue, expOpts.ongoingChance);
 		currentDesc = writeDescription(currentCompany, currentTitle, currentEndString);
 		
-		currentRow = [accountNum, positionNumber, currentTitle, currentCompany, currentDesc, currentStartString, currentEndString];
+		currentRow = [accountNum, positionNumber, currentTitle, currentCompany, currentDesc, currentStartString, currentEndString, 1];
 		genRes.previousExperience.push(currentRow);
 		
 		positionNumber = positionNumber + 1;

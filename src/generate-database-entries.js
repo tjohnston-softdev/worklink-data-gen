@@ -94,6 +94,7 @@ function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 	personInt.chooseInterviewDay(accountObject);
 	personVideo.chooseID(genOpts.baseChances, accountObject);
 	personInt.chooseViews(baseObject.register, genOpts.viewsPerDay, accountObject);
+	accountObject.push(1, 1);
 	
 	genResObj.baseEntries.push(accountObject);
 }
@@ -114,6 +115,7 @@ function generateOther(genOpts, accountID, kwordsObj, genResObj)
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.industries, otherObject);
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.timeUnits, otherObject);
 	otherGeneralDescription.writeString(genOpts.otherGeneral, kwordsObj, otherObject);
+	otherObject.push(1);
 	
 	genResObj.other.push(otherObject);
 }

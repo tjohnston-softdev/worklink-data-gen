@@ -42,7 +42,7 @@ function insertHours(chosenHours, accNum, genRes)
 		currentNumber = chosenHours[choiceIndex];
 		currentDay = Math.ceil(currentNumber / 24);
 		currentHour = (currentNumber % 24) - 1;
-		currentRow = [accNum, currentDay, currentHour];
+		currentRow = [accNum, currentDay, currentHour, 1];
 		
 		genRes.avaliability.push(currentRow);
 	}

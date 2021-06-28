@@ -134,7 +134,7 @@ function insertGeneral(resultData, tProp, accNum, keySeq)
 	for (insertIndex = 0; insertIndex < keySeq.length; insertIndex = insertIndex + 1)
 	{
 		currentKey = keySeq[insertIndex];
-		currentRow = [accNum, currentKey];
+		currentRow = [accNum, currentKey, 1];
 		resultData[tProp].push(currentRow);
 	}
 }
@@ -153,7 +153,7 @@ function insertExperienceAreas(resultData, accNum, keySeq)
 		currentKey = keySeq[insertIndex];
 		currentExperienceLevel = randomTasks.rollInteger(1, 100);
 		currentExperienceDesc = experienceFormat.getDescription(currentExperienceLevel);
-		currentRow = [accNum, currentKey, currentExperienceDesc];
+		currentRow = [accNum, currentKey, currentExperienceDesc, 1];
 		resultData.experienceAreas.push(currentRow);
 	}
 }
@@ -170,7 +170,7 @@ function insertPets(countOpts, resultData, accNum, keySeq)
 	{
 		currentKey = keySeq[insertIndex];
 		currentCount = randomTasks.rollInteger(countOpts.minCount, countOpts.maxCount);
-		currentRow = [accNum, currentKey, currentCount];
+		currentRow = [accNum, currentKey, currentCount, 1];
 		resultData.pets.push(currentRow);
 	}
 }
