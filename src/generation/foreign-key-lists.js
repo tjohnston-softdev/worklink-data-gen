@@ -1,5 +1,6 @@
 const randomTasks = require("../common/random-tasks");
 const rowCounts = require("../common/row-counts");
+const experienceFormat = require("../common/experience-format");
 
 
 function generateListEntries(genOpts, accountNumber, genResObj)
@@ -13,7 +14,7 @@ function generateListEntries(genOpts, accountNumber, genResObj)
 	mapOptional(genOpts.fearsPhobias, accountNumber, genResObj, "fears", rowCounts.fears);
 	mapRequired(genOpts.technology, accountNumber, genResObj, "technology", rowCounts.technology);
 	mapOptional(genOpts.qualifications, accountNumber, genResObj, "qualifications", rowCounts.qualifications);
-	mapRequired(genOpts.experienceAreas, accountNumber, genResObj, "experienceAreas", rowCounts.experienceAreas);
+	mapExperienceAreas(genOpts.experienceAreas, accountNumber, genResObj);
 	mapPets(genOpts.pets, accountNumber, genResObj);
 }
 
@@ -62,6 +63,14 @@ function mapChecksClearances(mapOpts, accountNum, genRes)
 	}
 	
 	insertGeneral(genRes, "checks", accountNum, keySequence);
+}
+
+
+function mapExperienceAreas(mapOpts, accountNum, genRes)
+{
+	var chosenRowCount = randomTasks.rollInteger(mapOpts.min, mapOpts.max);
+	var keySequence = chooseKeys(chosenRowCount, rowCounts.experienceAreas);
+	insertExperienceAreas(genRes, accountNum, keySequence);
 }
 
 
@@ -127,6 +136,25 @@ function insertGeneral(resultData, tProp, accNum, keySeq)
 		currentKey = keySeq[insertIndex];
 		currentRow = [accNum, currentKey];
 		resultData[tProp].push(currentRow);
+	}
+}
+
+
+function insertExperienceAreas(resultData, accNum, keySeq)
+{
+	var insertIndex = 0;
+	var currentKey = -1;
+	var currentExperienceLevel = -1;
+	var currentExperienceDesc = "";
+	var currentRow = [];
+	
+	for (insertIndex = 0; insertIndex < keySeq.length; insertIndex = insertIndex + 1)
+	{
+		currentKey = keySeq[insertIndex];
+		currentExperienceLevel = randomTasks.rollInteger(1, 100);
+		currentExperienceDesc = experienceFormat.getDescription(currentExperienceLevel);
+		currentRow = [accNum, currentKey, currentExperienceDesc];
+		resultData.experienceAreas.push(currentRow);
 	}
 }
 
