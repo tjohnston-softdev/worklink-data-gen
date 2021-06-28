@@ -41,7 +41,7 @@ function insertHours(chosenHours, accNum, genRes)
 	{
 		currentNumber = chosenHours[choiceIndex];
 		currentDay = Math.ceil(currentNumber / 24);
-		currentHour = calculateDayHour(currentNumber);
+		currentHour = currentNumber % 24;
 		currentRow = [accNum, currentDay, currentHour, 1];
 		
 		genRes.avaliability.push(currentRow);
@@ -70,20 +70,6 @@ function allocateBlock(startHour, allocLength, overallHours)
 		currentNext = currentHour + 1;
 		loopCounter = loopCounter + 1;
 	}
-}
-
-
-function calculateDayHour(fullNumber)
-{
-	var modVal = fullNumber % 24;
-	var calcRes = 0;
-	
-	if (modVal > 0)
-	{
-		calcRes = modVal - 1;
-	}
-	
-	return calcRes;
 }
 
 
