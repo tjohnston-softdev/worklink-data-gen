@@ -1,9 +1,6 @@
 # Changelog
 
-**./src/export-sql-files.js**
-* Added SQL export tasks for the remaining tables:
-	* SupportWorkerOtherLanguages
-	* SupportWorkerChecks
-	* SupportWorkerPersonality
-	* *[...]*
-	* SupportWorkerOther
+**./src/output/file-write.js - writeSqlCommand**
+* Variables start as empty.
+	* If 'rowArr' has contents, write the SQL command as normal.
+	* Otherwise, write an empty placeholder.

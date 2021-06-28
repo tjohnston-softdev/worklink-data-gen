@@ -31,6 +31,17 @@ function writeSqlCommand(tName, rowArr)
 	var paraList = [tName, rowArr];
 	var writeRes = sqlstring.format(templateString, paraList);
 	
+	if (rowArr.length > 0)
+	{
+		templateString = "INSERT INTO ?? VALUES ?;";
+		paraList = [tName, rowArr];
+		writeRes = sqlstring.format(templateString, paraList);
+	}
+	else
+	{
+		writeRes = "/* EMPTY */";
+	}
+	
 	return writeRes;
 }
 
