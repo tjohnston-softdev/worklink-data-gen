@@ -1,6 +1,5 @@
 # Changelog
 
-**./src/generation/avail-roster.js**
-* Removed the 'calculateDayHour' function.
-* insertHours
-	* 'currentHour' is now calculated as MOD(24) without any offset.
+**./src/generate-database-entries.js - coordinateGeneration**
+* 'genOptsObj.supportWorkerCount' is now used for loop cutoff.
+	* Full amount of generated entries.

@@ -34,7 +34,7 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	var loopNumber = 1;
 	var currentBase = {};
 	
-	for (loopNumber = 1; loopNumber <= 10; loopNumber = loopNumber + 1)
+	for (loopNumber = 1; loopNumber <= genOptsObj.supportWorkerCount; loopNumber = loopNumber + 1)
 	{
 		currentBase = prepareBaseData(genOptsObj, keywordsObj.firstNames);
 		generateAccount(genOptsObj, loopNumber, currentBase, keywordsObj, generationResultObject);
