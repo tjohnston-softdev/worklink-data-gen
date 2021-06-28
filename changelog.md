@@ -1,24 +1,20 @@
 # Changelog
 
-**./src/generate-database-entries.js**
-* generateAccount
-	* Appended two extra values to 'accountObject' representing columns:
-		* availableFlag
-		* activeFlag
-* generateOther
-	* Appended extra value to 'otherObject', representing 'activeFlag'
+**./src/output/**
+* New folder - Contains functions for exporting generated data.
+	* 'file-dest.js' - Prepares output folder.
+	* 'file-write.js' - Writes and saves SQL file containing INSERT command.
 
 ---
 
-**./src/generation/**
-* Change:
-	* Added extra value to 'currentRow', representing 'activeFlag'
-* Affected:
-	* avail-roster.js
-		* insertHours
-	* prev-experience.js
-		* chooseJobs
-	* foreign-key-lists.js
-		* insertGeneral
-		* insertExperienceAreas
-		* insertPets
+**./src/export-sql-files.js**
+* New file - Exports generated data to SQL files.
+
+---
+
+**./generate.js**
+* Added requirement for: './src/export-sql-files'
+* Wrote new function 'executeOutputTask'
+	* Runs the 'exportSqlFiles' script.
+	* Called after 'executeGenerationTask'
+	* Last script in the program.

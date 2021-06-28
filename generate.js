@@ -3,6 +3,7 @@ const readOptionsFile = require("./src/read-options-file");
 const createOptionsFile = require("./src/create-options-file");
 const readInputData = require("./src/read-input-data");
 const generateDatabaseEntries = require("./src/generate-database-entries");
+const exportSqlFiles = require("./src/export-sql-files");
 const exitProgram = require("./src/exit-program");
 
 clear();
@@ -49,7 +50,23 @@ function executeGenerationTask(generationOptionsObj, keywordDataObj)
 {
 	generateDatabaseEntries(generationOptionsObj, keywordDataObj, function(generationRes)
 	{
-		exitProgram.callSuccessful();
+		executeOutputTask(generationRes);
+	});
+}
+
+
+function executeOutputTask(generatedDataObject)
+{
+	exportSqlFiles(generatedDataObject, function (expTaskErr, expTaskRes)
+	{
+		if (expTaskErr !== null)
+		{
+			exitProgram.callError(expTaskErr.message);
+		}
+		else
+		{
+			exitProgram.callSuccessful();
+		}
 	});
 }
 
