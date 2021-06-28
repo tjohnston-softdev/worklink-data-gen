@@ -1,4 +1,3 @@
 # Changelog
 
-**.gitignore**
-* Added 'output-sql' folder.
+Base data inserted successfully.
