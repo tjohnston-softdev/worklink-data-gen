@@ -9,7 +9,7 @@ const fsErrors = require("./common/fs-errors");
 // Main function.
 function performOptionsFileCreation(optionsCallback)
 {
-	var optionsSpinner = ora("Creating Options File").start();
+	var optionsSpinner = ora("Creating options file").start();
 	
 	callFileWrite(function (overallErr, overallRes)
 	{

@@ -21,7 +21,7 @@ const swapRanges = require("./options-validation/swap-ranges");
 // Main function.
 function performOptionsFileRead(optionsCallback)
 {
-	var optionsSpinner = ora("Reading Options").start();
+	var optionsSpinner = ora("Reading options").start();
 	
 	coordinateReading(function (overallErr, overallRes)
 	{

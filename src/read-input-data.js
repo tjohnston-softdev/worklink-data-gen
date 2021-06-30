@@ -14,7 +14,7 @@ const keywordData = require("./common/keyword-data");
 // Main function.
 function performInputDataRead(dataReadCallback)
 {
-	var dataSpinner = ora("Reading Input Data").start();
+	var dataSpinner = ora("Reading input data").start();
 	
 	coordinateData(function (overallErr, overallRes)
 	{

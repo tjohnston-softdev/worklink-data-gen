@@ -19,7 +19,7 @@ const otherGeneralDescription = require("./generation/other-general-description"
 // Main function.
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
 {
-	var genSpinner = ora("Generating Entries").start();
+	var genSpinner = ora("Generating entries").start();
 	
 	coordinateGeneration(genOptsObject, keywordsObject, function(overallResult)
 	{

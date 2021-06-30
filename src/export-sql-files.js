@@ -9,7 +9,7 @@ const fileWrite = require("./output/file-write");
 
 function performSqlExport(genData, sqlExportCallback)
 {
-	var exportSpinner = ora("Exporting Data").start();
+	var exportSpinner = ora("Exporting data").start();
 	
 	
 	// Execute tasks in sequence.

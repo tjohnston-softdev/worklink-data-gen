@@ -1,6 +1,13 @@
 # Changelog
 
-**./generate.js - executeOptionsCreateTask**
-* Revised how error messages are displayed.
-	* If there is an error, display as normal.
-	* Otherwise, exit as error without message.
+**./src/**
+* Removed capitalization in loading messages.
+* Example:
+	* Before: "Performing Example Task"
+	* After: "Performing example task"
+* Affected files:
+	* create-options-file.js
+	* export-sql-files.js
+	* generate-database-entries.js
+	* read-input-data.js
+	* read-options-file.js
