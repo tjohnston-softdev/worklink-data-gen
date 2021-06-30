@@ -1,7 +1,14 @@
+/*
+	* Validates unique 'previousExperience' properties.
+	* Minimum work age, and individual job length.
+*/
+
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
 
+// Main function.
 function validateSpecificProperties(optionsObject, resultObject)
 {
 	handleRangeNumber(optionsObject, "minWorkAge", numberLimits.age, resultObject);
@@ -11,6 +18,7 @@ function validateSpecificProperties(optionsObject, resultObject)
 }
 
 
+// Validate hour number.
 function handleRangeNumber(optsObj, propName, chosenRange, resObject)
 {
 	var givenValue = optsObj.previousExperience[propName];
@@ -23,6 +31,7 @@ function handleRangeNumber(optsObj, propName, chosenRange, resObject)
 }
 
 
+// Validate ongoing chance percentage.
 function handleOngoingChance(optsObj, resObject)
 {
 	if (resObject.valid === true)

@@ -1,3 +1,11 @@
+/*
+	* This file swaps range number properties.
+	* If the minimum and maximum numbers are out of order, they are swapped.
+	* Takes place after validation is complete.
+*/
+
+
+// Main function.
 function swapRangeProperties(optionsObject)
 {
 	handleCurrentRange(optionsObject, "age", "min", "max");
@@ -26,6 +34,7 @@ function swapRangeProperties(optionsObject)
 }
 
 
+// Check current range numbers.
 function handleCurrentRange(optsObj, parentName, minName, maxName)
 {
 	var childObject = optsObj[parentName];
@@ -33,6 +42,7 @@ function handleCurrentRange(optsObj, parentName, minName, maxName)
 	
 	if (childObject[minName] > childObject[maxName] || childObject[maxName] < childObject[minName])
 	{
+		// Swap required
 		swapTemp = childObject[minName];
 		childObject[minName] = childObject[maxName];
 		childObject[maxName] = swapTemp;

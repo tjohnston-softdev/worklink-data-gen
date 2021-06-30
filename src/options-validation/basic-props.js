@@ -1,6 +1,10 @@
+// Validates basic option properties.
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
+
+// Support worker count.
 function validateSupportWorkerCountNumber(optionsObject, resultObject)
 {
 	if (resultObject.valid === true)
@@ -9,7 +13,7 @@ function validateSupportWorkerCountNumber(optionsObject, resultObject)
 	}
 }
 
-
+// Minimum register date string.
 function validateMinRegisterDateString(optionsObject, resultObject)
 {
 	var dateResult = {};
@@ -26,13 +30,14 @@ function validateMinRegisterDateString(optionsObject, resultObject)
 }
 
 
+// Gender properties.
 function validateGenderProperties(optionsObject, resultObject)
 {
 	handleGenderPercentage(optionsObject, "distribution", resultObject);
 	handleGenderPercentage(optionsObject, "otherChance", resultObject);
 }
 
-
+// About quotes count.
 function validateAboutProperty(optionsObject, resultObject)
 {
 	if (resultObject.valid === true)
@@ -41,7 +46,7 @@ function validateAboutProperty(optionsObject, resultObject)
 	}
 }
 
-
+// Gender percentage.
 function handleGenderPercentage(optsObj, propName, resObject)
 {
 	var givenPercent = optsObj.genders[propName];

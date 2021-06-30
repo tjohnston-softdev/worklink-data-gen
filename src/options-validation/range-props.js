@@ -1,7 +1,10 @@
+// Validates basic range option properties.
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
 
+// Main function - Password length.
 function validatePasswordLengthProperties(optionsObject, resultObject)
 {
 	handlePasswordLengthNumber(optionsObject, "minCharacters", resultObject);
@@ -9,12 +12,14 @@ function validatePasswordLengthProperties(optionsObject, resultObject)
 }
 
 
+// Main function - Travel time.
 function validateTravelTimeProperties(optionsObject, resultObject)
 {
 	handleTimeNumber(optionsObject, "min", resultObject);
 	handleTimeNumber(optionsObject, "max", resultObject);
 }
 
+// Main function - Profile views per day.
 function validateViewsPerDayProperties(optionsObject, resultObject)
 {
 	handleViewNumber(optionsObject, "min", resultObject);
@@ -22,6 +27,7 @@ function validateViewsPerDayProperties(optionsObject, resultObject)
 }
 
 
+// Password length number.
 function handlePasswordLengthNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.userPassword[propName];
@@ -34,6 +40,7 @@ function handlePasswordLengthNumber(optsObj, propName, resObject)
 }
 
 
+// Travel time number.
 function handleTimeNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.travelTime[propName];
@@ -45,7 +52,7 @@ function handleTimeNumber(optsObj, propName, resObject)
 	}
 }
 
-
+// View number.
 function handleViewNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.viewsPerDay[propName];

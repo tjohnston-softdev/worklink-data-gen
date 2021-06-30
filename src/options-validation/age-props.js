@@ -1,7 +1,10 @@
+// Validates age option properties.
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
 
+// Main function.
 function validateAgeProperties(optionsObject, resultObject)
 {
 	handleAgeNumber(optionsObject, "min", resultObject);
@@ -11,6 +14,7 @@ function validateAgeProperties(optionsObject, resultObject)
 }
 
 
+// Minimum and maximum age.
 function handleAgeNumber(optsObj, propName, resObject)
 {
 	var givenNumber = optsObj.age[propName];
@@ -23,6 +27,7 @@ function handleAgeNumber(optsObj, propName, resObject)
 }
 
 
+// 'feels like' age percentage.
 function handleFeelsLike(optsObj, resObject)
 {
 	if (resObject.valid === true)
@@ -32,6 +37,7 @@ function handleFeelsLike(optsObj, resObject)
 }
 
 
+// Maximum 'feels like' age offset, decimal percentage.
 function handleOffset(optsObj, resObject)
 {
 	if (resObject.valid === true)

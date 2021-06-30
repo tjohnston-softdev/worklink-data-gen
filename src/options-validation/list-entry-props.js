@@ -1,8 +1,15 @@
+/*
+	* Validates list entry option properties, such as 'otherLanguages'
+	* Used for many-to-many tables.
+	* Can only be used as a base, with unique properties validated separate.
+*/
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 const nestString = require("../common/nest-string");
 
 
+// Main function - General.
 function validateListEntryProperties(optionsObject, resultObject)
 {
 	viewEntryObject(optionsObject, "otherLanguages", true, false, resultObject);
@@ -18,6 +25,7 @@ function validateListEntryProperties(optionsObject, resultObject)
 }
 
 
+// Main function - Pets base.
 function validatePetsBaseProperties(optionsObject, resultObject)
 {
 	var entryName = "pets";
@@ -29,6 +37,7 @@ function validatePetsBaseProperties(optionsObject, resultObject)
 }
 
 
+// Main function - Previous Experience base.
 function validatePreviousExperienceBaseProperties(optionsObject, resultObject)
 {
 	var entryName = "previousExperience";
@@ -40,25 +49,31 @@ function validatePreviousExperienceBaseProperties(optionsObject, resultObject)
 }
 
 
+// Read current general entry.
 function viewEntryObject(optionsObj, entryName, useChance, useWillingness, resultObj)
 {
 	var currentEntryObject = optionsObj[entryName];
 	
 	if (useChance === true)
 	{
+		// Chance is optional.
 		handleChancePercentage(currentEntryObject, entryName, resultObj);
 	}
 	
+	// Range is required.
 	handleRangeNumber(currentEntryObject, entryName, "min", resultObj);
 	handleRangeNumber(currentEntryObject, entryName, "max", resultObj);
 	
+	
 	if (useWillingness === true)
 	{
+		// 'checksClearances' only.
 		handleTrueFalse(currentEntryObject, entryName, "showWillingness", resultObj);
 	}
 }
 
 
+// Validate chance percentage.
 function handleChancePercentage(entryObj, parentName, resObject)
 {
 	var givenNumber = entryObj.chance;
@@ -71,6 +86,7 @@ function handleChancePercentage(entryObj, parentName, resObject)
 }
 
 
+// Validate range number.
 function handleRangeNumber(entryObj, parentName, childName, resObject)
 {
 	var givenNumber = entryObj[childName];
@@ -83,6 +99,7 @@ function handleRangeNumber(entryObj, parentName, childName, resObject)
 }
 
 
+// Validate True or False.
 function handleTrueFalse(entryObj, parentName, childName, resObject)
 {
 	var givenStatus = entryObj[childName];

@@ -1,8 +1,16 @@
+/*
+	* Validates option properties for keyword objects.
+	* Minimum and maximum keyword count.
+	* 'chance' is optional.
+*/
+
 const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 const nestString = require("../common/nest-string");
 
 
+
+// Main function.
 function validateKeywordProperties(optionsObject, propName, useChance, resultObject)
 {
 	var keywordObject = optionsObject[propName];
@@ -17,6 +25,7 @@ function validateKeywordProperties(optionsObject, propName, useChance, resultObj
 }
 
 
+// Validate chance percentage.
 function handleChanceProperty(keywordObj, parentName, resObject)
 {
 	var givenValue = keywordObj.chance;
@@ -29,6 +38,7 @@ function handleChanceProperty(keywordObj, parentName, resObject)
 }
 
 
+// Validate keyword number.
 function handleKeywordProperty(keywordObj, parentName, childName, resObject)
 {
 	var givenValue = keywordObj[childName];

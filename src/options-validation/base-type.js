@@ -1,3 +1,7 @@
+// Validates and prepares base options object.
+
+
+// Object type.
 function validateBaseType(optionsObject, resultObject)
 {
 	var typeStr = typeof optionsObject;
@@ -17,6 +21,7 @@ function validateBaseType(optionsObject, resultObject)
 }
 
 
+// Initialize nested objects.
 function setNestedObjectProperties(optionsObject)
 {
 	defineObject(optionsObject, "genders");
@@ -41,6 +46,7 @@ function setNestedObjectProperties(optionsObject)
 }
 
 
+// Adds child object property if it does not exist.
 function defineObject(parentObj, propName)
 {
 	var existVal = parentObj[propName];
