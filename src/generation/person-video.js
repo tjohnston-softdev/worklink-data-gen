@@ -1,7 +1,10 @@
+// Generates random ID for Support Worker video.
+
 const randomTasks = require("../common/random-tasks");
 const videoChars = defineVideoChars();
 
 
+// Main function.
 function chooseRandomVideoID(baseChanceOpts, parentObject)
 {
 	var canWrite = randomTasks.rollPercent(baseChanceOpts.video);
@@ -16,6 +19,7 @@ function chooseRandomVideoID(baseChanceOpts, parentObject)
 }
 
 
+// Writes ID string.
 function writeVideoID()
 {
 	var currentIndex = -1;
@@ -25,18 +29,24 @@ function writeVideoID()
 	
 	var writeRes = "";
 	
+	// Loop adds characters to string.
 	while (writeRes.length < 11)
 	{
+		// Choose current character.
 		currentIndex = randomTasks.rollElement(videoChars.length);
 		currentDecimal = videoChars[currentIndex];
 		currentChar = String.fromCharCode(currentDecimal);
 		currentUpper = randomTasks.rollPercent(0.5);
 		
+		
 		if (currentUpper === true)
 		{
+			// Alphabet characters are used as uppercase 50% of the time.
 			currentChar = currentChar.toUpperCase();
 		}
 		
+		
+		// Add to string.
 		writeRes += currentChar;
 	}
 	
@@ -44,18 +54,20 @@ function writeVideoID()
 }
 
 
+// Defines allowed ID characters.
 function defineVideoChars()
 {
 	var defineRes = [];
 	
-	defineRes.push(45, 95);
-	addChars(48, 57, defineRes);
-	addChars(97, 122, defineRes);
+	defineRes.push(45, 95);					// Dash and underscore.
+	addChars(48, 57, defineRes);			// Numbers.
+	addChars(97, 122, defineRes);			// Alphabet.
 	
 	return defineRes;
 }
 
 
+// Adds character numbers to allowed set in range.
 function addChars(lowerDec, upperDec, numberArray)
 {
 	var currentNumber = lowerDec;

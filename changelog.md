@@ -1,4 +1,5 @@
 # Changelog
 
-**./src/options-validation/**
+**./src/generation/**
 * Added comments.
+* Removed 'getGenderStringFromFlag' function. (person-first_name.js)

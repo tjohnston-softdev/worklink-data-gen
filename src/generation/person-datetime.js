@@ -1,9 +1,12 @@
+// Generates date-time related values for support workers.
+
 const dayjs = require("dayjs");
 const validationTasks = require("../common/validation-tasks");
 const randomTasks = require("../common/random-tasks");
 const dateFormat = require("../common/date-format");
 
 
+// Choose register time.
 function chooseRandomRegisterTime(minTimestamp)
 {
 	var baseTime = randomTasks.rollInteger(minTimestamp, validationTasks.execTimestamp);
@@ -12,6 +15,7 @@ function chooseRandomRegisterTime(minTimestamp)
 }
 
 
+// Choose Date of Birth.
 function chooseRandomDOB(regTime, ageOpts)
 {
 	var oldestDate = regTime.subtract(ageOpts.max, "year");
@@ -19,6 +23,7 @@ function chooseRandomDOB(regTime, ageOpts)
 	var baseValue = randomTasks.rollInteger(oldestDate, youngestDate);
 	var choiceRes = dayjs(baseValue);
 	
+	// Round to date.
 	choiceRes.hour(0);
 	choiceRes.minute(0);
 	choiceRes.second(0);
@@ -28,6 +33,7 @@ function chooseRandomDOB(regTime, ageOpts)
 }
 
 
+// Get chronological age from DOB.
 function calculateChronoAge(dobObject)
 {
 	var baseValue = dobObject.diff(validationTasks.execTimestamp, "year");
@@ -36,6 +42,7 @@ function calculateChronoAge(dobObject)
 }
 
 
+// Choose 'feels like' age - Offset from chrono age.
 function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 {
 	var enterValue = randomTasks.rollPercent(ageOpts.feelsLikeChance);
@@ -48,15 +55,20 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 	
 	if (enterValue === true)
 	{
+		// Calculate acceptable range.
 		youngestFeels = chronoAge * (1 - ageOpts.maxOffset);
 		oldestFeels = chronoAge * (1 + ageOpts.maxOffset);
+		
+		// Choose final value.
 		baseValue = randomTasks.rollDecimal(youngestFeels, oldestFeels);
 		finalValue = Math.round(baseValue);
 		numberGenerated = true;
 	}
 	
+	
 	if (numberGenerated === true && finalValue !== chronoAge)
 	{
+		// Use chosen 'feels like' age.
 		choiceRes = finalValue;
 	}
 	
@@ -64,6 +76,7 @@ function chooseRandomFeelsLikeAge(chronoAge, ageOpts)
 }
 
 
+// Formats register time and adds to Support Worker object.
 function addRegisterTimestamp(regTime, parentObject)
 {
 	var formatString = dateFormat.full(regTime);
@@ -71,6 +84,7 @@ function addRegisterTimestamp(regTime, parentObject)
 }
 
 
+// Formats DOB and adds to Support Worker object.
 function addDateOfBirth(dobObject, parentObject)
 {
 	var formatString = dateFormat.dateOnly(dobObject);

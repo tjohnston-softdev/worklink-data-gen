@@ -1,8 +1,11 @@
+// Generates misc number values for Support Workers.
+
 const dayjs = require("dayjs");
 const validationTasks = require("../common/validation-tasks");
 const randomTasks = require("../common/random-tasks");
 
 
+// Foreign Key ID.
 function chooseRandomID(upperID, parentObject)
 {
 	var chosenID = randomTasks.rollInteger(1, upperID);
@@ -10,6 +13,7 @@ function chooseRandomID(upperID, parentObject)
 }
 
 
+// Travel time in minutes.
 function chooseRandomTravelTime(travelOpts, parentObject)
 {
 	var chosenTime = randomTasks.rollInteger(travelOpts.min, travelOpts.max);
@@ -17,6 +21,7 @@ function chooseRandomTravelTime(travelOpts, parentObject)
 }
 
 
+// English and Sign language flags.
 function chooseRandomLanguageFlags(baseChanceOpts, parentObject)
 {
 	handleFlag(baseChanceOpts.english, parentObject);
@@ -24,12 +29,14 @@ function chooseRandomLanguageFlags(baseChanceOpts, parentObject)
 }
 
 
+// Has wage subsidy.
 function chooseRandomWageSubsidyFlag(baseChanceOpts, parentObject)
 {
 	handleFlag(baseChanceOpts.wageSubsidy, parentObject);
 }
 
 
+// Other flags.
 function chooseRandomMiscFlags(baseChanceOpts, parentObject)
 {
 	handleFlag(baseChanceOpts.vegetarian, parentObject);
@@ -40,6 +47,7 @@ function chooseRandomMiscFlags(baseChanceOpts, parentObject)
 }
 
 
+// Interview day.
 function chooseRandomInterviewDay(parentObject)
 {
 	var chosenDay = randomTasks.rollInteger(1, 7);
@@ -47,6 +55,7 @@ function chooseRandomInterviewDay(parentObject)
 }
 
 
+// Profile view count - Range affected by days since register.
 function chooseRandomViewsCount(regTime, viewOpts, parentObject)
 {
 	var daysActive = getDaysActive(regTime);
@@ -58,6 +67,7 @@ function chooseRandomViewsCount(regTime, viewOpts, parentObject)
 }
 
 
+// Generates positive flag based on random chance.
 function handleFlag(chancePercent, parentObj)
 {
 	var rollPassed = randomTasks.rollPercent(chancePercent);
@@ -66,6 +76,7 @@ function handleFlag(chancePercent, parentObj)
 }
 
 
+// Gets number of days since registration.
 function getDaysActive(rTime)
 {
 	var baseValue = rTime.diff(validationTasks.execTimestamp, "day");

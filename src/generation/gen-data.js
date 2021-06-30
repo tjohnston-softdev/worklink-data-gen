@@ -1,3 +1,6 @@
+// Data generation objects.
+
+// Full result.
 function defineGeneratedDataObject()
 {
 	var defineRes = {};
@@ -21,6 +24,8 @@ function defineGeneratedDataObject()
 	return defineRes;
 }
 
+
+// Working variables for current support worker.
 function defineBaseObject()
 {
 	var defineRes = {};
@@ -34,8 +39,6 @@ function defineBaseObject()
 	
 	return defineRes;
 }
-
-
 
 
 module.exports =

@@ -1,7 +1,10 @@
+// Decides support worker gender.
+
 const randomTasks = require("../common/random-tasks");
 const nameGender = require("../common/name-gender");
 
 
+// Main function.
 function chooseRandomGender(randOpts)
 {
 	var useOther = randomTasks.rollPercent(randOpts.otherChance);
@@ -9,10 +12,12 @@ function chooseRandomGender(randOpts)
 	
 	if (useOther === true)
 	{
+		// Other.
 		choiceRes = 0;
 	}
 	else
 	{
+		// Binary.
 		choiceRes = decideMaleFemale(randOpts.distribution);
 	}
 	
@@ -20,6 +25,7 @@ function chooseRandomGender(randOpts)
 }
 
 
+// Binary gender.
 function decideMaleFemale(distValue)
 {
 	var useFemale = randomTasks.rollPercent(distValue);
@@ -27,6 +33,7 @@ function decideMaleFemale(distValue)
 	
 	if (useFemale === true)
 	{
+		// Female instead of Male.
 		decisionRes = -1;
 	}
 	

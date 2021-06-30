@@ -1,7 +1,10 @@
+// Generates written descriptions.
+
 const randomTasks = require("../common/random-tasks");
 const addSeparator = require("../common/add-separator");
 
 
+// Spoken accent.
 function writeAccentString(accentsList, parentObject)
 {
 	var chosenElement = randomTasks.rollElement(accentsList.length);
@@ -10,6 +13,7 @@ function writeAccentString(accentsList, parentObject)
 }
 
 
+// About.
 function writeAboutString(chosenQuotesCount, quotesList, parentObject)
 {
 	var quoteSeq = chooseKeywords(chosenQuotesCount, quotesList.length);
@@ -17,6 +21,7 @@ function writeAboutString(chosenQuotesCount, quotesList, parentObject)
 }
 
 
+// Required.
 function writeRequiredString(descOpts, keywordList, parentObject, keywordSeparator)
 {
 	var localSep = decideSeparator(keywordSeparator);
@@ -26,6 +31,7 @@ function writeRequiredString(descOpts, keywordList, parentObject, keywordSeparat
 }
 
 
+// Optional.
 function writeOptionalString(descOpts, keywordList, parentObject, keywordSeparator)
 {
 	var canWrite = randomTasks.rollPercent(descOpts.chance);
@@ -35,6 +41,7 @@ function writeOptionalString(descOpts, keywordList, parentObject, keywordSeparat
 	
 	if (canWrite === true)
 	{
+		// Write description.
 		localSep = decideSeparator(keywordSeparator);
 		chosenKeywordCount = randomTasks.rollInteger(descOpts.minKeywords, descOpts.maxKeywords);
 		keywordSeq = chooseKeywords(chosenKeywordCount, keywordList.length);
@@ -42,11 +49,13 @@ function writeOptionalString(descOpts, keywordList, parentObject, keywordSeparat
 	}
 	else
 	{
+		// Empty string.
 		parentObject.push("");
 	}
 }
 
 
+// Choose keyword numbers for description text.
 function chooseKeywords(chosenAmount, keyCount)
 {
 	var targetLength = Math.min(chosenAmount, keyCount);
@@ -54,6 +63,7 @@ function chooseKeywords(chosenAmount, keyCount)
 	var currentUsed = false;
 	var choiceRes = [];
 	
+	// Chooses set number of unique keywords.
 	while (choiceRes.length < targetLength)
 	{
 		currentIndex = randomTasks.rollElement(keyCount);
@@ -69,6 +79,7 @@ function chooseKeywords(chosenAmount, keyCount)
 }
 
 
+// Writes description text from chosen keywords.
 function composeText(elementSeq, keyList, keySep, parentObj)
 {
 	var sequenceIndex = 0;
@@ -77,27 +88,34 @@ function composeText(elementSeq, keyList, keySep, parentObj)
 	
 	var fullDesc = "";
 	
+	// Loop chosen keywords.
 	for (sequenceIndex = 0; sequenceIndex < elementSeq.length; sequenceIndex = sequenceIndex + 1)
 	{
+		// Read current keyword number.
 		currentItem = elementSeq[sequenceIndex];
 		currentText = "";
 		
+		
 		if (currentItem >= 0 && currentItem < keyList.length)
 		{
+			// Retrieve keyword text.
 			currentText = keyList[currentItem];
 		}
 		
 		if (currentText.length > 0)
 		{
+			// Append keyword to text.
 			fullDesc += addSeparator(sequenceIndex, keySep);
 			fullDesc += currentText;
 		}
 	}
 	
+	// Add complete string to object.
 	parentObj.push(fullDesc);
 }
 
 
+// Prepares separator text.
 function decideSeparator(subjectValue)
 {
 	var givenType = typeof subjectValue;
@@ -105,6 +123,7 @@ function decideSeparator(subjectValue)
 	
 	if (givenType === "string")
 	{
+		// Use given value.
 		sepRes = subjectValue;
 	}
 	
