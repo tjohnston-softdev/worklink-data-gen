@@ -1,3 +1,4 @@
 # Changelog
 
-Script works as normal (2021-06-30 12:54)
+**./info/options.md**
+* New file - Documentation for 'options.json' file.
