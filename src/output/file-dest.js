@@ -1,6 +1,7 @@
 const fs = require("fs");
 
 
+// Ensure output folder exists.
 function prepareOutputFolder(targetPath, folderCallback)
 {
 	var optsObj = {recursive: true};

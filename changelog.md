@@ -1,5 +1,4 @@
 # Changelog
 
-**./src/generation/**
+**./src/output/**
 * Added comments.
-* Removed 'getGenderStringFromFlag' function. (person-first_name.js)
