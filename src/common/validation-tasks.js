@@ -191,7 +191,7 @@ function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, 
 	else
 	{
 		// Unsafe.
-		preparedDesc = "Line cannot be longer than " + upperLimit + " characters.";
+		preparedDesc = writeStringTooLongErrorText("Line", upperLimit);
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
 	}
@@ -215,11 +215,7 @@ function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue,
 	{
 		// Too long.
 		checkRes = -1;
-		
-		preparedDesc += entryLabel;
-		preparedDesc += " cannot be longer than ";
-		preparedDesc += upperLimit;
-		preparedDesc += " characters.";
+		preparedDesc = writeStringTooLongErrorText(entryLabel, upperLimit);
 		
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
@@ -270,7 +266,7 @@ function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineN
 	else if (nameLength > upperLimit)
 	{
 		// Too long.
-		preparedDesc = "Name cannot be longer than " + upperLimit + " characters.";
+		preparedDesc = writeStringTooLongErrorText("Name", upperLimit);
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
 	}
@@ -352,6 +348,20 @@ function writeDateErrorText(vProp)
 	
 	writeRes += initializeErrorText(vProp, "must be a valid date string. ");
 	writeRes += "(eg. '2021-06-19')";
+	
+	return writeRes;
+}
+
+
+// String too long error.
+function writeStringTooLongErrorText(vLabel, vMax)
+{
+	var writeRes = "";
+	
+	writeRes += vLabel;
+	writeRes += " cannot be longer than ";
+	writeRes += vMax;
+	writeRes += " characters.";
 	
 	return writeRes;
 }
