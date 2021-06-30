@@ -89,9 +89,12 @@ function executeOptionsCreateTask()
 		if (createTaskErr !== null)
 		{
 			console.log(createTaskErr.message);
+			exitProgram.callError(createTaskErr.message);
+		}
+		else
+		{
+			exitProgram.callError();
 		}
 		
-		// Exit as error.
-		exitProgram.callError();
 	});
 }
