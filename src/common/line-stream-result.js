@@ -1,3 +1,5 @@
+// 'line-by-line' read result object.
+
 function initializeResultObject()
 {
 	var dataRes = {};

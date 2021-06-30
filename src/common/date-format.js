@@ -1,5 +1,6 @@
-const dayjs = require("dayjs");
+// Formatting 'dayjs' objects to readable strings.
 
+const dayjs = require("dayjs");
 
 function getFull(tsObject)
 {

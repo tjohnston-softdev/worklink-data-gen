@@ -1,3 +1,5 @@
+// Gender characters for 'first-names.csv'
+
 const nameGenderOptions =
 {
 	MALE: "M",
@@ -6,6 +8,7 @@ const nameGenderOptions =
 };
 
 
+// Check if gender character is valid.
 function getOptionExists(subjectChar)
 {
 	var checkRes = false;

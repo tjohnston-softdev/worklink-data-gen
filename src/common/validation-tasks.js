@@ -1,8 +1,15 @@
+/*
+	* Functions to assist with input validation.
+	* Stores script execution time to avoid future dates.
+*/
+
+
 const path = require("path");
 const maxSafeNumber = 10000000000000000000;
 const executionTimestamp = Date.now();
 
 
+// Validation result object.
 function defineResultObject()
 {
 	var defineRes = {valid: true, errorMessage: ""};
@@ -10,6 +17,7 @@ function defineResultObject()
 }
 
 
+// Boolean.
 function checkBooleanValue(boolValue, boolProp, resObj)
 {
 	var checkRes = false;
@@ -28,6 +36,7 @@ function checkBooleanValue(boolValue, boolProp, resObj)
 }
 
 
+// Whole number.
 function checkNumberValue(numValue, numProp, resObj)
 {
 	var correctType = Number.isInteger(numValue);
@@ -35,15 +44,18 @@ function checkNumberValue(numValue, numProp, resObj)
 	
 	if (correctType === true && numValue > 0 && numValue <= maxSafeNumber)
 	{
+		// Valid
 		checkRes = true;
 	}
 	else if (correctType === true && numValue > maxSafeNumber)
 	{
+		// Unsafe.
 		resObj.valid = false;
 		resObj.errorMessage = writeNumberTooLargeErrorText(numProp);
 	}
 	else
 	{
+		// Invalid type.
 		resObj.valid = false;
 		resObj.errorMessage = writeNumberErrorText(numProp);
 	}
@@ -51,6 +63,8 @@ function checkNumberValue(numValue, numProp, resObj)
 	return checkRes;
 }
 
+
+// Whole number within range.
 function checkRangeValue(numValue, numProp, rangeObj, resObj)
 {
 	var correctType = Number.isInteger(numValue);
@@ -58,10 +72,12 @@ function checkRangeValue(numValue, numProp, rangeObj, resObj)
 	
 	if (correctType === true && numValue >= rangeObj.minValue && numValue <= rangeObj.maxValue)
 	{
+		// Within range.
 		checkRes = true;
 	}
 	else
 	{
+		// Invalid.
 		resObj.valid = false;
 		resObj.errorMessage = writeNumberRangeErrorText(numProp, rangeObj);
 	}
@@ -70,6 +86,7 @@ function checkRangeValue(numValue, numProp, rangeObj, resObj)
 }
 
 
+// Percentage number.
 function checkPercentageValue(numValue, numProp, resObj)
 {
 	var correctType = Number.isFinite(numValue);
@@ -87,6 +104,7 @@ function checkPercentageValue(numValue, numProp, resObj)
 }
 
 
+// Offset decimal - uses range.
 function checkOffsetValue(numValue, numProp, rangeObj, resObj)
 {
 	var correctType = Number.isFinite(numValue);
@@ -94,10 +112,12 @@ function checkOffsetValue(numValue, numProp, rangeObj, resObj)
 	
 	if (correctType === true && numValue >= rangeObj.minValue && numValue <= rangeObj.maxValue)
 	{
+		// Valid.
 		checkRes = true;
 	}
 	else
 	{
+		// Invalid
 		resObj.valid = false;
 		resObj.errorMessage = writeDecimalRangeErrorText(numProp, rangeObj);
 	}
@@ -106,6 +126,7 @@ function checkOffsetValue(numValue, numProp, rangeObj, resObj)
 }
 
 
+// Date string.
 function checkDateStringValue(stringValue, stringProp, resObj)
 {
 	var givenType = typeof stringValue;
@@ -118,6 +139,7 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 	
 	if (givenType === "string")
 	{
+		// Cast string to date object.
 		castDate = new Date(stringValue);
 		origTime = castDate.valueOf();
 		timeParsed = Number.isInteger(origTime);
@@ -125,23 +147,28 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 	
 	if (timeParsed === true)
 	{
+		// Round to current date. Use for validation.
 		castDate.setUTCHours(0, 0, 0, 0);
 		roundTime = castDate.valueOf();
 		validDate = Number.isInteger(roundTime);
 	}
 	
+	
 	if (validDate === true && roundTime > executionTimestamp)
 	{
+		// Future.
 		resObj.valid = false;
 		resObj.errorMessage = initializeErrorText(stringProp, "cannot be a future date.");
 	}
 	else if (validDate === true)
 	{
+		// Valid.
 		dateOutcome.valid = true;
 		dateOutcome.timestamp = roundTime;
 	}
 	else
 	{
+		// Invalid type.
 		resObj.valid = false;
 		resObj.errorMessage = writeDateErrorText(stringProp);
 	}
@@ -150,6 +177,7 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 }
 
 
+// Length of line within text file.
 function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -157,10 +185,12 @@ function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, 
 	
 	if (lengthValue >= 0 && lengthValue <= upperLimit)
 	{
+		// Safe.
 		checkRes = true;
 	}
 	else
 	{
+		// Unsafe.
 		preparedDesc = "Line cannot be longer than " + upperLimit + " characters.";
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
@@ -170,6 +200,7 @@ function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, 
 }
 
 
+// Length of text file line after preperation, based on context.
 function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue, upperLimit, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -177,10 +208,12 @@ function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue,
 	
 	if (lengthValue > 0 && lengthValue <= upperLimit)
 	{
+		// Safe length.
 		checkRes = 1;
 	}
 	else if (lengthValue > upperLimit)
 	{
+		// Too long.
 		checkRes = -1;
 		
 		preparedDesc += entryLabel;
@@ -193,12 +226,14 @@ function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue,
 	}
 	else
 	{
+		// Empty.
 		checkRes = 0;
 	}
 	
 	return checkRes;
 }
 
+// Number of columns in CSV line.
 function checkCsvColumnCountNumber(dataPath, fileDesc, colCount, colTarget, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -206,10 +241,12 @@ function checkCsvColumnCountNumber(dataPath, fileDesc, colCount, colTarget, line
 	
 	if (colCount >= colTarget)
 	{
+		// Valid.
 		checkRes = true;
 	}
 	else
 	{
+		// Invalid
 		preparedDesc = "Must have " + colTarget + " columns.";
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
@@ -219,6 +256,7 @@ function checkCsvColumnCountNumber(dataPath, fileDesc, colCount, colTarget, line
 }
 
 
+// First name length.
 function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -226,16 +264,19 @@ function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineN
 	
 	if (nameLength > 0 && nameLength <= upperLimit)
 	{
+		// Valid.
 		checkRes = true;
 	}
 	else if (nameLength > upperLimit)
 	{
+		// Too long.
 		preparedDesc = "Name cannot be longer than " + upperLimit + " characters.";
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
 	}
 	else
 	{
+		// Empty.
 		preparedDesc = "Name cannot be empty.";
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
@@ -245,7 +286,7 @@ function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineN
 }
 
 
-
+// Handles error message for invalid gender character.
 function checkGenderFlagResult(dataPath, fileDesc, genderExists, lineNum, resObj)
 {
 	var preparedDesc = "";
@@ -253,6 +294,7 @@ function checkGenderFlagResult(dataPath, fileDesc, genderExists, lineNum, resObj
 	
 	if (genderExists !== true)
 	{
+		// Invalid.
 		preparedDesc = "Gender must be 'M', 'F', or 'U'";
 		checkRes = false;
 		
@@ -264,6 +306,7 @@ function checkGenderFlagResult(dataPath, fileDesc, genderExists, lineNum, resObj
 }
 
 
+// Positive whole number error.
 function writeNumberErrorText(vProp)
 {
 	var writeRes = initializeErrorText(vProp, "must be a positive whole number.");
@@ -271,13 +314,14 @@ function writeNumberErrorText(vProp)
 }
 
 
+// Number too large error.
 function writeNumberTooLargeErrorText(vProp)
 {
 	var writeRes = initializeErrorText(vProp, "is too large to be used safely. Please use a lower number.");
 	return writeRes;
 }
 
-
+// Number range error.
 function writeNumberRangeErrorText(vProp, vRange)
 {
 	var writeRes = "";
@@ -289,6 +333,7 @@ function writeNumberRangeErrorText(vProp, vRange)
 }
 
 
+// Decimal range error.
 function writeDecimalRangeErrorText(vProp, vRange)
 {
 	var writeRes = "";
@@ -299,6 +344,8 @@ function writeDecimalRangeErrorText(vProp, vRange)
 	return writeRes;
 }
 
+
+// Date string error.
 function writeDateErrorText(vProp)
 {
 	var writeRes = "";
@@ -310,6 +357,7 @@ function writeDateErrorText(vProp)
 }
 
 
+// Line stream error.
 function writeLineStreamErrorText(vFile, vPath, vLineNum, vDesc)
 {
 	var writeRes = "";
@@ -332,7 +380,7 @@ function writeLineStreamErrorText(vFile, vPath, vLineNum, vDesc)
 	return writeRes;
 }
 
-
+// Error text template.
 function initializeErrorText(prop, sText)
 {
 	var quoteRes = ["'", prop, "' ", sText].join("");
@@ -340,6 +388,7 @@ function initializeErrorText(prop, sText)
 }
 
 
+// Adds number range to error text.
 function appendRangeNumbers(rNums)
 {
 	var appendRes = [rNums.minValue, "and", rNums.maxValue].join(" ");

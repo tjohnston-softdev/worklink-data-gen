@@ -1,6 +1,10 @@
-const capitalLetters = /[A-Z]/g;
-const spaceChars = /\s+/g;
+// Functions for string preperation.
 
+
+const spaceChars = /\s+/g;					// RegExp for whitespace.
+
+
+// Cast value to string.
 function castDataLineString(origVal)
 {
 	var givenType = typeof origVal;
@@ -15,6 +19,7 @@ function castDataLineString(origVal)
 }
 
 
+// Trim leading whitespace.
 function removeExcessStringSpace(subjectString)
 {
 	var removeRes = "";

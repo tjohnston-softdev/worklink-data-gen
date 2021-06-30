@@ -1,3 +1,7 @@
+// Functions for generating random numbers.
+
+
+// Percentage.
 function rollPercentageChance(percentVal)
 {
 	var randomSeed = Math.random();
@@ -6,6 +10,7 @@ function rollPercentageChance(percentVal)
 }
 
 
+// Array element index.
 function rollArrayElement(arrLength)
 {
 	var randomSeed = Math.random() * arrLength;
@@ -13,6 +18,7 @@ function rollArrayElement(arrLength)
 	return indOutcomeRes;
 }
 
+// Whole number within range.
 function rollIntegerRange(lowerLimit, upperLimit)
 {
 	var numDiff = upperLimit - lowerLimit;
@@ -21,7 +27,7 @@ function rollIntegerRange(lowerLimit, upperLimit)
 	return numOutcomeRes;
 }
 
-
+// Decimal number within range.
 function rollDecimalRange(lowerLimit, upperLimit)
 {
 	var numDiff = upperLimit - lowerLimit;
@@ -30,7 +36,7 @@ function rollDecimalRange(lowerLimit, upperLimit)
 	return numOutcomeRes;
 }
 
-
+// Digit: 0-9
 function rollDigitCharacter()
 {
 	var digitOutcomeRes = rollArrayElement(10);
@@ -38,6 +44,7 @@ function rollDigitCharacter()
 }
 
 
+// Keyboard character for password.
 function rollKeyboardCharacter()
 {
 	var baseNumber = rollIntegerRange(33, 126);

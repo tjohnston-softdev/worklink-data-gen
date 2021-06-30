@@ -1,3 +1,5 @@
+// Keyword data object.
+
 function defineInputDataObject()
 {
 	var defineRes = {};

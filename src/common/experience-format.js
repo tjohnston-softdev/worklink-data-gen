@@ -1,3 +1,7 @@
+// Writes description for experience areas.
+
+
+// Main function.
 function getExperienceDescription(expRatingNum)
 {
 	var descRes = "";
@@ -10,6 +14,7 @@ function getExperienceDescription(expRatingNum)
 }
 
 
+// Converts rating to string.
 function parseRating(expNum)
 {
 	var levelRes = "";

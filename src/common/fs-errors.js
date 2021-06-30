@@ -1,6 +1,9 @@
+// Writes error text for file system processes, such as reading a file.
+
 const path = require("path");
 
 
+// Check file.
 function writeFileCheckError(vFile, vErrorCode, vPath)
 {
 	var writeRes = "";
@@ -12,6 +15,7 @@ function writeFileCheckError(vFile, vErrorCode, vPath)
 	return writeRes;
 }
 
+// Read file.
 function writeFileReadError(vFile, vErrorCode, vPath)
 {
 	var writeRes = "";
@@ -23,6 +27,7 @@ function writeFileReadError(vFile, vErrorCode, vPath)
 	return writeRes;
 }
 
+// Create file.
 function writeFileCreateError(vFile, vErrorCode, vPath)
 {
 	var writeRes = "";
@@ -34,7 +39,7 @@ function writeFileCreateError(vFile, vErrorCode, vPath)
 	return writeRes;
 }
 
-
+// File too large.
 function writeFileTooLargeError(vFile, vMaxSize, vPath)
 {
 	var writeRes = "";
@@ -48,6 +53,7 @@ function writeFileTooLargeError(vFile, vMaxSize, vPath)
 }
 
 
+// File empty.
 function writeFileEmptyError(vFile, vPath)
 {
 	var writeRes = "";
@@ -60,6 +66,7 @@ function writeFileEmptyError(vFile, vPath)
 }
 
 
+// Invalid file entry.
 function writeInvalidFileError(vFile, vPath)
 {
 	var writeRes = "";
@@ -72,6 +79,7 @@ function writeInvalidFileError(vFile, vPath)
 }
 
 
+// JSON parse.
 function writeJsonParseError(vFile, vDesc, vPath)
 {
 	var writeRes = "";
@@ -89,6 +97,7 @@ function writeJsonParseError(vFile, vDesc, vPath)
 }
 
 
+// Adds base text to file errors.
 function displaySystemAction(actVerb, actFileDesc)
 {
 	var dispRes = "";
@@ -103,6 +112,7 @@ function displaySystemAction(actVerb, actFileDesc)
 }
 
 
+// Converts FS error code to readable description.
 function parseErrorCode(eCode)
 {
 	var parseRes = "";
@@ -136,6 +146,7 @@ function parseErrorCode(eCode)
 }
 
 
+// Adds file path to error message.
 function parseTargetPath(relativePath)
 {
 	var parseRes = "";

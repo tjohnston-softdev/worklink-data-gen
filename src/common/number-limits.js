@@ -1,7 +1,10 @@
+// Defines valid number limits.
+
 function defineNumberLimits()
 {
 	var defineRes = {};
 	
+	// Ranges.
 	defineRes["supportWorkers"] = setRange(1, 10000);
 	defineRes["viewsPerDay"] = setRange(0, 10000000);
 	defineRes["listEntries"] = setRange(1, 50);
@@ -13,12 +16,14 @@ function defineNumberLimits()
 	defineRes["hours"] = setRange(1, 168);
 	defineRes["keywords"] = setRange(1, 500);
 	
+	// Max lengths.
 	defineRes["nameLength"] = 20;
 	defineRes["accentLength"] = 20;
 	defineRes["dataLength"] = 150;
 	
 	return defineRes;
 }
+
 
 function setRange(lowerLimit, upperLimit)
 {

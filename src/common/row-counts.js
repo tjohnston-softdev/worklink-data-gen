@@ -1,3 +1,8 @@
+/*
+	* Defines number of rows defined in the corresponding database table.
+	* Upper limit for Foreign Key ID.
+*/
+
 function defineRowCounts()
 {
 	var defineRes = {};

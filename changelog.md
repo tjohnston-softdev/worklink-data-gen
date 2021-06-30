@@ -1,3 +1,5 @@
 # Changelog
 
-Normal quantities of data can be generated and successfully inserted into the database.
+**./src/common/**
+* Commented all script files.
+* Removed 'capitalLetters' RegExp from 'value-prep.js'
