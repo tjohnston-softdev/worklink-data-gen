@@ -1,3 +1,7 @@
+// Functions to exit script.
+
+
+// Completed successfully.
 function callSuccessfulExit()
 {
 	console.log("");
@@ -6,12 +10,14 @@ function callSuccessfulExit()
 }
 
 
+// Error.
 function callErrorExit(errMsg)
 {
 	var valueType = typeof errMsg;
 	
 	if (valueType === "string")
 	{
+		// Optionally display error message.
 		console.log("");
 		console.log(errMsg);
 	}

@@ -1,3 +1,5 @@
+// Storage paths.
+
 const path = require("path");
 
 function defineStoragePaths()

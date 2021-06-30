@@ -1,3 +1,5 @@
+// Script reads text files in the 'input-data' folder.
+
 const path = require("path");
 const series = require("run-series");
 const ora = require("ora");
@@ -9,6 +11,7 @@ const numberLimits = require("./common/number-limits");
 const keywordData = require("./common/keyword-data");
 
 
+// Main function.
 function performInputDataRead(dataReadCallback)
 {
 	var dataSpinner = ora("Reading Input Data").start();
@@ -29,6 +32,7 @@ function performInputDataRead(dataReadCallback)
 }
 
 
+// Runs file read tasks in sequence.
 function coordinateData(coordCallback)
 {
 	var resultObject = keywordData.defineObject();
@@ -55,12 +59,15 @@ function coordinateData(coordCallback)
 	],
 	function (batchErr, batchRes)
 	{
+		// Complete.
 		if (batchErr !== null)
 		{
+			// Error.
 			return coordCallback(batchErr, null);
 		}
 		else
 		{
+			// Successful.
 			return coordCallback(null, resultObject);
 		}
 	});
@@ -68,6 +75,7 @@ function coordinateData(coordCallback)
 }
 
 
+// Reads regular text file.
 function callLineData(dataFileName, dataFileDesc, fieldName, fieldLength, resultObj, resultProp, lineCallback)
 {
 	var dataFilePath = getFilePath(dataFileName);
@@ -81,10 +89,12 @@ function callLineData(dataFileName, dataFileDesc, fieldName, fieldLength, result
 	{
 		if (lineErr !== null)
 		{
+			// Error.
 			return lineCallback(lineErr, null);
 		}
 		else
 		{
+			// Successful.
 			resultObj[resultProp] = lineRes[1];
 			return lineCallback(null, true);
 		}
@@ -92,6 +102,7 @@ function callLineData(dataFileName, dataFileDesc, fieldName, fieldLength, result
 }
 
 
+// Reads 'first-names.csv' file.
 function callNameData(dataFileName, dataFileDesc, resultObj, nameCallback)
 {
 	var dataFilePath = getFilePath(dataFileName);
@@ -105,10 +116,12 @@ function callNameData(dataFileName, dataFileDesc, resultObj, nameCallback)
 	{
 		if (nameErr !== null)
 		{
+			// Error.
 			return nameCallback(nameErr, null);
 		}
 		else
 		{
+			// Successful.
 			resultObj.firstNames = nameRes[1];
 			return nameCallback(null, true);
 		}
@@ -116,6 +129,7 @@ function callNameData(dataFileName, dataFileDesc, resultObj, nameCallback)
 }
 
 
+// Writes input data file path.
 function getFilePath(fileName)
 {
 	var pathRes = path.join(storedPaths.inputFolder, fileName);

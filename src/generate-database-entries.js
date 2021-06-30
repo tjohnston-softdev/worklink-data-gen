@@ -1,3 +1,5 @@
+// Script generates random data.
+
 const ora = require("ora");
 const rowCounts = require("./common/row-counts");
 const genData = require("./generation/gen-data");
@@ -14,12 +16,14 @@ const prevExperience = require("./generation/prev-experience");
 const otherGeneralDescription = require("./generation/other-general-description");
 
 
+// Main function.
 function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generationCallback)
 {
 	var genSpinner = ora("Generating Entries").start();
 	
 	coordinateGeneration(genOptsObject, keywordsObject, function(overallResult)
 	{
+		// Errors are not possible.
 		genSpinner.succeed("Entries generated");
 		return generationCallback(overallResult);
 	});
@@ -27,6 +31,7 @@ function performDatabaseEntryGeneration(genOptsObject, keywordsObject, generatio
 
 
 
+// Data generation loop.
 function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 {
 	var generationResultObject = genData.defineResult();
@@ -36,7 +41,10 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 	
 	for (loopNumber = 1; loopNumber <= genOptsObj.supportWorkerCount; loopNumber = loopNumber + 1)
 	{
+		// Defines working base data.
 		currentBase = prepareBaseData(genOptsObj, keywordsObj.firstNames);
+		
+		// Generate data rows.
 		generateAccount(genOptsObj, loopNumber, currentBase, keywordsObj, generationResultObject);
 		foreignKeyLists.generateEntries(genOptsObj, loopNumber, generationResultObject);
 		availRoster.generateAvailability(genOptsObj.availability, loopNumber, generationResultObject);
@@ -44,10 +52,12 @@ function coordinateGeneration(genOptsObj, keywordsObj, genCallback)
 		generateOther(genOptsObj, loopNumber, keywordsObj, generationResultObject);
 	}
 	
+	
 	return genCallback(generationResultObject);
 }
 
 
+// Prepare base working data for current support worker.
 function prepareBaseData(genOpts, firstNameList)
 {
 	var localGender = personGender.chooseRandom(genOpts.genders);
@@ -68,10 +78,12 @@ function prepareBaseData(genOpts, firstNameList)
 }
 
 
+// Main account object for support worker.
 function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 {
 	var accountObject = [accountID];
 	
+	// Populate data columns.
 	personSensitive.writeEmailAddress(baseObject.name, accountID, accountObject);
 	personSensitive.chooseDriversLicenseNumber(accountObject, genResObj.baseEntries);
 	personSensitive.choosePhoneNumber(accountObject, genResObj.baseEntries);
@@ -96,14 +108,16 @@ function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 	personInt.chooseViews(baseObject.register, genOpts.viewsPerDay, accountObject);
 	accountObject.push(1, 1);
 	
+	// Complete.
 	genResObj.baseEntries.push(accountObject);
 }
 
-
+// Other descriptions object.
 function generateOther(genOpts, accountID, kwordsObj, genResObj)
 {
 	var otherObject = [accountID];
 	
+	// Populate columns.
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.descriptions, otherObject);
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.hobbies, otherObject);
 	writtenDescriptions.writeOptional(genOpts.otherSpecific, kwordsObj.games, otherObject);
@@ -117,6 +131,7 @@ function generateOther(genOpts, accountID, kwordsObj, genResObj)
 	otherGeneralDescription.writeString(genOpts.otherGeneral, kwordsObj, otherObject);
 	otherObject.push(1);
 	
+	// Complete.
 	genResObj.other.push(otherObject);
 }
 

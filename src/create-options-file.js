@@ -1,9 +1,12 @@
+// Script creates 'options.json' file if it does not exist.
+
 const fs = require("fs");
 const ora = require("ora");
 const storagePaths = require("../storage-paths");
 const fsErrors = require("./common/fs-errors");
 
 
+// Main function.
 function performOptionsFileCreation(optionsCallback)
 {
 	var optionsSpinner = ora("Creating Options File").start();
@@ -26,6 +29,7 @@ function performOptionsFileCreation(optionsCallback)
 
 function callFileWrite(writeCallback)
 {
+	// Empty JSON.
 	var definitionText = "{}";
 	var flaggedMessage = "";
 	
@@ -33,11 +37,13 @@ function callFileWrite(writeCallback)
 	{
 		if (writeErr !== null)
 		{
+			// Error.
 			flaggedMessage = fsErrors.writeFileCreate("Options", writeErr.code, storagePaths.optionsFile);
 			return writeCallback(new Error(flaggedMessage), null);
 		}
 		else
 		{
+			// Successful.
 			return writeCallback(null, true);
 		}
 	});

@@ -1,3 +1,5 @@
+// 'workforce-link-generator' - Main script file.
+
 const clear = require("clear");
 const readOptionsFile = require("./src/read-options-file");
 const createOptionsFile = require("./src/create-options-file");
@@ -10,26 +12,31 @@ clear();
 runGenerationMain();
 
 
+// Main function.
 function runGenerationMain()
 {
 	readOptionsFile(function (optionsTaskErr, optionsTaskRes)
 	{
 		if (optionsTaskErr !== null)
 		{
+			// Error reading options.
 			exitProgram.callError(optionsTaskErr.message);
 		}
 		else if (optionsTaskRes.contents !== null)
 		{
+			// Options successful - Read input data.
 			executeInputDataTask(optionsTaskRes.contents);
 		}
 		else
 		{
+			// Options does not exist - Create file.
 			executeOptionsCreateTask();
 		}
 	});
 }
 
 
+// Read Input Data.
 function executeInputDataTask(generationOptionsObject)
 {	
 	readInputData(function (inpTaskErr, inpTaskRes)
@@ -46,6 +53,7 @@ function executeInputDataTask(generationOptionsObject)
 }
 
 
+// Generate Database Entries.
 function executeGenerationTask(generationOptionsObj, keywordDataObj)
 {
 	generateDatabaseEntries(generationOptionsObj, keywordDataObj, function(generationRes)
@@ -55,6 +63,7 @@ function executeGenerationTask(generationOptionsObj, keywordDataObj)
 }
 
 
+// Export SQL Files.
 function executeOutputTask(generatedDataObject)
 {
 	exportSqlFiles(generatedDataObject, function (expTaskErr, expTaskRes)
@@ -65,12 +74,14 @@ function executeOutputTask(generatedDataObject)
 		}
 		else
 		{
+			// Complete.
 			exitProgram.callSuccessful();
 		}
 	});
 }
 
 
+// Create Options File.
 function executeOptionsCreateTask()
 {
 	createOptionsFile(function (createTaskErr, createTaskRes)
@@ -80,6 +91,7 @@ function executeOptionsCreateTask()
 			console.log(createTaskErr.message);
 		}
 		
+		// Exit as error.
 		exitProgram.callError();
 	});
 }

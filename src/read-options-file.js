@@ -1,3 +1,5 @@
+// Script reads and validates 'options.json' file.
+
 const ora = require("ora");
 const storedPaths = require("../storage-paths");
 const checkFileExists = require("./input/check-file-exists");
@@ -15,6 +17,8 @@ const prevExperienceProps = require("./options-validation/prev-experience-props"
 const availabilityProps = require("./options-validation/availability-props");
 const swapRanges = require("./options-validation/swap-ranges");
 
+
+// Main function.
 function performOptionsFileRead(optionsCallback)
 {
 	var optionsSpinner = ora("Reading Options").start();
@@ -40,28 +44,34 @@ function performOptionsFileRead(optionsCallback)
 }
 
 
+// Check file exists.
 function coordinateReading(coordCallback)
 {
+	// Create result object.
 	var retrievedOptionsObject = {"contents": null};
 	
 	checkFileExists.checkOptions(storedPaths.optionsFile, function (checkExistErr, optionsFileExists)
 	{
 		if (checkExistErr !== null)
 		{
+			// Error.
 			return coordCallback(checkExistErr, null);
 		}
 		else if (optionsFileExists === true)
 		{
+			// Read file.
 			callFileOpen(retrievedOptionsObject, coordCallback);
 		}
 		else
 		{
+			// Does not exist.
 			return coordCallback(null, retrievedOptionsObject);
 		}
 	});
 }
 
 
+// Read 'options.json' file.
 function callFileOpen(retrievedOptions, openCallback)
 {
 	readOptions(storedPaths.optionsFile, function (openErr, openRes)
@@ -78,6 +88,7 @@ function callFileOpen(retrievedOptions, openCallback)
 }
 
 
+// Validate options.
 function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 {
 	var validationResultObject = validationTasks.defineResult();
@@ -85,6 +96,7 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 	
 	if (baseTypeValid === true)
 	{
+		// Perform validation.
 		baseType.setNestedObjects(fileContents);
 		basicProps.validateSupportWorkerCount(fileContents, validationResultObject);
 		basicProps.validateMinRegisterDate(fileContents, validationResultObject);
@@ -110,12 +122,14 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 	
 	if (validationResultObject.valid === true)
 	{
+		// Options valid.
 		swapRanges(fileContents);
 		retOptsObj.contents = fileContents;
 		return validationCallback(null, retOptsObj);
 	}
 	else
 	{
+		// Invalid properties.
 		return validationCallback(new Error(validationResultObject.errorMessage), null);
 	}
 }

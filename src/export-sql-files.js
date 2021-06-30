@@ -1,3 +1,5 @@
+// Script exports generated data as SQL files.
+
 const series = require("run-series");
 const ora = require("ora");
 const storedPaths = require("../storage-paths");
@@ -9,6 +11,8 @@ function performSqlExport(genData, sqlExportCallback)
 {
 	var exportSpinner = ora("Exporting Data").start();
 	
+	
+	// Execute tasks in sequence.
 	series(
 	[
 		fileDest.prepareFolder.bind(null, storedPaths.outputFolder),
@@ -30,6 +34,7 @@ function performSqlExport(genData, sqlExportCallback)
 	],
 	function (overallErr, overallRes)
 	{
+		// Complete.
 		if (overallErr !== null)
 		{
 			exportSpinner.fail("Error exporting data");
