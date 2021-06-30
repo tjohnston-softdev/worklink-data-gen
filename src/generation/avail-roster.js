@@ -28,7 +28,7 @@ function chooseHours(availOpts)
 	{
 		currentStartHour = randomTasks.rollInteger(numberLimits.hours.minValue, numberLimits.hours.maxValue);
 		currentBlockLength = randomTasks.rollInteger(availOpts.minBlockHours, availOpts.maxBlockHours);
-		allocateBlock(currentStartHour, currentBlockLength, choiceRes);
+		allocateBlock(currentStartHour, currentBlockLength, choiceRes, targetCount);
 	}
 	
 	return choiceRes;
@@ -59,7 +59,7 @@ function insertHours(chosenHours, accNum, genRes)
 
 
 // Allocates availability hours in a block.
-function allocateBlock(startHour, allocLength, overallHours)
+function allocateBlock(startHour, allocLength, overallHours, tgtCount)
 {
 	var currentHour = -1;
 	var currentUsed = false;
@@ -67,8 +67,8 @@ function allocateBlock(startHour, allocLength, overallHours)
 	
 	var loopCounter = 0;
 	
-	// Loop allocates set number of hours.
-	while (loopCounter >= 0 && loopCounter < allocLength)
+	// Loop allocates set number of hours until end of block, or overall target reached.
+	while (loopCounter >= 0 && loopCounter < allocLength && overallHours.length < tgtCount)
 	{
 		// Check current hour used.
 		currentHour = capHour(currentNext);
