@@ -1,4 +1,4 @@
 # Changelog
 
-**./info/options.md**
-* Added creation and modification dates.
+**./info/references.md**
+* Added extra space between introduction paragraph and table.

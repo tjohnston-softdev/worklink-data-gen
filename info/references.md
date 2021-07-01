@@ -4,6 +4,10 @@ This is a table of references used for possible keywords when generating descrip
 
 Minor changes were made to the original data as needed for the program's use case. For example, JSON files were converted to plain-text lists.
 
+---
+
+
+
 |  			Name 		                                                                                                     |  			Source 		                                                  |  			Description 		                                                                                                                  |  			Author 		                                                            |  			Input File 		                                                   |  			Date 		         |
 |------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|----------------------------------------------------------------|----------------|
 |  			[Baby Names](https://www.kaggle.com/ironicninja/baby-names) 		                                              |  			[Kaggle](https://www.kaggle.com/) 		                       |  			List of Baby Names from 1910 to 2021. 		                                                                                        |  			[Evan Zhang](https://www.kaggle.com/ironicninja) 		                  |  			[first-names.csv](../input-data/first-names.csv) 		             |  			17 June 2021 		 |
@@ -31,3 +35,4 @@ Minor changes were made to the original data as needed for the program's use cas
 **Last Updated:** 1 July 2021
 
 [Return to index](../readme.md)
+
