@@ -1,4 +1,4 @@
 # Changelog
 
-**./info/options.md**
-* New file - Documentation for 'options.json' file.
+**./info/references.md**
+* New file - References for used keyword data.
