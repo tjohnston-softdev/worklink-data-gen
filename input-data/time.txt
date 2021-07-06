@@ -28,3 +28,6 @@ season
 quadrimester
 semester
 leap year
+never
+often
+seldom

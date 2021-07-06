@@ -1,4 +1,12 @@
 # Changelog
 
+**./input-data/time.txt**
+* Added new keywords:
+	* never
+	* often
+	* seldom
+
+---
+
 **./info/references.md**
-* Added extra space between introduction paragraph and table.
+* Updated to include Mockaroo frequency keywords.
