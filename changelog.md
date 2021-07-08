@@ -1,4 +1,9 @@
 # Changelog
 
-**./src/common/row-counts.js**
-* Changed 'experienceAreas' upper ID from 34 to 9.
+**./options.json**
+* Changed 'experienceAreas.max' value from 8 to 3
+
+---
+
+**./info/options.md**
+* Changed example value for 'experienceAreas.max'
