@@ -34,14 +34,17 @@ function saveSqlFile(targetFolder, fileName, tblName, rowArray, writeCallback)
 // Prepares file contents.
 function writeSqlCommand(tName, rowArr)
 {
-	var templateString = "INSERT INTO ?? VALUES ?;";
-	var paraList = [tName, rowArr];
-	var writeRes = sqlstring.format(templateString, paraList);
+	var templateString = "";
+	var paraList = [];
+	var writeRes = "";
 	
 	if (rowArr.length > 0)
 	{
 		// Write command.
-		templateString = "INSERT INTO ?? VALUES ?;";
+		templateString += "USE linkServicesGroup;";
+		templateString += "\r\n\r\n";
+		templateString += "INSERT INTO ?? VALUES ?;";
+		
 		paraList = [tName, rowArr];
 		writeRes = sqlstring.format(templateString, paraList);
 	}
