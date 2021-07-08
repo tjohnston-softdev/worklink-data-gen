@@ -20,7 +20,7 @@ function defineRowCounts()
 	defineRes["fears"] = 20;
 	defineRes["technology"] = 5;
 	defineRes["qualifications"] = 19;
-	defineRes["experienceAreas"] = 34;
+	defineRes["experienceAreas"] = 9;
 	
 	return defineRes;
 }
