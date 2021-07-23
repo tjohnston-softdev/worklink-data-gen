@@ -1,6 +1,7 @@
 # Changelog
 
-**./src/common/row-counts.js**
-* Updated row counts:
-	* 'checks' from 14 to 10.
-	* 'qualifications' from 19 to 13.
+**./src/generation/foreign-key-lists.js**
+* Removed the 'handleCheckWillingness' function.
+* mapChecksClearances
+	* Result only contains [1] on 'showWillingness'
+	* Removed plural from 'Willing to obtain' comment.

@@ -62,8 +62,8 @@ function mapChecksClearances(mapOpts, accountNum, genRes)
 	}
 	else if (mapOpts.showWillingness === true)
 	{
-		// Choose 'Willing to obtain' options.
-		keySequence = handleCheckWillingness();
+		// Choose 'Willing to obtain' option.
+		keySequence = [1];
 	}
 	else
 	{
@@ -122,21 +122,6 @@ function chooseKeys(chosenAmount, maxID)
 	}
 	
 	return choiceRes;
-}
-
-
-// Choose selected 'Checks and Clearances' for Support Workers willing to obtain.
-function handleCheckWillingness()
-{
-	var willPass = randomTasks.rollPercent(0.5);
-	var handleRes = [1];
-	
-	if (willPass === true)
-	{
-		handleRes.push(2);
-	}
-	
-	return handleRes;
 }
 
 
