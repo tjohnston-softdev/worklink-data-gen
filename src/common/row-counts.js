@@ -19,7 +19,7 @@ function defineRowCounts()
 	defineRes["pets"] = 9;
 	defineRes["fears"] = 20;
 	defineRes["technology"] = 5;
-	defineRes["qualifications"] = 19;
+	defineRes["qualifications"] = 13;
 	defineRes["experienceAreas"] = 9;
 	
 	return defineRes;
