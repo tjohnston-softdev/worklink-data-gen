@@ -1,4 +1,4 @@
 # Changelog
 
 **./info/**
-* Minimized table markdown.
+* Removed tabs from cell values in table markdown.
