@@ -11,7 +11,7 @@ function defineRowCounts()
 	defineRes["cultures"] = 24;
 	defineRes["referralSources"] = 18;
 	defineRes["languages"] = 40;
-	defineRes["checks"] = 14;
+	defineRes["checks"] = 10;
 	defineRes["personalityTraits"] = 10;
 	defineRes["hobbies"] = 150;
 	defineRes["gaming"] = 10;
