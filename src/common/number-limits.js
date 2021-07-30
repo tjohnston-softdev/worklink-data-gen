@@ -10,7 +10,6 @@ function defineNumberLimits()
 	defineRes["listEntries"] = setRange(1, 50);
 	defineRes["age"] = setRange(0, 1000);
 	defineRes["feelsLikeOffset"] = setRange(0, 10);
-	defineRes["passwordLength"] = setRange(1, 100);
 	defineRes["aboutQuotes"] = setRange(1, 10);
 	defineRes["jobMonths"] = setRange(1, 1200);
 	defineRes["hours"] = setRange(1, 168);

@@ -89,7 +89,7 @@ function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 	personSensitive.choosePhoneNumber(accountObject, genResObj.baseEntries);
 	accountObject.push(baseObject.name, baseObject.gender);
 	personDateTime.addRegister(baseObject.register, accountObject);
-	personSensitive.choosePassword(genOpts.userPassword, accountObject);
+	personSensitive.choosePassword(accountObject);
 	personDateTime.addDOB(baseObject.dateOfBirth, accountObject);
 	accountObject.push(baseObject.feelsLikeAge);
 	personInt.chooseID(rowCounts.locations, accountObject);

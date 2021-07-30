@@ -81,9 +81,9 @@ function chooseRandomPhoneNumber(parentObject, existingObjects)
 
 
 // Password.
-function chooseRandomPassword(passOpts, parentObject)
+function chooseRandomPassword(parentObject)
 {
-	var chosenLength = randomTasks.rollInteger(passOpts.minCharacters, passOpts.maxCharacters);
+	var chosenLength = randomTasks.rollInteger(8, 32);
 	var currentChar = "";
 	var finalString = "";
 	

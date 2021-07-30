@@ -4,14 +4,6 @@ const validationTasks = require("../common/validation-tasks");
 const numberLimits = require("../common/number-limits");
 
 
-// Main function - Password length.
-function validatePasswordLengthProperties(optionsObject, resultObject)
-{
-	handlePasswordLengthNumber(optionsObject, "minCharacters", resultObject);
-	handlePasswordLengthNumber(optionsObject, "maxCharacters", resultObject);
-}
-
-
 // Main function - Travel time.
 function validateTravelTimeProperties(optionsObject, resultObject)
 {
@@ -24,19 +16,6 @@ function validateViewsPerDayProperties(optionsObject, resultObject)
 {
 	handleViewNumber(optionsObject, "min", resultObject);
 	handleViewNumber(optionsObject, "max", resultObject);
-}
-
-
-// Password length number.
-function handlePasswordLengthNumber(optsObj, propName, resObject)
-{
-	var givenNumber = optsObj.userPassword[propName];
-	var propString = "userPassword." + propName;
-	
-	if (resObject.valid === true)
-	{
-		validationTasks.checkRange(givenNumber, propString, numberLimits.passwordLength, resObject);
-	}
 }
 
 
@@ -67,7 +46,6 @@ function handleViewNumber(optsObj, propName, resObject)
 
 module.exports =
 {
-	validatePasswordLength: validatePasswordLengthProperties,
 	validateTravelTime: validateTravelTimeProperties,
 	validateViewsPerDay: validateViewsPerDayProperties
 };

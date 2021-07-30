@@ -25,7 +25,8 @@ function runGenerationMain()
 		else if (optionsTaskRes.contents !== null)
 		{
 			// Options successful - Read input data.
-			executeInputDataTask(optionsTaskRes.contents);
+			//executeInputDataTask(optionsTaskRes.contents);
+			console.log("Valid");
 		}
 		else
 		{
