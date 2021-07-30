@@ -1,3 +1,3 @@
 # Changelog
 
-Generated test data (2021-07-28 15:33)
+Renamed repository from 'workforce-link-generator' to 'worklink-data-gen'
