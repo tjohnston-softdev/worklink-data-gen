@@ -1,5 +1,6 @@
-// Functions for generating random numbers.
+// Functions for generating random values.
 
+const specialChars = "~`!@#$%^&*()-_=+[{]};:<,>.?|";
 
 // Percentage.
 function rollPercentageChance(percentVal)
@@ -44,12 +45,29 @@ function rollDigitCharacter()
 }
 
 
-// Keyboard character for password.
-function rollKeyboardCharacter()
+// Uppercase alphabet character for password.
+function rollUppercaseCharacter()
 {
-	var baseNumber = rollIntegerRange(33, 126);
-	var charOutcomeRes = String.fromCharCode(baseNumber);
-	return charOutcomeRes;
+	var baseNumber = rollIntegerRange(65, 90);
+	var upperRes = String.fromCharCode(baseNumber);
+	return upperRes;
+}
+
+// Lowercase alphabet character for password.
+function rollLowercaseCharacter()
+{
+	var baseChar = rollUppercaseCharacter();
+	var lowerRes = baseChar.toLowerCase();
+	return lowerRes;
+}
+
+
+// Special characters for password.
+function rollSpecialCharacter()
+{
+	var baseNumber = rollIntegerRange(specialChars.length);
+	var specialRes = specialChars.charAt(baseNumber);
+	return specialRes;
 }
 
 
@@ -60,5 +78,7 @@ module.exports =
 	rollInteger: rollIntegerRange,
 	rollDecimal: rollDecimalRange,
 	rollDigit: rollDigitCharacter,
-	rollChar: rollKeyboardCharacter
+	rollUppercase: rollUppercaseCharacter,
+	rollLowercase: rollLowercaseCharacter,
+	rollSpecial: rollSpecialCharacter
 };

@@ -1,41 +1,30 @@
 # Changelog
 
-**./options.json**
-* Removed 'userPassword'
-	* Password length will always be between 8 and 32.
-	* This was the default length range.
+**./src/common/random-tasks.js**
+* Declared global variable 'specialChars'
+	* Stores special characters used for passwords.
+	* Uses a string instead of ASCII character numbers.
+* Wrote new functions:
+	* rollUppercaseCharacter
+	* rollLowercaseCharacter
+	* rollSpecialCharacter
+* Removed the 'rollKeyboardCharacter' function.
+* Changed "numbers" to "values" in file header comment.
 
 ---
 
-**./src/read-options-file.js - callOptionsValidation**
-* Removed call to 'rangeProps.validatePasswordLength'
+**./src/generation/person-password.js**
+* New file
+	* Standalone script used to generate Support Worker account passwords.
+	* Conforms to server-side password validation.
 
 ---
 
-**./src/options-validation/range-props.js**
-* Removed functions:
-	* validatePasswordLengthProperties
-	* handlePasswordLengthNumber
-
----
-
-**./src/common/number-limits.js**
-* Removed 'passwordLength' result property.
+**./src/generation/person-sensitive.js**
+* Removed the 'chooseRandomPassword' function.
 
 ---
 
 **./src/generate-database-entries.js**
-* Removed 'genOpts.userPassword' argument from 'choosePassword' call.
-
----
-
-**./src/generation/person-sensitive.js - chooseRandomPassword**
-* Removed 'passOpts' parameter.
-* Replaced 'passOpts.minCharacters' with 8.
-* Replaced 'passOpts.maxCharacters' with 32.
-
----
-
-**./generate.js - runGenerationMain**
-* Commented out call to 'executeInputDataTask'
-* On successful result, display "Valid" message.
+* Added requirement for './generation/person-password'
+* Replaced 'personSensitive.choosePassword' with 'personPassword.chooseString'

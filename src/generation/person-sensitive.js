@@ -80,25 +80,6 @@ function chooseRandomPhoneNumber(parentObject, existingObjects)
 }
 
 
-// Password.
-function chooseRandomPassword(parentObject)
-{
-	var chosenLength = randomTasks.rollInteger(8, 32);
-	var currentChar = "";
-	var finalString = "";
-	
-	// Loop chooses password characters.
-	while (finalString.length < chosenLength)
-	{
-		// Choose random character.
-		currentChar = randomTasks.rollChar();
-		finalString += currentChar;
-	}
-	
-	parentObject.push(finalString);
-}
-
-
 // Adds random digits to array until target length reached.
 function addDigits(seqArr, tgtCount)
 {
@@ -149,6 +130,5 @@ module.exports =
 {
 	writeEmailAddress: writeEmailAddressString,
 	chooseDriversLicenseNumber: chooseRandomDriversLicenseNumber,
-	choosePhoneNumber: chooseRandomPhoneNumber,
-	choosePassword: chooseRandomPassword
+	choosePhoneNumber: chooseRandomPhoneNumber
 };

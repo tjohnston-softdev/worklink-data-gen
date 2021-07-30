@@ -7,6 +7,7 @@ const personGender = require("./generation/person-gender");
 const personFirstName = require("./generation/person-first_name");
 const personDateTime = require("./generation/person-datetime");
 const personSensitive = require("./generation/person-sensitive");
+const personPassword = require("./generation/person-password");
 const personInt = require("./generation/person-int");
 const personVideo = require("./generation/person-video");
 const writtenDescriptions = require("./generation/written-descriptions");
@@ -89,7 +90,7 @@ function generateAccount(genOpts, accountID, baseObject, kwordsObj, genResObj)
 	personSensitive.choosePhoneNumber(accountObject, genResObj.baseEntries);
 	accountObject.push(baseObject.name, baseObject.gender);
 	personDateTime.addRegister(baseObject.register, accountObject);
-	personSensitive.choosePassword(accountObject);
+	personPassword.chooseString(accountObject);
 	personDateTime.addDOB(baseObject.dateOfBirth, accountObject);
 	accountObject.push(baseObject.feelsLikeAge);
 	personInt.chooseID(rowCounts.locations, accountObject);
