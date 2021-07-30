@@ -1,6 +1,11 @@
 {
 	"supportWorkerCount": 5000,
 	"minRegDate": "2017-11-02",
+	"encryption":
+	{
+		"enabled": true,
+		"key": "EXAMPLE"
+	},
 	"genders":
 	{
 		"distribution": 0.5,

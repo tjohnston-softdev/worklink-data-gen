@@ -24,9 +24,13 @@ function validateBaseType(optionsObject, resultObject)
 // Initialize nested objects.
 function setNestedObjectProperties(optionsObject)
 {
+	defineObject(optionsObject, "encryption");
 	defineObject(optionsObject, "genders");
 	defineObject(optionsObject, "age");
+	defineObject(optionsObject, "skillDescription");
+	defineObject(optionsObject, "apperanceDescription");
 	defineObject(optionsObject, "travelTime");
+	defineObject(optionsObject, "baseChances");
 	defineObject(optionsObject, "viewsPerDay");
 	defineObject(optionsObject, "otherLanguages");
 	defineObject(optionsObject, "checksClearances");
