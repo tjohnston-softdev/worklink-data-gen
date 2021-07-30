@@ -1,3 +1,6 @@
 # Changelog
 
-Renamed repository from 'workforce-link-generator' to 'worklink-data-gen'
+**./package.json**
+* Installed encryption modules.
+	* 'bycrpt' - Personal information.
+	* 'crypto' - Hash passwords.
