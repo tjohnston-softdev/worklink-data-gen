@@ -3,6 +3,7 @@ const series = require("run-series");
 const ora = require("ora");
 const encodeField = require("./encryption/encode-field");
 const hashPass = require("./encryption/hash-pass");
+const backupPlainText = require("./encryption/backup-plain-text");
 
 
 function performSensitiveDataEncryption(encryptOptsObject, supportWorkerDataArray, dataEncryptionCallback)
@@ -22,22 +23,40 @@ function coordinateEncryption(encryptOptsObj, supportWorkerData, coordCallback)
 {
 	var encryptionSpinner = ora("Encrypting Sensitive Data").start();
 	
-	each(supportWorkerData,
-	function (currentSupportWorker, iterationCallback)
+	loopSupportWorkers(encryptOptsObj, supportWorkerData, function (encLoopErr, encLoopRes)
 	{
-		encryptSupportWorker(encryptOptsObj, currentSupportWorker, iterationCallback);
-	},
-	function (encLoopErr)
-	{
-		if (encLoopErr !== undefined)
+		if (encLoopErr !== null)
 		{
-			encryptionSpinner.fail("Data Encryption Error");
+			encryptionSpinner.fail("Data encryption error");
 			return coordCallback(encLoopErr, null);
 		}
 		else
 		{
-			encryptionSpinner.succeed("Data Encrypted Successfully");
-			return coordCallback(null, true);
+			encryptionSpinner.succeed("Data encrypted successfully");
+			return coordCallback(null, encLoopRes);
+		}
+	});
+}
+
+
+function loopSupportWorkers(encryptOpts, swDataArray, loopCallback)
+{
+	var plainArray = backupPlainText(swDataArray);
+	
+	each(swDataArray,
+	function (currentSupportWorker, iterationCallback)
+	{
+		encryptSupportWorker(encryptOpts, currentSupportWorker, iterationCallback);
+	},
+	function (loopErr)
+	{
+		if (loopErr !== undefined)
+		{
+			return loopCallback(loopErr, null);
+		}
+		else
+		{
+			return loopCallback(null, plainArray);
 		}
 	});
 }
@@ -63,7 +82,7 @@ function skipEncryption(skipCallback)
 {
 	var skipSpinner = ora("Skipping").start();
 	skipSpinner.info("Encryption Skipped");
-	return skipCallback(null, true);
+	return skipCallback(null, null);
 }
 
 

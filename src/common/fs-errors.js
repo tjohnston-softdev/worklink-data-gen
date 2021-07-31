@@ -96,6 +96,21 @@ function writeJsonParseError(vFile, vDesc, vPath)
 	return writeRes;
 }
 
+// JSON stringify
+function writeJsonStringifyError(vFile, vDesc)
+{
+	var writeRes = "";
+	
+	writeRes += "Error preparing ";
+	writeRes += vFile;
+	writeRes += " JSON.\r\n";
+	
+	writeRes += "Reason: ";
+	writeRes += vDesc;
+	
+	return writeRes;
+}
+
 
 // Adds base text to file errors.
 function displaySystemAction(actVerb, actFileDesc)
@@ -168,5 +183,6 @@ module.exports =
 	writeFileTooLarge: writeFileTooLargeError,
 	writeFileEmpty: writeFileEmptyError,
 	writeInvalidFile: writeInvalidFileError,
-	writeJsonParse: writeJsonParseError
+	writeJsonParse: writeJsonParseError,
+	writeJsonStringify: writeJsonStringifyError
 };

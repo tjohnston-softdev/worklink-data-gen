@@ -7,6 +7,7 @@ const readInputData = require("./src/read-input-data");
 const generateDatabaseEntries = require("./src/generate-database-entries");
 const encryptSensitiveData = require("./src/encrypt-sensitive-data");
 const exportSqlFiles = require("./src/export-sql-files");
+const exportPlainBackup = require("./src/export-plain-backup");
 const exitProgram = require("./src/exit-program");
 
 clear();
@@ -67,7 +68,9 @@ function executeGenerationTask(generationOptionsObj, keywordDataObj)
 // Encrypt sensitive data
 function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
 {
-	encryptSensitiveData(encryptionOptionsObject, generatedDataObject.baseEntries, function (encTaskErr, encTaskRes)
+	var genSupportWorkers = generatedDataObject.baseEntries;
+	
+	encryptSensitiveData(encryptionOptionsObject, genSupportWorkers, function (encTaskErr, plainBackupRes)
 	{
 		if (encTaskErr !== null)
 		{
@@ -75,14 +78,14 @@ function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
 		}
 		else
 		{
-			executeOutputTask(generatedDataObject);
+			executeSqlOutputTask(generatedDataObject, plainBackupRes);
 		}
 	});
 }
 
 
 // Export SQL Files.
-function executeOutputTask(genDataObject)
+function executeSqlOutputTask(genDataObject, plainDataObject)
 {
 	exportSqlFiles(genDataObject, function (expTaskErr, expTaskRes)
 	{
@@ -92,11 +95,29 @@ function executeOutputTask(genDataObject)
 		}
 		else
 		{
+			executePlainOutputTask(plainDataObject);
+		}
+	});
+}
+
+
+// Export Plain Text Data File.
+function executePlainOutputTask(plainDataObj)
+{
+	exportPlainBackup(plainDataObj, function (plainTaskErr, plainTaskRes)
+	{
+		if (plainTaskErr !== null)
+		{
+			exitProgram.callError(plainTaskErr.message);
+		}
+		else
+		{
 			// Complete.
 			exitProgram.callSuccessful();
 		}
 	});
 }
+
 
 
 // Create Options File.
