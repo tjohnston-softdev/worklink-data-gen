@@ -16,6 +16,7 @@ function defineNumberLimits()
 	defineRes["keywords"] = setRange(1, 500);
 	
 	// Max lengths.
+	defineRes["encryptionLength"] = 128;
 	defineRes["nameLength"] = 20;
 	defineRes["accentLength"] = 20;
 	defineRes["dataLength"] = 150;

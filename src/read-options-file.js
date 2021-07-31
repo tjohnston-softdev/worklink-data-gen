@@ -7,6 +7,7 @@ const readOptions = require("./input/read-options");
 const validationTasks = require("./common/validation-tasks");
 const baseType = require("./options-validation/base-type");
 const basicProps = require("./options-validation/basic-props");
+const encryptProps = require("./options-validation/encrypt-props");
 const ageProps = require("./options-validation/age-props");
 const keywordProps = require("./options-validation/keyword-props");
 const rangeProps = require("./options-validation/range-props");
@@ -100,6 +101,7 @@ function callOptionsValidation(fileContents, retOptsObj, validationCallback)
 		baseType.setNestedObjects(fileContents);
 		basicProps.validateSupportWorkerCount(fileContents, validationResultObject);
 		basicProps.validateMinRegisterDate(fileContents, validationResultObject);
+		encryptProps.validateEncryption(fileContents, validationResultObject);
 		basicProps.validateGenders(fileContents, validationResultObject);
 		ageProps.validateAge(fileContents, validationResultObject);
 		basicProps.validateAbout(fileContents, validationResultObject);

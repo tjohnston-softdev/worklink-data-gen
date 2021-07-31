@@ -177,6 +177,36 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 }
 
 
+function checkEncryptionStringValue(stringValue, stringProp, maxLength, resObj)
+{
+	var correctType = (typeof stringValue === "string");
+	var checkRes = false;
+	
+	if (correctType === true && stringValue.length > 0 && stringValue.length <= maxLength)
+	{
+		checkRes = true;
+	}
+	else if (correctType === true && stringValue.length > maxLength)
+	{
+		resObj.valid = false;
+		resObj.errorMessage = writeStringTooLongErrorText(stringProp, maxLength);
+	}
+	else if (correctType === true)
+	{
+		resObj.valid = false;
+		resObj.errorMessage = initializeErrorText(stringProp, "cannot be empty.");
+	}
+	else
+	{
+		resObj.valid = false;
+		resObj.errorMessage = initializeErrorText(stringProp, "must be a valid string.");
+	}
+	
+	
+	return checkRes;
+}
+
+
 // Length of line within text file.
 function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, lineNum, resObj)
 {
@@ -417,6 +447,7 @@ module.exports =
 	checkPercentage: checkPercentageValue,
 	checkOffset: checkOffsetValue,
 	checkDateString: checkDateStringValue,
+	checkEncryptionString: checkEncryptionStringValue,
 	checkDataLineLength: checkDataLineLengthNumber,
 	checkDataEntryLength: checkDataEntryLengthNumber,
 	checkCsvColumnCount: checkCsvColumnCountNumber,
