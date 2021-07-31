@@ -75,7 +75,7 @@ function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
 		}
 		else
 		{
-			//executeOutputTask(generatedDataObject);
+			executeOutputTask(generatedDataObject);
 		}
 	});
 }
