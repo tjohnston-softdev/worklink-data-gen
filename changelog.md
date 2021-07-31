@@ -1,14 +1,8 @@
 # Changelog
 
-**./options.json**
-* Added 'encryption.checkMatch' property.
-	* If this is True, check whether the encrypted values match their original counterparts.
-
----
-
-**./src/options-validation/encrypt-props.js**
-* Wrote 'handleTrueFalseValue' function.
-* Removed 'handleEnabledStatus' function.
-* validateEncryptionProperties
-	* Replaced 'handleEnabledStatus' call with 'handleTrueFalseValue' for 'enabled'
-	* Added 'handleTrueFalseValue' call for 'checkMatch'
+**./src/common/validation-tasks.js**
+* Declared 'addQuotes' parameter for 'writeStringTooLongErrorText'
+	* If this is True, quotes will be added around 'vLabel'
+* Set 'addQuotes' argument for 'writeStringTooLongErrorText' calls.
+	* 'checkEncryptionStringValue' = True
+	* All others = False

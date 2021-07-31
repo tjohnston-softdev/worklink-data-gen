@@ -189,7 +189,7 @@ function checkEncryptionStringValue(stringValue, stringProp, maxLength, resObj)
 	else if (correctType === true && stringValue.length > maxLength)
 	{
 		resObj.valid = false;
-		resObj.errorMessage = writeStringTooLongErrorText(stringProp, maxLength);
+		resObj.errorMessage = writeStringTooLongErrorText(stringProp, maxLength, true);
 	}
 	else if (correctType === true)
 	{
@@ -221,7 +221,7 @@ function checkDataLineLengthNumber(dataPath, fileDesc, lengthValue, upperLimit, 
 	else
 	{
 		// Unsafe.
-		preparedDesc = writeStringTooLongErrorText("Line", upperLimit);
+		preparedDesc = writeStringTooLongErrorText("Line", upperLimit, false);
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
 	}
@@ -245,7 +245,7 @@ function checkDataEntryLengthNumber(dataPath, fileDesc, entryLabel, lengthValue,
 	{
 		// Too long.
 		checkRes = -1;
-		preparedDesc = writeStringTooLongErrorText(entryLabel, upperLimit);
+		preparedDesc = writeStringTooLongErrorText(entryLabel, upperLimit, false);
 		
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
@@ -296,7 +296,7 @@ function checkNameLengthNumber(dataPath, fileDesc, nameLength, upperLimit, lineN
 	else if (nameLength > upperLimit)
 	{
 		// Too long.
-		preparedDesc = writeStringTooLongErrorText("Name", upperLimit);
+		preparedDesc = writeStringTooLongErrorText("Name", upperLimit, false);
 		resObj.valid = false;
 		resObj.errorMessage = writeLineStreamErrorText(fileDesc, dataPath, lineNum, preparedDesc);
 	}
@@ -384,11 +384,21 @@ function writeDateErrorText(vProp)
 
 
 // String too long error.
-function writeStringTooLongErrorText(vLabel, vMax)
+function writeStringTooLongErrorText(vLabel, vMax, addQuotes)
 {
 	var writeRes = "";
 	
-	writeRes += vLabel;
+	if (addQuotes === true)
+	{
+		writeRes += "'";
+		writeRes += vLabel;
+		writeRes += "'";
+	}
+	else
+	{
+		writeRes += vLabel;
+	}
+	
 	writeRes += " cannot be longer than ";
 	writeRes += vMax;
 	writeRes += " characters.";
