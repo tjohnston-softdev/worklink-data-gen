@@ -4,7 +4,8 @@
 	"encryption":
 	{
 		"enabled": true,
-		"key": "EXAMPLE"
+		"key": "EXAMPLE",
+		"checkMatch": true
 	},
 	"genders":
 	{

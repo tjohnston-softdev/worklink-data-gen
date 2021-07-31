@@ -1,19 +1,14 @@
 # Changelog
 
-**./src/common/**
-* Added 'encryptionLength' property (number-limits.js)
-* Wrote new function 'checkEncryptionStringValue' (validation-tasks.js)
+**./options.json**
+* Added 'encryption.checkMatch' property.
+	* If this is True, check whether the encrypted values match their original counterparts.
 
 ---
 
 **./src/options-validation/encrypt-props.js**
-* New file - Validates encryption properties
-	* enabled
-	* key
-
----
-
-**./src/read-options-file.js**
-* Added requirement: './options-validation/encrypt-props'
-* callOptionsValidation
-	* Added call to 'encryptProps.validateEncryption'
+* Wrote 'handleTrueFalseValue' function.
+* Removed 'handleEnabledStatus' function.
+* validateEncryptionProperties
+	* Replaced 'handleEnabledStatus' call with 'handleTrueFalseValue' for 'enabled'
+	* Added 'handleTrueFalseValue' call for 'checkMatch'
