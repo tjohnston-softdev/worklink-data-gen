@@ -5,6 +5,7 @@ const readOptionsFile = require("./src/read-options-file");
 const createOptionsFile = require("./src/create-options-file");
 const readInputData = require("./src/read-input-data");
 const generateDatabaseEntries = require("./src/generate-database-entries");
+const encryptSensitiveData = require("./src/encrypt-sensitive-data");
 const exportSqlFiles = require("./src/export-sql-files");
 const exitProgram = require("./src/exit-program");
 
@@ -25,7 +26,7 @@ function runGenerationMain()
 		else if (optionsTaskRes.contents !== null)
 		{
 			// Options successful - Read input data.
-			//executeInputDataTask(optionsTaskRes.contents);
+			executeInputDataTask(optionsTaskRes.contents);
 			console.log("Valid");
 		}
 		else
@@ -59,7 +60,24 @@ function executeGenerationTask(generationOptionsObj, keywordDataObj)
 {
 	generateDatabaseEntries(generationOptionsObj, keywordDataObj, function(generationRes)
 	{
-		executeOutputTask(generationRes);
+		executeEncryptionTask(generationOptionsObj.encryption, generationRes);
+	});
+}
+
+
+// Encrypt sensitive data
+function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
+{
+	encryptSensitiveData(encryptionOptionsObject, generatedDataObject.aaaa, function (encTaskErr, encTaskRes)
+	{
+		if (encTaskErr !== null)
+		{
+			exitProgram.callError(encTaskErr.message);
+		}
+		else
+		{
+			//executeOutputTask(generatedDataObject);
+		}
 	});
 }
 
