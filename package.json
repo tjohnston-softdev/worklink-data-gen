@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tjohnston-softdev/workforce-link-generator#readme",
   "dependencies": {
+    "async-each-series": "^1.1.0",
     "bcrypt": "^5.0.1",
     "clear": "^0.1.0",
     "dayjs": "^1.10.5",
