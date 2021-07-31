@@ -2,7 +2,7 @@
 
 | Name | Description | Data Type | Example |
 |---|---|---|---|
-| supportWorkerCount | Total number of Support Worker entries to generate. This only affects the number of 'SupportWorker' rows and does not necessarily indicate the number of rows that will be generated for child tables. | Integer | 5000 |
+| supportWorkerCount | Total number of Support Worker entries to generate. This only affects the number of 'SupportWorker' rows and does not necessarily indicate the number of rows that will be generated for child tables. | Integer | 2000 |
 | minRegDate | The earliest date that a Support Worker can be registered into the system. Date strings should be used, but any supported value will work, such as a millisecond count. Only the date component will be used and times are ignored. | Date | "2017-11-02" |
 | genders.distribution | Affects the gender distribution between Male and Female support workers that identify as binary. Higher values result in more Females while lower values result in more Males. Using 0.5 will result in an even chance between both genders. | Percentage | 0.5 |
 | genders.otherChance | Affects the chance that a Support Worker will identify as an 'other' gender as opposed to Male or Female. This does not directly affect binary gender distribution. | Percentage | 0.17 |

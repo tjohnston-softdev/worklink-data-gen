@@ -1,5 +1,4 @@
 # Changelog
 
-* Uncommented 'executeOutputTask' call. (generate.js)
-* Set 'supportWorkerCount' to 5 (options.json)
-* Encryption output successful.
+* Set 'supportWorkerCount' to 2000 (options.json)
+	* New default value.
