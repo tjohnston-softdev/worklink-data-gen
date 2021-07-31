@@ -1,6 +1,8 @@
+const each = require("async-each-series");
 const series = require("run-series");
 const ora = require("ora");
-const randomTasks = require("./common/random-tasks");
+const encodeField = require("./encryption/encode-field");
+const hashPass = require("./encryption/hash-pass");
 
 
 function performSensitiveDataEncryption(encryptOptsObject, supportWorkerDataArray, dataEncryptionCallback)
@@ -20,9 +22,14 @@ function coordinateEncryption(encryptOptsObj, supportWorkerData, coordCallback)
 {
 	var encryptionSpinner = ora("Encrypting Sensitive Data").start();
 	
-	loopSupportWorkerEncryption(encryptOptsObj, supportWorkerData, function (encLoopErr)
+	each(supportWorkerData,
+	function (currentSupportWorker, iterationCallback)
 	{
-		if (encLoopErr !== null)
+		encryptSupportWorker(encryptOptsObj, currentSupportWorker, iterationCallback);
+	},
+	function (encLoopErr)
+	{
+		if (encLoopErr !== undefined)
 		{
 			encryptionSpinner.fail("Data Encryption Error");
 			return coordCallback(encLoopErr, null);
@@ -36,14 +43,19 @@ function coordinateEncryption(encryptOptsObj, supportWorkerData, coordCallback)
 }
 
 
-function loopSupportWorkerEncryption(encryptOpts, swDataArray, loopCallback)
+function encryptSupportWorker(encryptOpts, swObject, supportCallback)
 {
-	var waitLength = randomTasks.rollInteger(2000, 5000);
-	
-	setTimeout(function()
+	series(
+	[
+		encodeField.bind(null, encryptOpts, swObject, 1, "emailAddress"),
+		encodeField.bind(null, encryptOpts, swObject, 2, "driversLicenseNumber"),
+		encodeField.bind(null, encryptOpts, swObject, 3, "phoneContactNumber"),
+		hashPass.bind(null, encryptOpts.checkMatch, swObject)
+	],
+	function (iterationErr)
 	{
-		return loopCallback(null);
-	}, waitLength);
+		supportCallback(iterationErr);
+	});
 }
 
 

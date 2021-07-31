@@ -27,7 +27,6 @@ function runGenerationMain()
 		{
 			// Options successful - Read input data.
 			executeInputDataTask(optionsTaskRes.contents);
-			console.log("Valid");
 		}
 		else
 		{
@@ -68,7 +67,7 @@ function executeGenerationTask(generationOptionsObj, keywordDataObj)
 // Encrypt sensitive data
 function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
 {
-	encryptSensitiveData(encryptionOptionsObject, generatedDataObject.aaaa, function (encTaskErr, encTaskRes)
+	encryptSensitiveData(encryptionOptionsObject, generatedDataObject.baseEntries, function (encTaskErr, encTaskRes)
 	{
 		if (encTaskErr !== null)
 		{
@@ -83,9 +82,9 @@ function executeEncryptionTask(encryptionOptionsObject, generatedDataObject)
 
 
 // Export SQL Files.
-function executeOutputTask(generatedDataObject)
+function executeOutputTask(genDataObject)
 {
-	exportSqlFiles(generatedDataObject, function (expTaskErr, expTaskRes)
+	exportSqlFiles(genDataObject, function (expTaskErr, expTaskRes)
 	{
 		if (expTaskErr !== null)
 		{

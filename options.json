@@ -1,5 +1,5 @@
 {
-	"supportWorkerCount": 5000,
+	"supportWorkerCount": 10,
 	"minRegDate": "2017-11-02",
 	"encryption":
 	{
