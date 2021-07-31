@@ -65,7 +65,7 @@ function rollLowercaseCharacter()
 // Special characters for password.
 function rollSpecialCharacter()
 {
-	var baseNumber = rollIntegerRange(specialChars.length);
+	var baseNumber = rollArrayElement(specialChars.length);
 	var specialRes = specialChars.charAt(baseNumber);
 	return specialRes;
 }
