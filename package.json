@@ -1,5 +1,5 @@
 {
-  "name": "workforce-link-generator",
+  "name": "worklink-data-gen",
   "version": "0.0.0",
   "description": "Generates support worker data for WF Link database",
   "main": "generate.js",
