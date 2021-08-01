@@ -4,7 +4,7 @@
 	"encryption":
 	{
 		"enabled": true,
-		"key": "EXAMPLE",
+		"key": "KEY GOES HERE",
 		"checkMatch": true
 	},
 	"genders":
