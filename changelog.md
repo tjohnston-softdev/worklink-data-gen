@@ -1,4 +1,5 @@
 # Changelog
 
-**./src/generation/person-password.js**
-* Wrote comments.
+**./src/options-validation/encrypt-props.js**
+* Wrote comments
+* Removed 'handleEnabledStatus'
