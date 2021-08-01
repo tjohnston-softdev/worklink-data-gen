@@ -45,7 +45,7 @@ function stringifyJsonArray(arrayObject, stringCallback)
 {
 	var stringMsg = "";
 	
-	yieldableJson.stringifyAsync(arrayObject, function (jsonErr, stringRes)
+	yieldableJson.stringifyAsync(arrayObject, null, 4, 1, function (jsonErr, stringRes)
 	{
 		if (jsonErr !== null)
 		{
