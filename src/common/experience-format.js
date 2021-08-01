@@ -6,9 +6,9 @@ function getExperienceDescription(expRatingNum)
 {
 	var descRes = "";
 	
-	descRes += "I have ";
+	descRes += "I ";
 	descRes += parseRating(expRatingNum);
-	descRes += " experience in this particular area.";
+	descRes += " in this particular area.";
 	
 	return descRes;
 }
@@ -21,27 +21,27 @@ function parseRating(expNum)
 	
 	if (expNum > 0 && expNum <= 10)
 	{
-		levelRes = "basic";
+		levelRes = "have basic experience";
 	}
 	else if (expNum > 20 && expNum <= 40)
 	{
-		levelRes = "some";
+		levelRes = "have some experience";
 	}
 	else if (expNum > 40 && expNum <= 60)
 	{
-		levelRes = "moderate";
+		levelRes = "am moderately experienced";
 	}
 	else if (expNum > 60 && expNum <= 80)
 	{
-		levelRes = "high";
+		levelRes = "am highly experienced";
 	}
 	else if (expNum > 80 && expNum <= 100)
 	{
-		levelRes = "extensive";
+		levelRes = "am an expert";
 	}
 	else
 	{
-		levelRes = "an unknown amount of";
+		levelRes = "have uncertain experience";
 	}
 	
 	return levelRes;
