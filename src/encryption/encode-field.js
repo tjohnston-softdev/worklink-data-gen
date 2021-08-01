@@ -1,5 +1,5 @@
 const cryptoModule = require("crypto");
-const encryptionErrorText = require("../common/encryption-error-text");
+const encryptionErrors = require("../common/encryption-errors");
 const encMethod = "aes-128-cbc";
 
 
@@ -31,7 +31,7 @@ function encodeFieldString(encOpts, accountObject, fieldIndex, colName, encrypti
 	}
 	else
 	{
-		flaggedMessage = encryptionErrorText.writeFieldEncryption(accountObject[0], colName);
+		flaggedMessage = encryptionErrors.writeFieldEncryption(accountObject[0], colName);
 		return encryptionCallback(new Error(flaggedMessage), null);
 	}
 	

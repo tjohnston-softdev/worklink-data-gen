@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const encryptionErrorText = require("../common/encryption-error-text");
+const encryptionErrors = require("../common/encryption-errors");
 const passInd = 7;
 
 
@@ -11,7 +11,7 @@ function hashPasswordString(compareStrings, accountObject, hashCallback)
 	{
 		if (saltErr !== undefined)
 		{
-			saltMsg = encryptionErrorText.writePasswordEncryption(accountObject[0], "Could not generate salt value.");
+			saltMsg = encryptionErrors.writePasswordEncryption(accountObject[0], "Could not generate salt value.");
 			return hashCallback(new Error(saltMsg), null);
 		}
 		else
@@ -31,7 +31,7 @@ function convertString(compStrs, accountObj, saltValue, conversionCallback)
 	{	
 		if (convErr !== undefined)
 		{
-			hashMsg = encryptionErrorText.writePasswordEncryption(accountObj[0], "Could not successfully hash string.");
+			hashMsg = encryptionErrors.writePasswordEncryption(accountObj[0], "Could not successfully hash string.");
 			return conversionCallback(new Error(hashMsg), null);
 		}
 		else if (compStrs === true)
@@ -65,7 +65,7 @@ function checkHashSuccessful(accObject, hashText, checkCallback)
 		}
 		else
 		{
-			compMsg = encryptionErrorText.writePasswordEncryption(accObject[0], "Hash does not match original string.");
+			compMsg = encryptionErrors.writePasswordEncryption(accObject[0], "Hash does not match original string.");
 			return checkCallback(new Error(compMsg), null);
 		}
 	});

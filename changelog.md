@@ -1,6 +1,7 @@
 # Changelog
 
-**./src/export-plain-backup.js - stringifyJsonArray**
-* Output JSON is now properly formatted for easier readability.
-	* Adds 'space' argument to 'yieldableJson.stringifyAsync'
-	* Uses value of 4 to ensure spacing between properties.
+**./src/common/encryption-error-text.js**
+* Renamed to 'encryption-errors.js'
+* Affected files:
+	* ../encryption/hash-pass.js
+	* ../encryption/encode-field.js
