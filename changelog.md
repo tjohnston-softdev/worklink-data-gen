@@ -1,5 +1,11 @@
 # Changelog
 
-**./src/encryption/hash-pass.js - checkHashSuccessful**
-* Wrote custom message for hash comparison error.
-	* "[...] - Could not successfully compare results."
+**./info/options.md**
+* Removed:
+	* userPassword.minCharacters
+	* userPassword.maxCharacters
+* Added:
+	* encryption.enabled
+	* encryption.key
+	* encryption.checkMatch
+* Last Updated: 1 August 2021

@@ -4,14 +4,15 @@
 |---|---|---|---|
 | supportWorkerCount | Total number of Support Worker entries to generate. This only affects the number of 'SupportWorker' rows and does not necessarily indicate the number of rows that will be generated for child tables. | Integer | 2000 |
 | minRegDate | The earliest date that a Support Worker can be registered into the system. Date strings should be used, but any supported value will work, such as a millisecond count. Only the date component will be used and times are ignored. | Date | "2017-11-02" |
+| encryption.enabled | If this is True, sensitive data fields will be encrypted. The original plain text will be backed up and exported to a separate file. Please keep in mind that this will take a long time to complete. | Boolean | true |
+| encryption.key | This string is the key that will be used to encrypt the sensitive data fields. | String | "EXAMPLE" |
+| encryption.checkMatch | If this is True, encrypted strings will be validated against their original counterparts. If they do not match, there will be an error. Comparing results will take extra time on top of the encryption itself so feel free to disable this if accuracy is not as important. | Boolean | true |
 | genders.distribution | Affects the gender distribution between Male and Female support workers that identify as binary. Higher values result in more Females while lower values result in more Males. Using 0.5 will result in an even chance between both genders. | Percentage | 0.5 |
 | genders.otherChance | Affects the chance that a Support Worker will identify as an 'other' gender as opposed to Male or Female. This does not directly affect binary gender distribution. | Percentage | 0.17 |
 | age.min | Minimum age of the Support Worker as of their registration date. | Integer | 18 |
 | age.max | Maximum age of the Support Worker as of their registration date. | Integer | 70 |
 | age.feelsLikeChance | The percentage chance at a Support Worker will choose a 'feels like' age. | Percentage | 0.55 |
 | age.maxOffset | The maximum multiplication difference between a Support Worker's chronological and 'feels like' age. This applies on both sides so if 0.25 is entered, the 'feels like' age will fall between 0.75 and 1.25 times the chronological age. The final number will be rounded to the nearest whole. | Decimal | 0.25 |
-| userPassword.minCharacters | The minimum number of characters that a password can have. | Integer | 8 |
-| userPassword.maxCharacters | The maximum number of characters that a password can have. | Integer | 32 |
 | aboutQuotes | The number of quotes that will be chosen from the [input](../input-data/quotes.txt) file to form a Support Worker's 'about me' text. This number is fixed, but the quotes themselves will be random. | Integer | 3 |
 | skillDescription.minKeywords | The minimum number of keywords that will be chosen from the [input](../input-data/ing-forms.txt) file to write a Support Worker's skill description text. | Integer | 3 |
 | skillDescription.maxKeywords | The minimum number of keywords that will be chosen to write a Support Worker's skill description text. | Integer | 10 |
@@ -81,11 +82,10 @@
 | otherGeneral.minKeywords | The minimum number of keywords that will be chosen to write a Support Worker's 'otherGeneral' text. | Integer | 10 |
 | otherGeneral.maxKeywords | The maximum number of keywords that will be chosen to write a Support Worker's 'otherGeneral' text. | Integer | 20 |
 
-
 ---
 
 **Originally Written:** 30 June 2021  
-**Last Updated:** 31 July 2021
+**Last Updated:** 1 August 2021
 
 
 [Return to index](../readme.md)
