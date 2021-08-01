@@ -1,3 +1,5 @@
+// Backs up plain-text sensitive data before it is encrypted.
+
 function backupPlainText(accountArray)
 {
 	var accountIndex = 0;
@@ -11,6 +13,7 @@ function backupPlainText(accountArray)
 		currentAccount = accountArray[accountIndex];
 		currentPrepared = {};
 		
+		// Back up current Support Worker account.
 		currentPrepared["id"] = currentAccount[0];
 		currentPrepared["email"] = currentAccount[1];
 		currentPrepared["password"] = currentAccount[7];
