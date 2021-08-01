@@ -1,3 +1,5 @@
+// Script exports backed up plain text data as a JSON file.
+
 const fs = require("fs");
 const path = require("path");
 const ora = require("ora");
@@ -6,21 +8,25 @@ const storedPaths = require("../storage-paths");
 const fsErrors = require("./common/fs-errors");
 
 
+// Main function.
 function performPlainBackupExport(backupObject, plainExportCallback)
 {
 	var arrayGiven = Array.isArray(backupObject);
 	
 	if (arrayGiven === true && backupObject.length > 0)
 	{
+		// Save backup file.
 		coordinateExport(backupObject, plainExportCallback);
 	}
 	else
 	{
+		// Data was not encrypted - Skip this.
 		return plainExportCallback(null, true);
 	}
 }
 
 
+// Loading spinner.
 function coordinateExport(backupObj, coordCallback)
 {
 	var exportSpinner = ora("Exporting plain text data").start();
@@ -41,25 +47,30 @@ function coordinateExport(backupObj, coordCallback)
 }
 
 
+// Convert plain text data array to JSON definition string.
 function stringifyJsonArray(arrayObject, stringCallback)
 {
 	var stringMsg = "";
 	
+	// Extra arguments ensure proper formatting.
 	yieldableJson.stringifyAsync(arrayObject, null, 4, 1, function (jsonErr, stringRes)
 	{
 		if (jsonErr !== null)
 		{
+			// JSON string error.
 			stringMsg = fsErrors.writeJsonStringify("Plain Text Backup", jsonErr.message);
 			return stringCallback(new Error(stringMsg), null);
 		}
 		else
 		{
+			// Write definition to file.
 			writeJsonFile(stringRes, stringCallback);
 		}
 	});
 }
 
 
+// Save definition text as JSON file.
 function writeJsonFile(fileContents, writeCallback)
 {
 	var targetOutputPath = path.join(storedPaths.outputFolder, "plain-text.json");
@@ -69,11 +80,13 @@ function writeJsonFile(fileContents, writeCallback)
 	{
 		if (writeErr !== null)
 		{
+			// Save error.
 			writeMsg = fsErrors.writeFileCreate("Plain Text Backup", writeErr.code, targetOutputPath);
 			return writeCallback(new Error(writeMsg), null);
 		}
 		else
 		{
+			// Save successful.
 			return writeCallback(null, true);
 		}
 	});

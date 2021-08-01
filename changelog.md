@@ -1,4 +1,4 @@
 # Changelog
 
-**./src/common/validation-tasks.js**
-* Wrote comments for 'checkEncryptionStringValue'
+**./src/export-plain-backup.js**
+* Wrote comments.
