@@ -68,7 +68,8 @@ function checkHashSuccessful(accObject, hashText, checkCallback)
 		if (compErr !== null)
 		{
 			// Error comparing values.
-			return checkCallback(compErr, null);
+			compMsg = encryptionErrors.writePasswordEncryption(accObject[0], "Could not successfully compare results.");
+			return checkCallback(new Error(compMsg), null);
 		}
 		else if (compRes === true)
 		{

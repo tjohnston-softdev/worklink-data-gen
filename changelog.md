@@ -1,9 +1,5 @@
 # Changelog
 
-**./src/**
-* Commented files:
-	* common/encryption-errors.js
-	* encryption/backup-plain-text.js
-	* encryption/encode-field.js
-	* encryption/hash-pass.js
-	* encrypt-sensitive-data.js
+**./src/encryption/hash-pass.js - checkHashSuccessful**
+* Wrote custom message for hash comparison error.
+	* "[...] - Could not successfully compare results."
