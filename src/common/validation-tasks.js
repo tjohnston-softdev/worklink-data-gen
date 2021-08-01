@@ -177,6 +177,7 @@ function checkDateStringValue(stringValue, stringProp, resObj)
 }
 
 
+// Encryption key string.
 function checkEncryptionStringValue(stringValue, stringProp, maxLength, resObj)
 {
 	var correctType = (typeof stringValue === "string");
@@ -184,20 +185,24 @@ function checkEncryptionStringValue(stringValue, stringProp, maxLength, resObj)
 	
 	if (correctType === true && stringValue.length > 0 && stringValue.length <= maxLength)
 	{
+		// Valid.
 		checkRes = true;
 	}
 	else if (correctType === true && stringValue.length > maxLength)
 	{
+		// Too long.
 		resObj.valid = false;
 		resObj.errorMessage = writeStringTooLongErrorText(stringProp, maxLength, true);
 	}
 	else if (correctType === true)
 	{
+		// Empty.
 		resObj.valid = false;
 		resObj.errorMessage = initializeErrorText(stringProp, "cannot be empty.");
 	}
 	else
 	{
+		// Incorrect type.
 		resObj.valid = false;
 		resObj.errorMessage = initializeErrorText(stringProp, "must be a valid string.");
 	}

@@ -1,5 +1,4 @@
 # Changelog
 
-**./src/options-validation/encrypt-props.js**
-* Wrote comments
-* Removed 'handleEnabledStatus'
+**./src/common/validation-tasks.js**
+* Wrote comments for 'checkEncryptionStringValue'
