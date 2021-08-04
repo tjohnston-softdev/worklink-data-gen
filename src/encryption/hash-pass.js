@@ -65,7 +65,7 @@ function checkHashSuccessful(accObject, hashText, checkCallback)
 	
 	bcrypt.compare(origText, hashText, function (compErr, compRes)
 	{
-		if (compErr !== null)
+		if (compErr !== undefined && compErr !== null)
 		{
 			// Error comparing values.
 			compMsg = encryptionErrors.writePasswordEncryption(accObject[0], "Could not successfully compare results.");
