@@ -1,4 +1,3 @@
 # Changelog
 
-**./src/encryption/hash-pass.js - checkHashSuccessful**
-* Callback error check covers `undefined`, not just `null`
+Script successfully generates a full set of test data with the sensitive fields encrypted. Uses default option values.
