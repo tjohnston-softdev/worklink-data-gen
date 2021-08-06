@@ -53,3 +53,5 @@ As for what I might do in the future, I could develop a generic project based on
 ## Disclaimer
 
 This repository is licensed under [MIT](https://opensource.org/licenses/MIT). You may use this as a basis both personal and commercial projects as long as attribution is given and the license remains intact. Although I will actively support this repository, I do not claim responsibility for if and how you use this alongside the [original prototype server](https://github.com/tjohnston-softdev/worklink-api-orig). Refer to that repository for more details. I also do not claim responsibility for your use of this data with any databases other than the one I designed for Workforce Link. The 3rd-party input used to generate Support Worker test data, such as keywords, are property of their respective owners. Care has been taken to reference them appropriately and are not covered by this project's license.
+
+As of 6 August 2021, this repository has been officially discontinued.
